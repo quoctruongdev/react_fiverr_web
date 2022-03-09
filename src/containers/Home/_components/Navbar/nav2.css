@@ -1,0 +1,116 @@
+/* Search navbar */
+
+.search-bar-package form {
+  display: flex;
+  position: relative;
+  height: 34px;
+}
+.header__search {
+  width: 100%;
+}
+.search-bar-package form .search-bar-icon {
+  position: absolute;
+  z-index: 5;
+  top: 8px;
+  left: 8px;
+}
+
+.search-bar-package form input {
+  font-size: 15px;
+  padding-top: 8px;
+}
+.search-bar-package form input {
+  font-size: 16px;
+  flex: 1 1 auto;
+  padding: 7px 7px 7px 28px;
+  border: 1px solid #dadbdd;
+  box-shadow: none;
+  z-index: 3;
+  color: #404145;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.search-bar-package form input:focus {
+  border-color: #95979d;
+}
+.btn_search {
+  padding: 6px 16px;
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 0 3px 3px 0;
+  background-color: #1dbf73;
+  color: #fff;
+}
+.btn_search:hover,
+.btn_search:focus {
+  background-color: #19a463;
+}
+:focus-visible {
+  outline: none !important;
+}
+
+.header__search.hidden_search {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.25s ease;
+  -o-transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease;
+}
+
+.header__search.show_search {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: opacity 0.25s ease;
+  -o-transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease;
+}
+
+/* Logo */
+.site-logo svg {
+  fill: #404145;
+}
+
+.site-logo {
+  height: auto;
+  min-width: 121px;
+}
+
+/* ****Navbar before scroll**** */
+.Navbar__header {
+  background-color: transparent !important;
+  position: fixed;
+  z-index: 100;
+  border: none !important;
+  -webkit-transition: background-color 0.5s ease;
+  -o-transition: background-color 0.5s ease;
+  transition: background-color 0.5s ease;
+}
+.Navbar__header .site-logo svg {
+  fill: #fff;
+}
+
+.active_navbar {
+  color: #02c2a9 !important;
+}
+.Navbar__header .listItem a:hover,
+.Navbar__header .listItem {
+  color: #ffff !important;
+}
+.Navbar__header .button__toggle svg rect {
+  fill: #fff !important;
+}
+
+/* ****Navbar aftert scroll**** */
+.showNavbar {
+  background-color: #fff !important;
+  position: fixed;
+  z-index: 100;
+  /* border-bottom: 1px solid #e4e5e7; */
+  -webkit-transition: 0.5s;
+  -o-transition: background-color 0.5s;
+}
+
+
+

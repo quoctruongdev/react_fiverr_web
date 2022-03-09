@@ -1,0 +1,29 @@
+.showMainNav {
+  position: fixed;
+  z-index: 100;
+  background-color: #fff;
+  transition: 0.3s ease;
+}
+.hiddenMainNav {
+  position: fixed;
+  z-index: 100;
+  background-color: transparent;
+  border-bottom: none;
+  transition: 0.3s ease;
+}
+.showSearchNav {
+  opacity: 1;
+  visibility: visible;
+  transition: 0.25s ease;
+}
+.hiddenSearchNav {
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.25s ease;
+}
+.colorItemNav a {
+  color: #62646a !important;
+}
+.colorItemNav a:hover {
+  color: #1dbf73 !important;
+}

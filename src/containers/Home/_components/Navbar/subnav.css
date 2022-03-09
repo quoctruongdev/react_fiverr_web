@@ -1,0 +1,39 @@
+.show_subnav {
+  display: block;
+  background-color: #fff;
+  position: fixed;
+  width: 100%;
+  z-index: 60;
+  opacity: 1;
+  visibility: visible;
+  transform: rotateX(0deg);
+  -webkit-transform: rotateX(0deg);
+  transition: opcity 0.2s, transform 0.2s, -webkit-transform 0.2s;
+  -webkit-transition: opcity 0.2s, transform 0.2s, -webkit-transform 0.2s;
+  top: 71px;
+}
+.hidden_subnav {
+  display: block;
+
+  position: fixed;
+  top: 71px;
+  width: 100%;
+  z-index: 60;
+  opacity: 0;
+  visibility: hidden;
+
+  -webkit-transition: transform 0.2s;
+  transform: rotateX(90deg);
+  -webkit-transform: rotateX(90deg);
+  transition: opcity 0.2s, transform 0.2s, -webkit-transform 0.2s;
+  -webkit-transition: opcity 0.2s, transform 0.2s, -webkit-transform 0.2s;
+}
+
+/* Scrollable */
+.css-heg063-MuiTabs-flexContainer {
+  justify-content: space-between;
+  align-items: center;
+}
+.categories .hidden_subnav {
+  display: none;
+}

@@ -1,0 +1,24 @@
+.search-header .title {
+  color: #000;
+  font-size: 32px;
+  line-height: 150%;
+  font-weight: 700;
+}
+.layout-row.header-wrapper {
+  display: flex;
+
+  flex-flow: row nowrap;
+
+  align-items: center;
+  padding-top: 32px;
+  padding-bottom: 12px;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+.ant-card-cover img {
+  cursor: pointer;
+}

@@ -1,0 +1,213 @@
+.site-footer {
+  background-color: #fff;
+  border-top: 1px solid #e4e5e7;
+  position: relative;
+}
+.max-width-containers {
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  padding-top: 64px;
+}
+
+.footer-package .footer-collapsibles {
+  max-height: 460px;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+
+.footer-package .footer-collapsibles {
+  margin-bottom: 8px;
+}
+.grid-15 {
+  position: relative;
+  display: flex;
+  flex: 0 1 auto;
+}
+.grid-15 > [class*="col-"] {
+  width: 20%;
+  padding-right: 2%;
+}
+.footer-package .footer-collapsible .footer-collapsible-title-wrapper {
+  padding-top: 0;
+}
+.footer-package .footer-collapsibles h6 {
+  color: #404145;
+  font-weight: 700;
+}
+
+.footer-package .footer-collapsible .footer-collapsible-content a {
+  font-weight: 400;
+  color: #7a7d85;
+  font-size: 16px;
+}
+.footer-package .footer-collapsible .footer-collapsible-content p {
+  color: #b5b6ba;
+  font-size: 14px;
+  margin-bottom: 0px;
+}
+
+/* Bottom */
+.footer-package .bottom {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 48px;
+  height: 80px;
+}
+
+.footer-package .left {
+  display: flex;
+  min-width: 0;
+  flex-direction: row;
+  align-items: center;
+  width: auto;
+}
+
+.text-body-2 {
+  color: #62646a;
+}
+
+.site-footer .legal {
+  color: #b5b6ba;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.legal .copyright {
+  margin-left: 24px;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.footer-package .bottom:before {
+  background-color: #e4e5e7;
+  content: "";
+  height: 1px;
+  width: 100%;
+  margin: 0 6px;
+}
+
+/* right bottom */
+.footer-package .right {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.site-footer .social {
+  justify-content: flex-start;
+  padding-bottom: 0;
+  padding-right: 32px;
+  width: auto;
+  display: flex;
+  padding-top: 16px;
+}
+
+.site-footer .social-link:hover {
+  padding: 8px;
+  margin: -8px;
+  background-color: #efeff0;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+  box-shadow: 0 0 6px 3px blue, 0 0 2px #333 inset !important;
+}
+
+.social-label {
+  display: none;
+}
+.site-footer .social li:not(:last-of-type) {
+  margin-right: 24px;
+}
+.site-footer .social-link {
+  display: flex;
+}
+.site-footer .settings-buttons {
+  display: flex;
+}
+.site-footer .settings-buttons .settings-button:not(:last-child) {
+  margin-right: 4px;
+}
+.locale-settings-package .language-selection-trigger.default {
+  color: #7a7d85;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  padding: 8px 12px;
+}
+.locale-settings-package .currency-selection-trigger.default {
+  color: #7a7d85;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  padding: 8px 12px;
+}
+.locale-settings-package .currency-selection-trigger.default:hover,
+.locale-settings-package .language-selection-trigger.default:hover {
+  color: #404145;
+  background-color: #f5f5f5;
+  border-radius: 54px;
+  box-shadow: 0 0 6px 3px blue, 0 0 2px #333 inset !important;
+}
+
+/* .locale-settings-package .language-selection-trigger.default:hover {
+  color: #404145;
+  background-color: #f5f5f5;
+  border-radius: 54px;
+  box-shadow: 0 0 6px 3px blue, 0 0 2px #333 inset !important;
+} */
+.locale-settings-package .language-selection-trigger .trigger-icon {
+  fill: #7a7d85;
+  padding-right: 24px;
+}
+
+.site-footer .accessibility-button {
+  border: none !important;
+  background: none;
+  margin-left: 8px;
+  border-radius: 50%;
+  height: 32px;
+}
+
+.site-footer .accessibility-button:hover {
+  box-shadow: 0 0 6px 3px blue, 0 0 2px #333 inset !important;
+}
+
+/* Bottom */
+
+.footer-package
+  .footer-collapsible
+  .footer-collapsible-content
+  li:not(:last-child) {
+  padding-bottom: 16px;
+}
+
+._3dF2AcM .ggYvR3i ._2NVSqpn ._1pNZ60x {
+  top: 1px;
+  display: none;
+  cursor: pointer;
+  transform: rotate(90deg);
+  transition: 0.2s;
+}
+
+._3_ME_EA {
+  display: inline-block;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  fill: #7a7d85;
+}
+._3_ME_EA svg {
+  float: left;
+  height: 100%;
+  width: 100%;
+}

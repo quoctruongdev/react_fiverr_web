@@ -1,0 +1,1 @@
+npm install stylelint-config-recommended --save    

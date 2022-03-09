@@ -1,0 +1,88 @@
+.slider_title {
+  border-radius: 4px;
+  padding-bottom: 24px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  content: "";
+  display: inline-block;
+  background: url(https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/arrows.a8b0bad.svg)
+    no-repeat;
+  background-size: 16px 64px;
+  width: 16px;
+  height: 16px;
+  margin-top: 15px;
+}
+.slick-next:before {
+  transform: rotate(180deg);
+}
+
+.slider__show {
+  padding: 0 30px;
+  margin-bottom: 96px;
+}
+
+/* Sub text */
+.subcategory h4 {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  padding: 16px;
+  /* font-weight: 700px !important; */
+}
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0.5rem;
+  font-weight: 700 !important;
+  line-height: 1.2;
+}
+.subcategory {
+  position: absolute;
+  display: block;
+  padding: 0 16px;
+  left: 6%;
+}
+.item__slider {
+  position: relative;
+}
+
+.item__slider a {
+  text-decoration: none;
+  list-style: none;
+  width: 88%;
+}
+
+.subcategory h4 small {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  display: block;
+}
+
+.subcategory img {
+  object-fit: cover;
+  /* height: 345px; */
+  width: 100%;
+  border-radius: 4px;
+  transition: opacity 0.3s ease-in-out;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.ant-carousel .slick-slide img:hover,
+.subcategory img {
+  opacity: 0.85;
+}

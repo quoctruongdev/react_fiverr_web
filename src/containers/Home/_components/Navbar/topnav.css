@@ -1,0 +1,127 @@
+.top__navbar {
+  position: sticky;
+  z-index: 39;
+  top: 0;
+  right: 0;
+  background-color: #fff;
+  border-bottom: 1px solid #dadbdd;
+}
+.top__navbar ul {
+  display: flex;
+  width: 100%;
+  margin-bottom: 0 !important;
+}
+.top__navbar ul a {
+  margin: 0 12px;
+  position: relative;
+}
+.top__navbar ul a:first-of-type {
+  margin-left: 0;
+}
+.icons-list button:last-of-type {
+  margin-right: 0;
+}
+
+.scrollspy .active {
+  color: #222325 !important;
+}
+
+.top__navbar ul a:after {
+  background: #fff;
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  -webkit-transition: background-color 0.2s;
+  -o-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+
+  text-decoration: none;
+}
+.top__navbar ul a.active:after {
+  background: #1dbf73;
+  bottom: -1px;
+}
+
+.top__navbar ul li.is-active a {
+  color: #222325;
+}
+
+.top__navbar ul li a.is-active {
+  color: #222325;
+  cursor: default;
+}
+
+.top__navbar {
+  font-size: 14px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top__navbar ul a {
+  font-size: 14px;
+  line-height: 53px;
+  font-weight: 600;
+  display: inline-block;
+  color: #95979d;
+  -webkit-transition: color 0.2s;
+  -o-transition: color 0.2s;
+  transition: color 0.2s;
+  text-decoration: none;
+}
+.top__navbar ul a:hover {
+  color: #7a7d85;
+  text-decoration: none;
+}
+
+/* LEFT NAV  */
+.icons-list {
+  display: flex;
+}
+.icons-list button {
+  border: 1px solid #c5c6c9;
+  border-radius: 3px;
+  padding: 5px 8px;
+  align-items: center;
+  margin-right: 13px;
+  font-size: 14px;
+}
+
+.collect-count {
+  font-size: 14px;
+  color: #222325;
+  position: relative;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.collect-count:after {
+  z-index: 3;
+  border-width: 6px 8px 6px 0;
+  border-color: transparent #fff transparent transparent;
+  top: 4px;
+  left: -16px;
+  content: "";
+  position: absolute;
+  border-style: solid;
+}
+
+.collect-count:before {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  z-index: 2;
+  border-width: 8px 9px 8px 0;
+  border-color: transparent #dadbdd transparent transparent;
+  top: 2px;
+  left: -17px;
+}
+
+.btn-collect:focus {
+  box-shadow: none !important;
+  cursor: default !important;
+}

@@ -1,0 +1,112 @@
+.slider__title {
+  border-radius: 4px;
+  padding-bottom: 24px;
+}
+.slider__title:focus {
+  box-shadow: 0 0 6px 3px #ffff00, 0 0 2px #333 inset !important;
+  border: 2px solid black !important;
+}
+.slider__title:hover {
+  box-shadow: 0 0 6px 3px blue, 0 0 2px #333 inset !important;
+  border: 2px solid black !important;
+}
+.ant-carousel .slick-slide img {
+  display: block;
+  border-radius: 5px;
+}
+
+.ant-carousel .slick-prev::before,
+.ant-carousel .slick-next::before {
+  content: "";
+}
+.slider__show {
+  padding: 0 30px;
+  margin-bottom: 96px;
+}
+
+/* ***************** */
+.text-content {
+  padding: 24px 24px 0;
+  width: 100%;
+}
+.text-content {
+  padding: 0 0 0 64px;
+  max-width: 750px;
+  width: 60%;
+}
+
+.text-content h5 {
+  font-weight: 400;
+  color: #7a7d85;
+  padding-bottom: 16px;
+  font-size: 20px;
+  display: inline-flex;
+  align-items: center;
+}
+.testimonial-logo {
+  border-left: 1px solid #c5c6c9;
+  height: 36px;
+  margin-left: 16px;
+}
+
+.testimonial {
+  display: flex !important;
+  width: 100%;
+  margin: auto;
+  align-items: center;
+}
+
+.text-content img {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 12px;
+  height: 36px !important;
+}
+
+.video-modal .picture__wrapper {
+  position: relative !important;
+}
+.video-modal .picture__wrapper:after {
+  content: "";
+  display: inline-block;
+  background: url(https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/desktop-play-button.c1196d6.png)
+    no-repeat;
+  background-size: 80px;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  z-index: 10;
+  left: 45%;
+  top: 40%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-30%, -30%);
+}
+
+.text-content blockquote {
+  font-size: 30px;
+  line-height: 44px;
+  color: #003912;
+  padding-bottom: 24px;
+  font-weight: 500;
+}
+
+/* Reponsive */
+@media only screen and (min-width: 900px) {
+  .logged-out-homepage .testimonials .text-content {
+    padding: 0 36px 0 16px;
+    width: 50%;
+  }
+}
+@media only screen and (min-width: 1160px) {
+  .logged-out-homepage .testimonials .text-content {
+    padding: 0 48px 0 64px;
+    max-width: 707px;
+    width: 60%;
+  }
+}
+@media only screen and (min-width: 692px) {
+  .logged-out-homepage .testimonials .text-content {
+    padding: 24px 24px 0;
+    width: 100%;
+  }
+}

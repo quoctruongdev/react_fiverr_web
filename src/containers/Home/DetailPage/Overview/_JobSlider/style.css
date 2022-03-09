@@ -1,0 +1,123 @@
+.image-gallery-content.fullscreen {
+  background: #000;
+  /* background-color: #fff !important; */
+
+  padding: 0 25px;
+}
+.image-gallery-left-nav,
+.image-gallery-right-nav {
+  padding: 50px 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.image-gallery-play-button {
+  left: 2%;
+}
+.image-gallery-fullscreen-button {
+  right: 2%;
+}
+.image-gallery-left-nav,
+.image-gallery-right-nav {
+  padding: 15px;
+  position: absolute;
+  z-index: 30;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 15%);
+}
+.image-gallery-right-nav {
+  right: -24px;
+}
+.image-gallery-left-nav {
+  left: -24px;
+}
+.image-gallery-left-nav::after,
+.image-gallery-right-nav::after {
+  content: "";
+  display: inline-block;
+  background: url(https://fiverr-res.cloudinary.com/npm-assets/@fiverr/gig_page_perseus/apps/arrows.a8b0bad.svg)
+    no-repeat;
+  background-size: 16px 64px;
+  width: 16px;
+  height: 16px;
+}
+.image-gallery-right-nav::after {
+  background-position: 0 -16px;
+}
+
+.image-gallery-slide .image-gallery-image {
+  width: 100%;
+  object-fit: cover;
+}
+
+.image-gallery-right-nav:focus,
+.image-gallery-left-nav:focus {
+  outline: none !important;
+}
+.image-gallery-svg:hover {
+  box-shadow: 0 0 6px 3px #ffff00, 0 0 2px #333 inset !important;
+}
+.image-gallery-thumbnail {
+  opacity: 0.3;
+}
+
+.image-gallery-thumbnail.active {
+  opacity: 1;
+  border: none;
+  transition: all 0.4s linear;
+}
+
+.image-gallery-thumbnail:hover {
+  box-shadow: 0 0 6px 3px #ffff, 0 0 2px #333 inset !important;
+  border: none;
+}
+/* ***************** */
+.image-gallery .image-gallery-using-mouse {
+  position: relative;
+}
+.gig-review {
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  text-align: left;
+  top: 0;
+  position: absolute;
+  z-index: 2;
+  width: 50%;
+  padding: 15px;
+  box-sizing: border-box;
+  transform: translateY(0);
+  transition: transform 0.3s ease-in-out 0.35s;
+}
+.gig-review blockquote {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 120%;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  position: relative;
+  margin: 0;
+  padding-left: 9px;
+  height: 20px;
+}
+.gig-review blockquote:before {
+  content: "\201C";
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 2;
+}
+
+.gig-review blockquote:after {
+  content: "\201D";
+  padding-left: 2px;
+}
+.image-gallery-image:hover {
+  transform: scale(1.2);
+  transition: transform 0.4s;
+}
+.image-gallery-image {
+  transition: transform 0.4s;
+}

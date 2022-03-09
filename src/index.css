@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+@import "@splidejs/splide/dist/css/splide.min.css";
+@import "@splidejs/splide/dist/css/themes/splide-skyblue.min.css";
+
+@import "~react-image-gallery/styles/css/image-gallery.css";
+@import "~font-awesome/css/font-awesome.min.css";
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+html {
+  /* overflow-x: hidden !important; */
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+}
+
+body {
+  padding-right: 0px !important;
+
+  /* background-color: #fff;
+  font: 400 16px/24px Macan, Helvetica Neue, Helvetica, Arial, sans-serif;
+  color: #62646a;
+  position: relative;
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box; */
+}
+.ant-rate {
+  color: rgb(255, 179, 62) !important;
+}
+.ant-btn-primary {
+  display: flex !important;
+  align-items: center !important;
+}
+.anticon {
+  display: inline-flex !important;
+}
+button:focus {
+  outline: none !important;
+  /* box-shadow: none; */
+}
