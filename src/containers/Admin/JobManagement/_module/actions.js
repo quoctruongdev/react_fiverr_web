@@ -1,11 +1,11 @@
 import * as ActionType from "./constants";
-import { api } from "../../../../utils/apiutils";
+import { apiAdmin } from "../../../../utils/apiutils";
 
 // ************List Job************
 export const actFetchListJob = () => {
   return (dispatch) => {
     dispatch(actListJobRequest());
-    api
+    apiAdmin
       .get("jobs")
       .then((result) => {
         dispatch(actListJobSuccess(result.data));

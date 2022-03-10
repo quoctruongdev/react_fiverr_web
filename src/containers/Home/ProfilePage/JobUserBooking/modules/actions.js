@@ -1,11 +1,11 @@
 import * as ActionType from "./constants";
-import { api } from "../../../../../utils/apiutils";
+import { apiClient } from "../../../../../utils/apiutils";
 
 // ************ Job User Booking ************
 export const actFetchJobUserBooking = () => {
   return (dispatch) => {
     dispatch(actJobUserBookingRequest());
-    api
+    apiClient
       .get("jobs/by-user")
       .then((result) => {
         dispatch(actJobUserBookingSuccess(result.data));

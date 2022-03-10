@@ -9,34 +9,6 @@ import Testimonial from "./Testimonials/Testimonial";
 import "./style.css";
 
 export default function HomePage() {
-  // let CategoriesMenu = document.getElementById("CategoriesMenu").classList;
-  // let MainNavbar = document.getElementById("MainNavbar").classList;
-  // let SearchNavbar = document.getElementById("SearchNavbar").classList;
-  // let listItemNav = document.getElementById("listItemNav").classList;
-
-  // let location = useLocation();
-  // const defaultSubNavbar = () => {
-  //   if (location.pathname === "/") {
-  //     CategoriesMenu.add("hidden");
-  //     MainNavbar.add("hiddenMainNav");
-  //     SearchNavbar.add("hiddenSearchNav");
-  //   } else {
-  //     CategoriesMenu.remove("hidden");
-  //   }
-  // };
-  // const controlSubNavbar = () => {
-  //   if (window.scrollY > 200) {
-  //     CategoriesMenu.add("show");
-  //     CategoriesMenu.remove("hidden");
-  //     SearchNavbar.add("showSearchNav");
-  //     SearchNavbar.remove("hiddenSearchNav");
-  //   } else {
-  //     CategoriesMenu.remove("show");
-  //     CategoriesMenu.add("hidden");
-  //     SearchNavbar.remove("showSearchNav");
-  //     SearchNavbar.add("hiddenSearchNav");
-  //   }
-  // };
   const controlMainNavbar = () => {
     if (window.scrollY > 30) {
       document.getElementById("MainNavbar").classList.add("showNavbar");

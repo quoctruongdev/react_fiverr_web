@@ -1,5 +1,5 @@
 import * as ActionType from "./constants";
-import { api } from "../../../../../utils/apiutils";
+import { apiClient } from "../../../../../utils/apiutils";
 import { successNotice } from "../../Alert";
 const TIME_EXP = 3600000;
 
@@ -8,7 +8,7 @@ const TIME_EXP = 3600000;
 export const actJoinApi = (user, history) => {
   return (dispatch) => {
     dispatch(actJoinRequest());
-    api
+    apiClient
       .post("auth/signup", user)
       .then((result) => {
         history.replace("/login");

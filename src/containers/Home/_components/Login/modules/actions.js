@@ -1,5 +1,5 @@
 import * as ActionType from "./constants";
-import { api } from "../../../../../utils/apiutils";
+import { apiClient } from "../../../../../utils/apiutils";
 import { successNotice } from "../../Alert";
 
 const TIME_EXP = 3600000;
@@ -9,7 +9,7 @@ const TIME_EXP = 3600000;
 export const actLoginApi = (user, history) => {
   return (dispatch) => {
     dispatch(actLoginRequest());
-    api
+    apiClient
       .post("auth/signin", user)
       .then((result) => {
         if (result.data.user.role === "ADMIN") {

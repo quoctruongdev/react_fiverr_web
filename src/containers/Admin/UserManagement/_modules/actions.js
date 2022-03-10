@@ -1,11 +1,11 @@
 import * as ActionType from "./constants";
-import { api } from "../../../../utils/apiutils";
+import { apiAdmin } from "../../../../utils/apiutils";
 
 // ************List User************
 export const actFetchListUser = () => {
   return (dispatch) => {
     dispatch(actListUserRequest());
-    api
+    apiAdmin
       .get("users")
       .then((result) => {
         dispatch(actListUserSuccess(result.data));

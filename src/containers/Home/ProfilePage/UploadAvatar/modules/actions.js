@@ -1,11 +1,11 @@
 import * as ActionType from "./constants";
-import { api } from "../../../../../utils/apiutils";
+import { apiClient } from "../../../../../utils/apiutils";
 
 // ************Upload Avatar************
 export const actFetchUploadAvatar = (avatar, history) => {
   return (dispatch) => {
     dispatch(actUploadAvatarRequest());
-    api
+    apiClient
       .post("users/upload-avatar", avatar)
       .then((result) => {
         dispatch(actUploadAvatarSuccess(result.data));

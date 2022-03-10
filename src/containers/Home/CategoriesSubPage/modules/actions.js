@@ -1,11 +1,11 @@
 import * as ActionType from "./constants";
-import { api } from "../../../../utils/apiutils";
+import { apiAdmin } from "../../../../utils/apiutils";
 
 // ************Categories Sub Type************
 export const actFetchCategoriesSubType = (id) => {
   return (dispatch) => {
     dispatch(actCategoriesSubTypeRequest());
-    api
+    apiAdmin
       .get(`jobs/by-sub-type?subType=${id}&skip=&llimit=10`)
       .then((result) => {
         dispatch(actCategoriesSubTypeSuccess(result.data));

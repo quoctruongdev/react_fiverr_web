@@ -1,11 +1,11 @@
 import * as ActionType from "./constants";
-import { api } from "../../../../../utils/apiutils";
+import { apiAdmin} from "../../../../../utils/apiutils";
 
 // ************Add User************
 export const actFetchAddUser = (user, history) => {
   return (dispatch) => {
     dispatch(actAddUserRequest());
-    api
+    apiAdmin
       .post("users", user)
       .then((result) => {
         dispatch(actAddUserSuccess(result.data));

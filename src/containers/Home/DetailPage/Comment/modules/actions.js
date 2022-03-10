@@ -1,11 +1,11 @@
 import * as ActionType from "./constants";
-import { api } from "../../../../../utils/apiutils";
+import { apiClient } from "../../../../../utils/apiutils";
 
 // ************Detail Job************
 export const actFetchListComment = (id) => {
   return (dispatch) => {
     dispatch(actListCommentRequest());
-    api
+    apiClient
       .get(`comments/by-job/${id}`)
       .then((result) => {
         dispatch(actListCommentSuccess(result.data));

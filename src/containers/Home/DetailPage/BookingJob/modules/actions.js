@@ -1,12 +1,12 @@
 import * as ActionType from "./constants";
-import { api } from "../../../../../utils/apiutils";
+import { apiClient } from "../../../../../utils/apiutils";
 import { successNotice } from "../../../_components/Alert";
 
 // ************Booking Job************
 export const actFetchBookingJob = (id) => {
   return (dispatch) => {
     dispatch(actBookingJobRequest());
-    api
+    apiClient
       .patch(`jobs/booking/${id}`)
       .then((result) => {
         dispatch(actBookingJobSuccess(result.data));

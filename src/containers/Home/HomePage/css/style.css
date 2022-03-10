@@ -1,0 +1,69 @@
+.trusted-by-text {
+  color: #b5b6ba;
+  font-weight: 600;
+  height: 100%;
+  align-items: center;
+  line-height: 3.5;
+}
+
+.trusted-by-wrapper {
+  background-color: #fafafa;
+  margin: 0 auto 80px;
+  height: 100px;
+  justify-items: center;
+  text-align: center;
+  align-items: center;
+  display: inline-block;
+}
+
+.branch__list li {
+  float: left;
+  padding: 0 25px;
+  text-align: center;
+}
+
+.search-bar-package form {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  height: 34px;
+}
+
+.logged-out-homepage .hero .header .search-bar-package form .search-bar-icon {
+  top: 16px;
+  left: 16px;
+}
+
+.search-bar-package form .search-bar-icon {
+  position: absolute;
+  z-index: 5;
+  top: 8px;
+  left: 8px;
+}
+
+.lFICM06 {
+  display: inline-block;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  fill: #7a7d85;
+}
+
+.myBanner {
+  position: relative;
+}
+
+.seller-name {
+  position: absolute;
+  z-index: 99;
+  right: 3rem;
+  bottom: -5rem;
+}
+
+.seller-name p {
+  color: #fff;
+  display: inline-block;
+  padding-bottom: 32px;
+}
+/*# sourceMappingURL=style.css.map */

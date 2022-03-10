@@ -1,11 +1,11 @@
 import * as ActionType from "./constants";
-import { api } from "../../../../../../utils/apiutils";
+import { apiClient } from "../../../../../../utils/apiutils";
 
 export const actFetchDetailUser = (id) => {
   return (dispatch) => {
     dispatch(actDetailUserRequest());
 
-    api
+    apiClient
       .get(`users/${id}`)
       .then((result) => {
         dispatch(actDetailUserSuccess(result.data));

@@ -1,11 +1,11 @@
 import * as ActionType from "./constants";
-import { api } from "../../../../../utils/apiutils";
+import { apiClient } from "../../../../../utils/apiutils";
 
 // ************Market Place Categories************
 export const actFetchCategoriesMain = (id) => {
   return (dispatch) => {
     dispatch(actCategoriesMainRequest());
-    api
+    apiClient
       .get("type-jobs")
       .then((result) => {
         dispatch(actCategoriesMainSuccess(result.data));

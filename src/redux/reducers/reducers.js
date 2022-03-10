@@ -30,6 +30,9 @@ import listSubTypeReducer from "../../containers/Home/ListTypeJobPage/modules/_m
 import categoriesMainReducer from "../../containers/Home/HomePage/MarketPlace/modules/reducer";
 import categoriesSubTypeReducer from "../../containers/Home/CategoriesSubPage/modules/reducer";
 
+//film
+import addCarouselReducer from "../../containers/Home/HomePage/Carousel/modules/reducer";
+
 const rootReducer = combineReducers({
   homePageReducer,
 
@@ -68,5 +71,8 @@ const rootReducer = combineReducers({
   listSubTypeReducer,
 
   //////COMMENT//////
+
+  // Home Page Film
+  addCarouselReducer,
 });
 export default rootReducer;

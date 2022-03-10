@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import BranchCarousel from "./_Branch";
 import SearchCarousel from "./Search /_searchCarousel";
-import "./style.css";
+import "./style.scss";
 
 const contentStyle = {
   height: "680px",

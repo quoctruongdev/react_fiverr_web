@@ -1,12 +1,12 @@
 import * as ActionType from "./constants";
-import { api } from "../../../../../utils/apiutils";
+import { apiAdmin } from "../../../../../utils/apiutils";
 import { actFetchListJob } from "../../_module/actions";
 
 export const actFetchDeleteJob = (id) => {
   return (dispatch) => {
     dispatch(actDeleteJobRequest());
 
-    api
+    apiAdmin
       .delete(`jobs/${id}`)
       .then((result) => {
         dispatch(actDeleteJobSuccess(result.data));
