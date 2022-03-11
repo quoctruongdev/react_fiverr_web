@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import ModalVideo from "../../_components/ModalVideo/ModalVideo";
 import "./style.css";
-import useModal from "../../../Hook/ModalHook";
+import useModal from "../../../../Hook/ModalHook";
 export default function Feature() {
   const { open, handleClose, handleOpen } = useModal();
   const data = useSelector((state) => state.homePageReducer.dataFeature);

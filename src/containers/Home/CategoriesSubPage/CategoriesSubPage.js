@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 import ModalVideo from "../_components/ModalVideo/ModalVideo";
 import CardSevices from "../_components/CardSevices";
 import { Grid } from "@mui/material";
-import useModal from "../../Hook/ModalHook";
+import useModal from "../../../Hook/ModalHook";
 import "./style.css";
 
 export default function CategoriesSubPage(props) {

@@ -13,7 +13,7 @@ import AdUser from "./AdUser";
 import EditUserNew from "./EditUser";
 
 export default function DialogAdmin(props) {
-  const { open, onClose, title, dataGender } = props;
+  const { open, onClose, dataEditUser } = props;
   return (
     <div>
       <Dialog
@@ -31,7 +31,7 @@ export default function DialogAdmin(props) {
         >
           {/* <Typography> */}
           <Stack alignItems="center" direction="row">
-            <ListItem>{title}</ListItem>
+            <ListItem>{dataEditUser?.title}</ListItem>
             <ToggleButton
               onClick={onClose}
               sx={{
@@ -49,10 +49,10 @@ export default function DialogAdmin(props) {
           {/* </Typography> */}
         </DialogTitle>
         <DialogContent dividers>
-          {title === "Add User" ? (
+          {dataEditUser?.title === "Add User" ? (
             <AdUser />
           ) : (
-            <EditUserNew dataGender={dataGender} />
+            <EditUserNew dataEditUser={dataEditUser} />
           )}
         </DialogContent>
         {/* <DialogActions

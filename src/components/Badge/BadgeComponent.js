@@ -5,7 +5,7 @@ import { deepOrange } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
 import Badge from "@mui/material/Badge";
 
-export default function PopoverComponent(props) {
+export default function BadgeStyle(props) {
   const data = props.data;
   const styles = props.styles;
   console.log(data);

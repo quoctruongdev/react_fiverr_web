@@ -16,8 +16,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-import { actFetchAddUser } from "../../UserManagement/AddUser/modules/actions";
-import { actFetchEditUser } from "../../UserManagement/UpdateUser/Edit/_modules/actions";
+import { actFetchUpdateUser } from "../../UserManagement/UpdateUser/modules/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { CircularProgress } from "@mui/material";
 import { useFormik } from "formik";
@@ -27,10 +26,11 @@ import { Divider } from "antd";
 import LoadingButton from "@mui/lab/LoadingButton";
 import AddBoxSharpIcon from "@mui/icons-material/AddBoxSharp";
 
-export default function EditUserNew({ dataGender }) {
+export default function EditUserNew({ dataEditUser, history }) {
   const loadingBtn = useSelector((state) => state.editUserReducer.loading);
   const data = useSelector((state) => state.editUserReducer.data);
   const dispatch = useDispatch();
+  console.log(dataEditUser);
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -45,12 +45,9 @@ export default function EditUserNew({ dataGender }) {
       role: data?.role,
     },
     onSubmit: (values) => {
-      console.log("value", values);
-      let formData = new FormData();
-      dispatch(actFetchEditUser(formData));
+      dispatch(actFetchUpdateUser(data?._id, values, history));
     },
   });
-
   console.log(formik.values);
 
   const handlechangeDatePicker = (valueDate) => {
@@ -60,7 +57,7 @@ export default function EditUserNew({ dataGender }) {
 
   return (
     <>
-      <form autoComplete="off">
+      <form onSubmit={formik.handleSubmit} autoComplete="off">
         <CardContent>
           <Grid container spacing={3}>
             <Grid item md={6} xs={12}>
@@ -121,7 +118,6 @@ export default function EditUserNew({ dataGender }) {
                 fullWidth
                 label="Password"
                 name="password"
-                // onChange={formik.handleChange}
                 value={data?.password}
                 InputLabelProps={{ shrink: true }}
                 variant="outlined"
@@ -168,7 +164,7 @@ export default function EditUserNew({ dataGender }) {
                   name="gender"
                   row
                   onChange={formik.handleChange}
-                  defaultValue={dataGender}
+                  defaultValue={dataEditUser?.genders}
                   // value={formik.values.gender}
                 >
                   <FormControlLabel
@@ -184,25 +180,6 @@ export default function EditUserNew({ dataGender }) {
                     label="Male"
                   />
                 </RadioGroup>
-                {/* <Select
-                  style={{ width: "100%" }}
-                  variant="outlined"
-                  // value={value}
-                  // onChange={(e) => setValue(e.target.value)}
-                  onChange={formik.handleChange}
-                  // value={formik.values.gender}
-                  value={data?.gender}
-                  labelId="test-select-label"
-                  label={"Label1233333"}
-                  open
-                >
-                  <MenuItem key={1} value="true">
-                    Male
-                  </MenuItem>
-                  <MenuItem key={2} value="false">
-                    Female
-                  </MenuItem>
-                </Select> */}
               </FormControl>
             </Grid>
           </Grid>
@@ -240,8 +217,7 @@ export default function EditUserNew({ dataGender }) {
                 }}
                 name="role"
                 onChange={formik.handleChange}
-                // value={formik.values.role}
-                value={data?.role}
+                defaultValue={dataEditUser?.roles}
               >
                 <MenuItem key="1" value="ADMIN">
                   Admin

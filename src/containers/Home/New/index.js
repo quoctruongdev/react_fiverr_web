@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useEffect } from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
@@ -24,16 +25,14 @@ import { Route } from "react-router-dom";
 import User from "./User";
 import Service from "./Services";
 import CommentAdmin from "./Commentss";
-import HeaderAdmin from "./_Component/control/PageHeader";
-import SideMenu from "./_Component/SideBarAdmin";
 import { InputBase } from "@mui/material";
 import NotificationsNoneIcon from "@mui/icons-material/Delete";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import SearchIcon from "@mui/icons-material/Search";
+import useWindowSize from "../../../Hook/useWindowSize";
 
 const drawerWidth = 240;
-
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
@@ -90,19 +89,38 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-const mdTheme = createTheme();
 
+const mdTheme = createTheme();
 export default function NewDB() {
+  const classes = useStyles();
+
+  const size = useWindowSize();
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
-  const classes = useStyles();
+  const handleResizeSidebar = () => {
+    if (size.width < 892) {
+      return setOpen(false);
+    } else {
+      setOpen(true);
+    }
+  };
+
+  useEffect(() => {
+    const ResizeSidebar = setTimeout(() => {
+      handleResizeSidebar();
+    }, 0);
+
+    return () => {
+      clearTimeout(ResizeSidebar);
+    };
+  }, [size.width]);
 
   return (
     <BrowserRouter>
       <ThemeProvider theme={mdTheme}>
-        <Box sx={{ display: "flex" }}>
+        <Paper sx={{ display: "flex" }}>
           <CssBaseline />
 
           <AppBar color="inherit" position="absolute" open={open}>
@@ -140,11 +158,11 @@ export default function NewDB() {
                 />
               </Typography>
 
-              <IconButton>
+              {/* <IconButton>
                 <Badge badgeContent={4} color="secondary">
                   <NotificationsNoneIcon fontSize="small" />
                 </Badge>
-              </IconButton>
+              </IconButton> */}
               <IconButton>
                 <Badge badgeContent={3} color="primary">
                   <ChatBubbleOutlineIcon fontSize="small" />
@@ -204,13 +222,17 @@ export default function NewDB() {
             }}
           >
             <Toolbar />
-            <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-              <Route exact path="/newdb/users" component={User} />
-              <Route exact path="/newdb/service" component={Service} />
-              <Route exact path="/newdb/comment" component={CommentAdmin} />
-            </Container>
+            {/* <Paper
+            maxWidth="lg"
+            sx={{ mt: 4, mb: 4 }}
+            sx={{ mx: 5, my: 5 }}
+            > */}
+            <Route exact path="/newdb/users" component={User} />
+            <Route exact path="/newdb/service" component={Service} />
+            <Route exact path="/newdb/comment" component={CommentAdmin} />
+            {/* </Paper> */}
           </Box>
-        </Box>
+        </Paper>
       </ThemeProvider>
     </BrowserRouter>
   );

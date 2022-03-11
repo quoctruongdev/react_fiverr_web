@@ -16,7 +16,7 @@ import Logout from "@mui/icons-material/Logout";
 import SwipeSideBar from "./SideBarNav";
 import { actLogout } from "../Login/modules/actions";
 import PopperPopup from "../../../../components/Material UI/Popover";
-import PopoverComponent from "../../../../components/Popover/Popover";
+import BadgeStyle from "../../../../components/Badge/BadgeComponent";
 
 const pages = [
   { name: " List Services", url: "/total-job" },
@@ -242,7 +242,7 @@ export default function MainNavbar() {
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <PopoverComponent styles={32} data={data} />
+                    <BadgeStyle styles={32} data={data} />
                   </IconButton>
                 </Tooltip>
                 <Menu

@@ -10,6 +10,7 @@ import addUserReducer from "../../containers/Admin/UserManagement/AddUser/module
 import updateUserReducer from "../../containers/Admin/UserManagement/UpdateUser/modules/reducer";
 import editUserReducer from "../../containers/Admin/UserManagement/UpdateUser/Edit/_modules/reducer";
 // import uploadAvatarReducer from "../../containers/Home/ProfilePage/UploadAvatar/modules/reducer";
+import searchUserReducer from "../../containers/Home/New/User/modules/reducer";
 import detailUserReducer from "../../containers/Home/DetailPage/Overview/_JobSlider/_modules/reducer";
 import listCommentReducer from "../../containers/Home/DetailPage/Comment/modules/reducer";
 
@@ -48,6 +49,7 @@ const rootReducer = combineReducers({
   updateUserReducer,
   editUserReducer,
   detailUserReducer,
+  searchUserReducer,
   // uploadAvatarReducer,
   jobUserBookingReducer,
   bookingJobReducer,
