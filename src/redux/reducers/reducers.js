@@ -14,6 +14,7 @@ import searchUserReducer from "../../containers/Home/New/User/modules/reducer";
 import detailUserReducer from "../../containers/Home/DetailPage/Overview/_JobSlider/_modules/reducer";
 import listCommentReducer from "../../containers/Home/DetailPage/Comment/modules/reducer";
 
+import searchServiceReducer from "../../containers/Home/New/Services/modules/reducer";
 import editJobReducer from "../../containers/Admin/JobManagement/UpdateJob/Edit/_modules/reducer";
 import listJobReducer from "../../containers/Admin/JobManagement/_module/reducer";
 import deleteJobReducer from "../../containers/Admin/JobManagement/DeleteJob/modules/reducer";
@@ -57,6 +58,7 @@ const rootReducer = combineReducers({
   //////JOB//////
   editJobReducer,
   listJobReducer,
+  searchServiceReducer,
   deleteJobReducer,
   addJobReducer,
   detailJobReducer,

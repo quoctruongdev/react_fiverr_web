@@ -48,10 +48,17 @@ export default function DialogAdmin(props) {
           </Stack>
           {/* </Typography> */}
         </DialogTitle>
-        <DialogContent dividers>
+        {/* <DialogContent dividers>
           {dataEditUser?.title === "Add User" ? (
             <AdUser />
           ) : (
+            <EditUserNew dataEditUser={dataEditUser} />
+          )}
+        </DialogContent> */}
+
+        <DialogContent dividers>
+          {dataEditUser?.title === "Add User" && <AdUser />}
+          {dataEditUser?.title === "Edit User" && (
             <EditUserNew dataEditUser={dataEditUser} />
           )}
         </DialogContent>

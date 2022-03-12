@@ -24,7 +24,7 @@ import UpdateJob from "../../JobManagement/UpdateJob/UpdateUser";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Loader from "../../../../components/Loader/Loader";
-import PopoverComponent from "../../../../components/Popover/Popover";
+import BadgeStyle from "../../../../components/Badge/BadgeComponent";
 import { fontSize } from "@mui/system";
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -181,7 +181,7 @@ export default function SideBar(props) {
             <div className="flex p-2 justify-end">
               <div className="flex  mx-4 ">
                 <div className="flex flex-col items-center mr-2 ">
-                  <PopoverComponent data={data}>{contents}</PopoverComponent>
+                  <BadgeStyle data={data}>{contents}</BadgeStyle>
                   {/* <div className="flex -space-x-4">
                     <img
                       style={{ borderColor: "rgb(51, 53, 69" }}

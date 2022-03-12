@@ -4,6 +4,7 @@ import ButtonStyle from "../../components/Material UI/ButtonStyle";
 import { Select } from "antd";
 import { FormControl } from "@mui/material";
 import { InputLabel } from "@mui/material";
+import SnackbarMessage from "../../components/Material UI/Snackbar";
 
 const Option = Select;
 export default function PageNotFound() {
@@ -31,38 +32,7 @@ export default function PageNotFound() {
           </div>
         </div>
       </section>
-      <FormControl
-        variant="outlined"
-        margin={"1"}
-        style={{ width: 400, marginBottom: 32 }}
-      >
-        {/* <InputLabel id="test-select-label">{formik.values.gender}</InputLabel> */}
-        <Select
-          style={{ width: 400 }}
-          variant="outlined"
-          // value={value}
-          // onChange={(e) => setValue(e.target.value)}
-          // onChange={formik.handleChange}
-          // value={formik.values.gender}
-          // value={data?.gender}
-          labelId="test-select-label"
-          label={"Label1233333"}
-          open
-        >
-          {/* <MenuItem key={1} value="true">
-                    Male
-                  </MenuItem>
-                  <MenuItem key={2} value="false">
-                    Female
-                  </MenuItem> */}
-          <Option value={true} key={1}>
-            Male
-          </Option>
-          <Option value={false} key={2}>
-            Female
-          </Option>
-        </Select>
-      </FormControl>
+      <SnackbarMessage />
     </>
   );
 }

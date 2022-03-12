@@ -12,7 +12,6 @@ import Box from "@mui/material/Box";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import SettingsIcon from "@mui/icons-material/Settings";
-// import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import { NavLink } from "react-router-dom";
 import { IconButton, ListItemIcon } from "@mui/material";

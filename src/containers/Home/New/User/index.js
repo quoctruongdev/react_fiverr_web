@@ -17,6 +17,7 @@ import { actFetchEditUser } from "../../../Admin/UserManagement/UpdateUser/Edit/
 import { actFetchSearchUser } from "./modules/actions";
 import CustomizedSearch from "../../../Admin/_components/Search/SearchMui";
 import useWindowSize from "../../../../Hook/useWindowSize";
+import Loader from "../../../../components/Loader/Loader";
 
 export default function User() {
   const [keySearch, setkeyName] = useState(null);
@@ -28,6 +29,7 @@ export default function User() {
     roles: "",
   });
   const users = useSelector((state) => state.listUserReducer.data);
+  const loading = useSelector((state) => state.listUserReducer.loading);
   const dataSearch = useSelector((state) => state.searchUserReducer.data);
 
   const dispatch = useDispatch();
@@ -81,6 +83,7 @@ export default function User() {
   const colorTableCell = {
     backgroundColor: selectedUserIds?.length > 0 ? "#C8FACD" : "#b9c4cc",
   };
+
   ////Search //////
 
   const handleSearch = useCallback((value) => {
@@ -97,7 +100,7 @@ export default function User() {
             key={user?._id}
             selected={selectedUserIds.indexOf(user?._id) !== -1}
           >
-            <TableCell padding="checkbox">
+            <TableCell align="center" padding="checkbox">
               <Checkbox
                 checked={selectedUserIds.indexOf(user?._id) !== -1}
                 onChange={(event) => handleSelectOne(event, user?._id)}
@@ -105,14 +108,17 @@ export default function User() {
                 color="secondary"
               />
             </TableCell>
-            <TableCell>
+            <TableCell align="center">
               <Box
                 sx={{
                   alignItems: "center",
                   display: "flex",
                 }}
               >
-                <Avatar src={user?.avatar} sx={{ mr: 2 }}>
+                <Avatar
+                  src={user?.avatar}
+                  sx={{ mr: 2, textTransform: "uppercase" }}
+                >
                   {user?.name?.slice(0, 1)}
                 </Avatar>
                 <Typography color="textPrimary" variant="body1">
@@ -122,9 +128,9 @@ export default function User() {
             </TableCell>
             <TableCell>{user?.email}</TableCell>
             <TableCell>{user?.phone}</TableCell>
-            <TableCell>{user?.role}</TableCell>
+            <TableCell align="center">{user?.role}</TableCell>
             <TableCell>{user?.skill}</TableCell>
-            <TableCell>
+            <TableCell align="center">
               <Tooltip title="Edit">
                 <IconButton
                   onClick={() => {
@@ -177,7 +183,7 @@ export default function User() {
   };
 
   return (
-    <Box sx={{ mx: 5, my: 5 }}>
+    <Box sx={{ mx: 5, mb: 5, mt: 3 }}>
       <Box>
         <Typography variant="h4">User List</Typography>
       </Box>
@@ -260,19 +266,18 @@ export default function User() {
                   <TableCell sx={colorTableCell}>
                     {selectedUserIds?.length ? "" : "Phone"}
                   </TableCell>
-                  <TableCell sx={colorTableCell}>
+                  <TableCell align="center" sx={colorTableCell}>
                     {selectedUserIds?.length ? "" : "Role"}
                   </TableCell>
                   <TableCell sx={colorTableCell}>
                     {selectedUserIds?.length ? "" : "Skill"}
                   </TableCell>
-                  <TableCell sx={colorTableCell}>
+                  <TableCell align="center" sx={colorTableCell}>
                     {selectedUserIds?.length > 1 &&
                     selectedUserIds?.length !== users?.length ? (
                       <>
                         <Tooltip title="Delete multiple users">
                           <LoadingButton
-                            sx={{ marginLeft: "10px" }}
                             onClick={(index) => {
                               if (selectedUserIds?.length < 4) {
                                 for (
@@ -301,7 +306,9 @@ export default function User() {
                           </LoadingButton>
                         </Tooltip>
                       </>
-                    ) : null}
+                    ) : (
+                      "Action"
+                    )}
                   </TableCell>
                 </TableRow>
               </TableHead>

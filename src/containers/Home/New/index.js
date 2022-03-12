@@ -23,14 +23,22 @@ import { mainListItems, secondaryListItems } from "./listItems";
 import { BrowserRouter } from "react-router-dom";
 import { Route } from "react-router-dom";
 import User from "./User";
-import Service from "./Services";
 import CommentAdmin from "./Commentss";
-import { InputBase } from "@mui/material";
+import { InputBase, Menu, MenuItem, Tooltip } from "@mui/material";
 import NotificationsNoneIcon from "@mui/icons-material/Delete";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import SearchIcon from "@mui/icons-material/Search";
 import useWindowSize from "../../../Hook/useWindowSize";
+import BadgeStyle from "../../../components/Badge/BadgeComponent";
+import { ListItemIcon } from "@mui/material";
+import Settings from "@mui/icons-material/Settings";
+import Logout from "@mui/icons-material/Logout";
+import { Avatar } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { actLogout } from "../../Admin/AuthPage/modules/actions";
+import { useHistory } from "react-router-dom";
+import Services from "./Services";
 
 const drawerWidth = 240;
 const AppBar = styled(MuiAppBar, {
@@ -89,9 +97,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
 const mdTheme = createTheme();
+
 export default function NewDB() {
+  const data = "";
+  const history = useHistory();
+  const dispatch = useDispatch();
   const classes = useStyles();
 
   const size = useWindowSize();
@@ -116,6 +127,15 @@ export default function NewDB() {
       clearTimeout(ResizeSidebar);
     };
   }, [size.width]);
+
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
   return (
     <BrowserRouter>
@@ -157,12 +177,6 @@ export default function NewDB() {
                   startAdornment={<SearchIcon fontSize="small" />}
                 />
               </Typography>
-
-              {/* <IconButton>
-                <Badge badgeContent={4} color="secondary">
-                  <NotificationsNoneIcon fontSize="small" />
-                </Badge>
-              </IconButton> */}
               <IconButton>
                 <Badge badgeContent={3} color="primary">
                   <ChatBubbleOutlineIcon fontSize="small" />
@@ -174,7 +188,82 @@ export default function NewDB() {
                 </Badge>
               </IconButton>
               <IconButton>
-                <PowerSettingsNewIcon fontSize="small" />
+                <Box sx={{ flexGrow: 0 }}>
+                  <Tooltip title="Open settings">
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                      <BadgeStyle styles={32} />
+                    </IconButton>
+                  </Tooltip>
+                  <Menu
+                    anchorEl={anchorElUser}
+                    id="menu-appbar"
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}
+                    onClick={handleCloseUserMenu}
+                    PaperProps={{
+                      elevation: 0,
+                      sx: {
+                        overflow: "visible",
+                        filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                        mt: 1.5,
+                        "& .MuiAvatar-root": {
+                          width: 32,
+                          height: 32,
+                          ml: -0.5,
+                          mr: 1,
+                        },
+                        "&:before": {
+                          content: '""',
+                          display: "block",
+                          position: "absolute",
+                          top: 0,
+                          right: 14,
+                          width: 10,
+                          height: 10,
+                          bgcolor: "background.paper",
+                          transform: "translateY(-50%) rotate(45deg)",
+                          zIndex: 0,
+                        },
+                      },
+                    }}
+                    transformOrigin={{ horizontal: "right", vertical: "top" }}
+                    anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+                  >
+                    <MenuItem
+                      sx={{
+                        color: "#74767e",
+                        ":hover": {
+                          color: "#19a463",
+                          textDecoration: "none",
+                        },
+                      }}
+                      to={`/profile/${data?.name}`}
+                      component={Link}
+                    >
+                      <Avatar src={data?.avatar} /> Profile
+                    </MenuItem>
+                    <MenuItem>
+                      <Avatar /> My account
+                    </MenuItem>
+                    <Divider />
+                    <MenuItem>
+                      <ListItemIcon>
+                        <Settings fontSize="small" />
+                      </ListItemIcon>
+                      Settings
+                    </MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        dispatch(actLogout(history));
+                      }}
+                    >
+                      <ListItemIcon>
+                        <Logout fontSize="small" />
+                      </ListItemIcon>
+                      Logout
+                    </MenuItem>
+                  </Menu>
+                </Box>
               </IconButton>
             </Toolbar>
           </AppBar>
@@ -219,6 +308,7 @@ export default function NewDB() {
               flexGrow: 1,
               height: "100vh",
               overflow: "auto",
+              mt: 2,
             }}
           >
             <Toolbar />
@@ -228,7 +318,7 @@ export default function NewDB() {
             sx={{ mx: 5, my: 5 }}
             > */}
             <Route exact path="/newdb/users" component={User} />
-            <Route exact path="/newdb/service" component={Service} />
+            <Route exact path="/newdb/services" component={Services} />
             <Route exact path="/newdb/comment" component={CommentAdmin} />
             {/* </Paper> */}
           </Box>

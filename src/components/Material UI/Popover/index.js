@@ -31,7 +31,7 @@ export default function PopoverPopup(props) {
             label="Message"
             variant="contained"
             {...bindTrigger(popupState)}
-          ></Tab>
+          />
           <Popover
             {...bindPopover(popupState)}
             anchorOrigin={{

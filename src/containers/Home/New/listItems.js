@@ -19,7 +19,20 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton
+      ActiveClassName="active"
+      sx={{
+        ":hover": {
+          color: "#fff",
+        },
+        ":focus": {
+          color: "#9c27b0",
+          background: "#fff",
+        },
+      }}
+      to="/newdb/services"
+      component={NavLink}
+    >
       <ListItemIcon>
         <ShoppingCartIcon color="secondary" />
       </ListItemIcon>
