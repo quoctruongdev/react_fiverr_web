@@ -4,26 +4,27 @@ import authReducer from "../../containers/Admin/AuthPage/modules/reducer";
 import loginReducerHome from "../../containers/Home/_components/Login/modules/reducer";
 import joinReducerHome from "../../containers/Home/_components/Join/modules/reducer";
 
-import listUserReducer from "../../containers/Admin/UserManagement/_modules/reducer";
-// import deleteUserReducer from "../../containers/Admin/UserManagement/DeleteUser/modules/reducer";
-import addUserReducer from "../../containers/Admin/UserManagement/AddUser/modules/reducer";
-import updateUserReducer from "../../containers/Admin/UserManagement/UpdateUser/modules/reducer";
-import editUserReducer from "../../containers/Admin/UserManagement/UpdateUser/Edit/_modules/reducer";
+import usersListReducer from "../../containers/Admin/UsersManagement/_modules/reducer";
+import deleteUserReducer from "../../containers/Admin/UsersManagement/Delete/modules/reducer";
+import addUserReducer from "../../containers/Admin/UsersManagement/Add/modules/reducer";
+import updateUserReducer from "../../containers/Admin/UsersManagement/Update/modules/reducer";
+import detailUserReducer from "../../containers/Admin/UsersManagement/Detail/_modules/reducer";
 // import uploadAvatarReducer from "../../containers/Home/ProfilePage/UploadAvatar/modules/reducer";
-import searchUserReducer from "../../containers/Home/New/User/modules/reducer";
-import detailUserReducer from "../../containers/Home/DetailPage/Overview/_JobSlider/_modules/reducer";
+import searchUserReducer from "../../containers/Admin/UsersManagement/Search/modules/reducer";
+// import detailUserReducer from "../../containers/Home/DetailPage/Overview/_JobSlider/_modules/reducer";
 import listCommentReducer from "../../containers/Home/DetailPage/Comment/modules/reducer";
 
-import searchServiceReducer from "../../containers/Home/New/Services/modules/reducer";
-import editJobReducer from "../../containers/Admin/JobManagement/UpdateJob/Edit/_modules/reducer";
-import listJobReducer from "../../containers/Admin/JobManagement/_module/reducer";
-import deleteJobReducer from "../../containers/Admin/JobManagement/DeleteJob/modules/reducer";
-import addJobReducer from "../../containers/Admin/JobManagement/AddUser/modules/reducer";
-import detailJobReducer from "../../containers/Home/DetailPage/_modules/reducer";
+import updateServiceReducer from "../../containers/Admin/ServicesManagement/Update/modules/reducer";
+import searchServiceReducer from "../../containers/Admin/ServicesManagement/Search/modules/reducer";
+import servicesListReducer from "../../containers/Admin/ServicesManagement/_module/reducer";
+import deleteServiceReducer from "../../containers/Admin/ServicesManagement/Delete/modules/reducer";
+import addServiceReducer from "../../containers/Admin/ServicesManagement/Add/modules/reducer";
+// import detailServiceReducer from "../../containers/Home/DetailPage/_modules/reducer";
+import detailServiceReducer from "../../containers/Admin/ServicesManagement/Detail/_modules/reducer";
 import jobUserBookingReducer from "../../containers/Home/ProfilePage/JobUserBooking/modules/reducer";
 import bookingJobReducer from "../../containers/Home/DetailPage/BookingJob/modules/reducer";
+import uploadImageServiceReducer from "../../containers/Admin/ServicesManagement/UploadImage/modules/reducer";
 // import authReducerHome from "../../containers/Home/_components/Login/modules/reducer";
-import searchJobReducer from "../../containers/Home/SearchJobPage/_module/reducer";
 
 import listJobMainReducer from "../../containers/Home/ListTypeJobPage/modules/reducer";
 import listJobPopularReducer from "../../containers/Home/HomePage/PopularJob/modules/reducer";
@@ -44,36 +45,33 @@ const rootReducer = combineReducers({
   loginReducerHome,
 
   //////USER//////
-  listUserReducer,
-  // deleteUserReducer,
+  usersListReducer,
+  deleteUserReducer,
   addUserReducer,
   updateUserReducer,
-  editUserReducer,
   detailUserReducer,
+  // detailUserReducer,
   searchUserReducer,
   // uploadAvatarReducer,
   jobUserBookingReducer,
   bookingJobReducer,
   listCommentReducer,
-  //////JOB//////
-  editJobReducer,
-  listJobReducer,
+  //////SerVices//////
+  servicesListReducer,
   searchServiceReducer,
-  deleteJobReducer,
-  addJobReducer,
-  detailJobReducer,
-  searchJobReducer,
-
+  deleteServiceReducer,
+  addServiceReducer,
+  detailServiceReducer,
+  // searchJobReducer,
   categoriesMainReducer,
   categoriesSubTypeReducer,
+  uploadImageServiceReducer,
+  updateServiceReducer,
 
   // Jobmain
   listJobMainReducer,
-  // JobPopular
   listJobPopularReducer,
-
   listSubTypeReducer,
-
   //////COMMENT//////
 
   // Home Page Film

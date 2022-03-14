@@ -1,24 +1,21 @@
 import * as React from "react";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import ShareIcon from "@mui/icons-material/Share";
+import { ListItem, ListItemText } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
 import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { Hidden, ListItem, ListItemText } from "@mui/material";
-import Grid from "@mui/material/Grid";
-import Skeleton from "@mui/material/Skeleton";
-import { useSelector } from "react-redux";
 import { red } from "@mui/material/colors";
-import { NavLink, Link } from "react-router-dom";
-import { StepIcon } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import IconButton from "@mui/material/IconButton";
+import Skeleton from "@mui/material/Skeleton";
+import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
-import JobSlider from "../../DetailPage/Overview/_JobSlider/JobSlider";
+import { Link } from "react-router-dom";
 import Loader from "../../../../components/Loader/Loader";
 
 export default function CardSevices(props) {
@@ -54,7 +51,7 @@ export default function CardSevices(props) {
           component={Link}
           to={`/detail-job/${item?._id}/${item?.userCreated}`}
         >
-          {loading ? (
+          {!item?.image ? (
             <Skeleton
               sx={{ height: 208 }}
               animation="wave"
@@ -63,8 +60,6 @@ export default function CardSevices(props) {
           ) : (
             <CardMedia
               component="img"
-              // component={JobSlider}
-              // height="194"
               src={item?.image ? item?.image : imageDefault}
               srcSet={item?.image ? item?.image : imageDefault}
               image={item?.image ? item?.image : imageDefault}
@@ -73,7 +68,6 @@ export default function CardSevices(props) {
             />
           )}
         </Box>
-
         <CardHeader
           avatar={
             loading ? (
@@ -101,7 +95,7 @@ export default function CardSevices(props) {
             </IconButton>
           }
           title={
-            loading ? (
+            !UserCreated?.name ? (
               <Skeleton
                 animation="wave"
                 height={10}
@@ -136,7 +130,7 @@ export default function CardSevices(props) {
             padding: 0,
           }}
         >
-          {loading ? (
+          {!item?.name ? (
             <>
               <Skeleton animation="wave" />
               <Skeleton animation="wave" width="80%" />

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actFetchCategoriesSubType } from "./modules/actions";
-import { actFetchListUser } from "../../Admin/UserManagement/_modules/actions";
+import { actFetchUsersList } from "../../Admin/UsersManagement/_modules/actions";
 import { NavLink } from "react-router-dom";
 import { Pagination } from "antd";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
@@ -23,14 +23,14 @@ export default function CategoriesSubPage(props) {
   const dataVideo = useSelector(
     (state) => state.categoriesSubTypeReducer.dataVideo
   );
-  const dataAllUser = useSelector((state) => state.listUserReducer.data);
+  const dataAllUser = useSelector((state) => state.usersListReducer.data);
   const loading = useSelector(
     (state) => state.categoriesSubTypeReducer.loading
   );
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actFetchCategoriesSubType(subId));
-    dispatch(actFetchListUser());
+    dispatch(actFetchUsersList());
   }, [subId]);
 
   const breadcrumbs = [

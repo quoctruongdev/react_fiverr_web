@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { actFetchDetailJob } from "./_modules/actions";
+import { actFetchDetailService } from "./_modules/actions";
 import { actFetchDetailUser } from "./Overview/_JobSlider/_modules/actions";
 import { actFetchListComment } from "./Comment/modules/actions";
 import Loader from "../../../components/Loader/Loader";
@@ -14,8 +14,8 @@ import FAQ from "./FAQ/FAQ";
 import "./style.css";
 
 export default function DetailPage(props) {
-  const data = useSelector((state) => state.detailJobReducer.data);
-  const loading = useSelector((state) => state.detailJobReducer.loading);
+  const data = useSelector((state) => state.detailServiceReducer.data);
+  const loading = useSelector((state) => state.detailServiceReducer.loading);
   const dataUserCreated = useSelector((state) => state.detailUserReducer.data);
   const dispatch = useDispatch();
   const dataComment = useSelector((state) => state.listCommentReducer.data);
@@ -25,7 +25,7 @@ export default function DetailPage(props) {
   useEffect(() => {
     const id = props.match.params.id;
     const userCreated = props.match.params.userCreated;
-    dispatch(actFetchDetailJob(id));
+    dispatch(actFetchDetailService(id));
     dispatch(actFetchListComment(id));
     dispatch(actFetchDetailUser(userCreated));
   }, []);

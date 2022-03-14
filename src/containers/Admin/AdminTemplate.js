@@ -1,15 +1,8 @@
 import React from "react";
-import { Route } from "react-router-dom";
-import SideBar from "./_components/sideBar/SideBar";
-import { Redirect } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 
 function LayoutAdmin(props) {
-  return (
-    <>
-      <SideBar />
-      {props.children}
-    </>
-  );
+  return <>{props.children}</>;
 }
 
 export default function AdminTemplate({ Component, ...props }) {

@@ -1,21 +1,20 @@
-import * as React from "react";
-import { Pagination } from "antd";
 import { Grid } from "@mui/material";
+import { Pagination } from "antd";
+import * as React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { actFetchListJob } from "../../Admin/JobManagement/_module/actions";
-import { actFetchListUser } from "../../Admin/UserManagement/_modules/actions";
 import Loader from "../../../components/Loader/Loader";
-import JobItem from "../SearchJobPage/JobItem/JobItem";
-import "./style.css";
+import { actFetchServicesList } from "../../Admin/ServicesManagement/_module/actions";
+import { actFetchUsersList } from "../../Admin/UsersManagement/_modules/actions";
 import CardSevices from "../_components/CardSevices";
+import "./style.css";
 
 export default function TotalJobPage(props) {
   let pageSize = 50;
-  const data = useSelector((state) => state.listJobReducer.data);
-  const loading = useSelector((state) => state.listJobReducer.loading);
+  const data = useSelector((state) => state.servicesListReducer.data);
+  const loading = useSelector((state) => state.servicesListReducer.loading);
 
-  const dataAllUser = useSelector((state) => state.listUserReducer.data);
+  const dataAllUser = useSelector((state) => state.usersListReducer.data);
 
   const dispatch = useDispatch();
 
@@ -38,8 +37,8 @@ export default function TotalJobPage(props) {
   };
 
   useEffect(() => {
-    dispatch(actFetchListJob());
-    dispatch(actFetchListUser());
+    dispatch(actFetchServicesList());
+    dispatch(actFetchUsersList());
   }, []);
 
   const renderListJob = () => {

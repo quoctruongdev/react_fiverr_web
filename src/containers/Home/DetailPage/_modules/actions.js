@@ -1,37 +1,37 @@
 import * as ActionType from "./constants";
 import { apiClient } from "../../../../utils/apiutils";
 
-// ************Detail Job************
-export const actFetchDetailJob = (id) => {
+// ************Detail Service************
+export const actFetchDetailService = (id) => {
   return (dispatch) => {
-    dispatch(actDetailJobRequest());
+    dispatch(actDetailServiceRequest());
     apiClient
       .get(`jobs/${id}`)
       .then((result) => {
-        dispatch(actDetailJobSuccess(result.data));
+        dispatch(actDetailServiceSuccess(result.data));
       })
       .catch((err) => {
-        dispatch(actDetailJobFailed(err));
+        dispatch(actDetailServiceFailed(err));
       });
   };
 };
 
-const actDetailJobRequest = () => {
+const actDetailServiceRequest = () => {
   return {
-    type: ActionType.DETAIL_JOB_REQUEST,
+    type: ActionType.DETAIL_SERVICE_REQUEST,
   };
 };
 
-const actDetailJobSuccess = (data) => {
+const actDetailServiceSuccess = (data) => {
   return {
-    type: ActionType.DETAIL_JOB_SUCCESS,
+    type: ActionType.DETAIL_SERVICE_SUCCESS,
     payload: data,
   };
 };
 
-const actDetailJobFailed = (error) => {
+const actDetailServiceFailed = (error) => {
   return {
-    type: ActionType.DETAIL_JOB_FAILED,
+    type: ActionType.DETAIL_SERVICE_FAILED,
     payload: error,
   };
 };

@@ -16,7 +16,6 @@ function AuthPage(props) {
       ...state,
       [name]: value,
     });
-    return <Loader />;
   };
 
   const handleLogin = (event) => {

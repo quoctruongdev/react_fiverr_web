@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import Loader from "../../../../components/Loader/Loader";
-import { Modal } from "antd";
-import { actJoinApi } from "./modules/actions";
-import { actLoginApi } from "../Login/modules/actions";
-import { actFetchAddUser } from "../../../Admin/UserManagement/AddUser/modules/actions";
-import "./style.css";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { SimpleBackdrop } from "../Backdrop/Backdrop";
+import Loader from "../../../../components/Loader/Loader";
+import { actJoinApi } from "./modules/actions";
+import "./style.css";
 
 export default function Join(props) {
   const [dataJoin, setDataJoin] = useState({

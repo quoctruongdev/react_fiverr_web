@@ -4,12 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import "./style.css";
 import { actFetchUploadAvatar } from "./UploadAvatar/modules/actions";
 import { LoadingOutlined, MailFilled, PhoneFilled } from "@ant-design/icons";
-import { actFetchEditUser } from "../../Admin/UserManagement/UpdateUser/Edit/_modules/actions";
+import { actFetchDetailUser } from "../../Admin/UsersManagement/Detail/_modules/actions";
 import { actFetchJobUserBooking } from "./JobUserBooking/modules/actions";
 import Loader from "../../../components/Loader/Loader";
 import moment from "moment";
 import JobUserBooking from "./JobUserBooking";
-// import { actFetchDetailJob } from "../DetailPage/_modules/actions";
 
 export default function ProfilePage() {
   let users = JSON.parse(localStorage.getItem("UserClient"));
@@ -18,7 +17,7 @@ export default function ProfilePage() {
   const dataDetail = useSelector((state) => state.jobUserBookingReducer.data);
   const loading = useSelector((state) => state.jobUserBookingReducer.loading);
   useEffect(() => {
-    dispatch(actFetchEditUser(users.user?._id || users?._id));
+    dispatch(actFetchDetailUser(users.user?._id || users?._id));
     dispatch(actFetchJobUserBooking());
   }, []);
 

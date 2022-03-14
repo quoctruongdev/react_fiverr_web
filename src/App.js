@@ -1,18 +1,14 @@
-import "./App.css";
+import { Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { Switch, withRouter, Route } from "react-router";
-import { renderRoutesAdmin, renderRoutesHome } from "./routes";
-import AuthPage from "./containers/Admin/AuthPage/AuthPage";
-import PageNotFound from "./containers/PageNotFound/PageNotFound";
-import { Suspense } from "react";
-import Loader from "./components/Loader/Loader";
-import { actTryLogin } from "./containers/Admin/AuthPage/modules/actions";
+import { Route, Switch, withRouter } from "react-router";
+import "./App.css";
 import BackToTop from "./components/BackToTop/BackToTop";
-import Login from "./containers/Home/_components/Login/Login";
-import Join from "./containers/Home/_components/Join/Join";
+import Loader from "./components/Loader/Loader";
+import AuthPage from "./containers/Admin/AuthPage/AuthPage";
+import { actTryLogin } from "./containers/Admin/AuthPage/modules/actions";
 import { actTryLoginHome } from "./containers/Home/_components/Login/modules/actions";
-import NewDB from "./containers/Home/New";
+import PageNotFound from "./containers/PageNotFound/PageNotFound";
+import { renderRoutesAdmin, renderRoutesHome } from "./routes";
 
 function App(props) {
   const dispatch = useDispatch();
@@ -35,7 +31,6 @@ function App(props) {
         {renderRoutesHome()}
         {renderRoutesAdmin()}
         <Route path="/auth" component={AuthPage} />
-        <Route path="/newdb" component={NewDB} />
         <Route path="" component={PageNotFound} />
       </Switch>
     </Suspense>

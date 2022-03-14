@@ -120,7 +120,7 @@ export default function SubNavbar() {
         anchorEl={state.anchorEl}
         id={`mouse-over-popper${state?.value}`}
         placement="bottom-start"
-        disableScrollLock={true}
+        style={{ zIndex: 1000 }}
       >
         <Paper
           sx={{
@@ -130,7 +130,7 @@ export default function SubNavbar() {
             padding: "10px 30px",
             marginTop: "-5px",
             display: { xs: "none", lg: "block" },
-            zIndex: 50,
+            maxWidth: 900,
           }}
         >
           <MenuList

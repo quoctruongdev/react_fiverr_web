@@ -82,7 +82,7 @@ const routesAdmin = [
     exact: false,
     path: "dashboard/users",
     component: lazy(() =>
-      import("../containers/Admin/UserManagement/UserManagement")
+      import("../containers/Admin/UsersManagement/UserManagement")
     ),
   },
 ];

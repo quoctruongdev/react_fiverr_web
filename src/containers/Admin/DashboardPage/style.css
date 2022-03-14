@@ -1,0 +1,7 @@
+.dashboarMenu.active {
+  background-color: #aba0de94 !important ;
+}
+.dashboarMenu.active div svg,
+.dashboarMenu.active div span {
+  color: #00e676;
+}
