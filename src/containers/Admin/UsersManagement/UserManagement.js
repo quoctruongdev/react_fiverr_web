@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { filter } from "lodash";
 import "./style.css";
 import { TableContainer, Table, TableBody, Paper, Stack } from "@mui/material";
 import { TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
@@ -20,9 +21,54 @@ import { actFetchDetailUser } from "./Detail/_modules/actions";
 import { Skeleton } from "@mui/material";
 import Loader from "../../../components/Loader/Loader";
 import CircularProgress from "@mui/material/CircularProgress";
+import SearchNotFoundTable from "../_components/SearchNotFound";
+
+function descendingComparator(a, b, orderBy) {
+  if (b[orderBy] < a[orderBy]) {
+    return -1;
+  }
+  if (b[orderBy] > a[orderBy]) {
+    return 1;
+  }
+  return 0;
+}
+
+function getComparator(order, orderBy) {
+  return order === "desc"
+    ? (a, b) => descendingComparator(a, b, orderBy)
+    : (a, b) => -descendingComparator(a, b, orderBy);
+}
+
+function stableSort(array, comparator) {
+  const stabilizedThis = array.map((el, index) => [el, index]);
+  stabilizedThis.sort((a, b) => {
+    const order = comparator(a[0], b[0]);
+    if (order !== 0) {
+      return order;
+    }
+    return a[1] - b[1];
+  });
+  return stabilizedThis.map((el) => el[0]);
+}
+
+function applySortFilter(array, comparator, query) {
+  const stabilizedThis = array?.map((el, index) => [el, index]);
+  stabilizedThis?.sort((a, b) => {
+    const order = comparator(a[0], b[0]);
+    if (order !== 0) return order;
+    return a[1] - b[1];
+  });
+  if (query) {
+    return filter(
+      array,
+      (_user) => _user.name?.toLowerCase().indexOf(query?.toLowerCase()) !== -1
+    );
+  }
+  return stabilizedThis?.map((el) => el[0]);
+}
 
 export default function UserManagement() {
-  const [keySearch, setkeyName] = useState(null);
+  const [keySearch, setkeySearch] = useState(null);
   const size = useWindowSize();
   const { open, handleOpen, handleClose } = useModal();
   const [dataEditUser, setDataEditUser] = useState({
@@ -40,6 +86,9 @@ export default function UserManagement() {
   const [limit, setLimit] = useState(5);
   const [page, setPage] = useState(1);
   const [selectedUserIds, setSelectedUserIds] = useState([]);
+
+  const [order, setOrder] = useState("asc");
+  const [orderBy, setOrderBy] = useState("name");
 
   useEffect(() => {
     dispatch(actFetchUsersList());
@@ -88,15 +137,22 @@ export default function UserManagement() {
     setPage(0);
   };
   const colorTableCell = {
-    backgroundColor: selectedUserIds?.length > 0 ? "#C8FACD" : "#b9c4cc",
+    backgroundColor: selectedUserIds?.length > 0 ? "#00e676" : "#b9c4cc",
   };
 
   ////Search //////
 
   const handleSearch = useCallback((value) => {
-    setkeyName(value);
+    setkeySearch(value);
     setPage(0);
   }, []);
+
+  const filteredUsers = applySortFilter(
+    users,
+    getComparator(order, orderBy),
+    keySearch
+  );
+  const isUserNotFound = filteredUsers?.length === 0;
 
   const handleDataTable = (data) => {
     return data?.slice(page * limit, page * limit + limit)?.map((user) => {
@@ -172,20 +228,17 @@ export default function UserManagement() {
   };
 
   const renderTableFinal = () => {
-    if (!keySearch) {
+    if (!keySearch?.length === 100) {
       return handleDataTable(users);
-    } else if (!dataSearch?.length) {
+    } else if (dataSearch?.length === 0) {
       return (
-        <TableRow sx={{ height: 300 }}>
-          <TableCell colSpan={7}>
-            <Typography align="center" variant="h4">
-              No Data
-            </Typography>
-          </TableCell>
-        </TableRow>
+        <>
+          <SearchNotFoundTable searchQuery={keySearch} />
+        </>
       );
     } else {
-      return handleDataTable(dataSearch);
+      // return handleDataTable(dataSearch);
+      return handleDataTable(filteredUsers);
     }
   };
 
@@ -322,6 +375,16 @@ export default function UserManagement() {
                 </TableRow>
               </TableHead>
               <TableBody>{renderTableFinal()}</TableBody>
+              {isUserNotFound && (
+                <TableBody>
+                  <TableRow>
+                    <TableCell align="center" colSpan={6} sx={{ py: 3 }}>
+                      123123123
+                      {/* <SearchNotFound searchQuery={filterName} /> */}
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              )}
             </Table>
           </TableContainer>
           <TablePagination

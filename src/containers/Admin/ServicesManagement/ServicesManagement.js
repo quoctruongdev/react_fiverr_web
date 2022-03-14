@@ -109,7 +109,7 @@ export default function ServicesManagement() {
     setPage(0);
   };
   const colorTableCell = {
-    backgroundColor: selectedServicerIds?.length > 0 ? "#C8FACD" : "#b9c4cc",
+    backgroundColor: selectedServicerIds?.length > 0 ? "#00e676" : "#b9c4cc",
   };
 
   ////Search //////

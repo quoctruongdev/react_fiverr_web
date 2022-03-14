@@ -20,7 +20,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import MuiDrawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import Link from "@mui/material/Link";
 import List from "@mui/material/List";
 import Paper from "@mui/material/Paper";
 import { createTheme, styled, ThemeProvider } from "@mui/material/styles";
@@ -28,7 +27,7 @@ import Toolbar from "@mui/material/Toolbar";
 import * as React from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { BrowserRouter, Route, useHistory } from "react-router-dom";
+import { BrowserRouter, NavLink, Route, useHistory } from "react-router-dom";
 import BadgeStyle from "../../../components/Badge/BadgeComponent";
 import { logo } from "../../../components/Logo/logo";
 import useWindowSize from "../../../Hook/useWindowSize";
@@ -36,7 +35,7 @@ import { actLogout } from "../../Admin/AuthPage/modules/actions";
 import ServicesManagement from "../ServicesManagement/ServicesManagement";
 import UsersManagement from "./../UsersManagement/UserManagement";
 import { mainListItems } from "./listItems";
-
+import { Link } from "react-router-dom";
 const drawerWidth = 240;
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -82,22 +81,11 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     backgroundColor: "#fff",
-//   },
-//   searchInput: {
-//     opacity: "0.6",
-//     fontSize: "0.8rem",
-//     "&:hover": {
-//       backgroundColor: "#f2f2f2",
-//     },
-//   },
-// }));
 const mdTheme = createTheme();
 
 export default function DashboardPage() {
-  const data = "";
+  const userAdmin = JSON.parse(localStorage.getItem("UserAdmin")).user;
+  console.log(userAdmin);
   const history = useHistory();
   const dispatch = useDispatch();
   // const classes = useStyles();
@@ -162,27 +150,19 @@ export default function DashboardPage() {
               </IconButton>
 
               <ListItem
-                // component="h1"
-                // variant="h6"
                 color="inherit"
                 disableRipple
 
                 // sx={{ flexGrow: 1 }}
               >
                 {logo}
-                {/* <InputBase
-                  color="secondary"
-                  placeholder="Search services"
-                  // className={classes.searchInput}
-                  startAdornment={<SearchIcon fontSize="small" />}
-                /> */}
               </ListItem>
               <Typography align="right" sx={{ flexGrow: 1 }}>
                 <IconButton>
                   <Box sx={{ flexGrow: 0 }}>
                     <Tooltip title="Open settings">
                       <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                        <BadgeStyle styles={32} />
+                        <BadgeStyle data={userAdmin} styles={32} />
                       </IconButton>
                     </Tooltip>
                     <Menu
@@ -228,10 +208,10 @@ export default function DashboardPage() {
                             textDecoration: "none",
                           },
                         }}
-                        to={`/profile/${data?.name}`}
+                        to={`/profile/${userAdmin?.name}`}
                         component={Link}
                       >
-                        <Avatar src={data?.avatar} /> Profile
+                        <Avatar src={userAdmin?.avatar} /> Profile
                       </MenuItem>
                       <MenuItem>
                         <Avatar /> My account
@@ -286,7 +266,6 @@ export default function DashboardPage() {
             <List component="nav">
               {mainListItems}
               <Divider sx={{ my: 1 }} />
-              {/* {secondaryListItems} */}
             </List>
           </Drawer>
           <Box
@@ -303,18 +282,12 @@ export default function DashboardPage() {
             }}
           >
             <Toolbar />
-            {/* <Paper
-            maxWidth="lg"
-            sx={{ mt: 4, mb: 4 }}
-            sx={{ mx: 5, my: 5 }}
-            > */}
             <Route exact path="/dashboard/users" component={UsersManagement} />
             <Route
               exact
               path="/dashboard/services"
               component={ServicesManagement}
             />
-            {/* </Paper> */}
           </Box>
         </Paper>
       </ThemeProvider>

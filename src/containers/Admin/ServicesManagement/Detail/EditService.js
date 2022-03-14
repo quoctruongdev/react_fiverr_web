@@ -1,8 +1,7 @@
 import AddBoxSharpIcon from "@mui/icons-material/AddBoxSharp";
-import LoadingButton from "@mui/lab/LoadingButton";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import LoadingButton from "@mui/lab/LoadingButton";
 import {
-  Avatar,
   Box,
   Card,
   CardActionArea,
@@ -13,24 +12,18 @@ import {
   CircularProgress,
   FormGroup,
   Grid,
-  Paper,
-  Skeleton,
   TextField,
+  Typography,
 } from "@mui/material";
-import { Typography } from "@mui/material";
 import { pink } from "@mui/material/colors";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import { Divider, Form } from "antd";
+import { styled } from "@mui/material/styles";
+import { Divider } from "antd";
 import { useFormik } from "formik";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actFetchUpdateService } from "../Update/modules/actions";
-import { styled } from "@mui/material/styles";
 import { actFetchUploadImageService } from "../UploadImage/modules/actions";
-import Progress from "../../_components/Progress";
-import { useEffect } from "react";
-import Loader from "../../../../components/Loader/Loader";
 
 const Input = styled("input")({
   display: "none",
@@ -86,233 +79,225 @@ export default function EditService({ dataEdit }) {
   };
   return (
     <>
-      {loading ? (
-        <div style={{ minWidth: "700px" }}>
-          <Progress />
-        </div>
-      ) : (
-        <form
-          id="formAddService"
-          onSubmit={formik.handleSubmit}
-          autoComplete="off"
-        >
-          <CardContent>
-            <Grid container spacing={3}>
-              <Grid item md={12} xs={12}>
-                <TextField
-                  inputProps={{
-                    style: {
-                      height: "20px",
-                    },
-                  }}
-                  fullWidth
-                  label="Name Service"
-                  name="name"
-                  onChange={formik.handleChange}
-                  value={formik.values.name}
-                  required
-                  variant="outlined"
-                  InputLabelProps={{ shrink: true }}
-                />
-              </Grid>
+      <form
+        id="formAddService"
+        onSubmit={formik.handleSubmit}
+        autoComplete="off"
+      >
+        <CardContent>
+          <Grid container spacing={3}>
+            <Grid item md={12} xs={12}>
+              <TextField
+                inputProps={{
+                  style: {
+                    height: "20px",
+                  },
+                }}
+                fullWidth
+                label="Name Service"
+                name="name"
+                onChange={formik.handleChange}
+                value={formik.values.name}
+                required
+                variant="outlined"
+                InputLabelProps={{ shrink: true }}
+              />
+            </Grid>
 
-              <Grid item md={12} xs={12}>
-                <TextField
-                  inputProps={{
-                    style: {
-                      height: "20px",
-                    },
-                  }}
-                  fullWidth
-                  label="Price-USD"
-                  name="price"
-                  required
-                  onChange={formik.handleChange}
-                  value={formik.values.price}
-                  InputLabelProps={{ shrink: true }}
-                  type={"number"}
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid item md={12} xs={12}>
-                <TextField
-                  type="number"
-                  fullWidth
-                  label="Rating"
-                  name="rating"
-                  variant="outlined"
-                  InputLabelProps={{ shrink: true }}
-                  onChange={formik.handleChange}
-                  value={formik.values.rating}
-                  inputProps={{
-                    style: {
-                      height: "20px",
-                    },
-                  }}
-                />
-              </Grid>
-              <Grid item md={12} xs={12}>
-                <FormGroup aria-label="position" row>
-                  <FormControlLabel
-                    value={true}
-                    control={
-                      <Checkbox
-                        onChange={handleOnchangeCheckBox("proServices")}
-                        defaultChecked={dataEdit?.pro}
-                        sx={{
-                          color: pink[800],
-                          "&.Mui-checked": {
-                            color: pink[600],
-                          },
-                        }}
-                      />
-                    }
-                    label="ProServices"
-                    labelPlacement="end"
-                    name="proServices"
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        onChange={handleOnchangeCheckBox("deliveryTime")}
-                        defaultChecked={dataEdit?.delivery}
-                        sx={{
-                          color: pink[800],
-                          "&.Mui-checked": {
-                            color: pink[600],
-                          },
-                        }}
-                      />
-                    }
-                    label="Delivery"
-                    labelPlacement="end"
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        onChange={handleOnchangeCheckBox("localSellers")}
-                        defaultChecked={dataEdit?.local}
-                        sx={{
-                          color: pink[800],
-                          "&.Mui-checked": {
-                            color: pink[600],
-                          },
-                        }}
-                      />
-                    }
-                    label="LocalSeller"
-                    labelPlacement="end"
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        onChange={handleOnchangeCheckBox("onlineSellers")}
-                        defaultChecked={dataEdit?.online}
-                        sx={{
-                          color: pink[800],
-                          "&.Mui-checked": {
-                            color: pink[600],
-                          },
-                        }}
-                      />
-                    }
-                    label="OnlineSeller"
-                    labelPlacement="end"
-                  />
-                </FormGroup>
-              </Grid>
-              <Grid item md={12} xs={12}>
-                <Typography paddingBottom={1}>
-                  Upload Image (image.png)
-                </Typography>
-
-                <Box>
-                  <label htmlFor="icon-button-file">
-                    <Input
-                      accept="image/png"
-                      id="icon-button-file"
-                      type="file"
-                      onChange={handleChangeImage}
-                    />
-                    <Card
-                      raised
-                      elevation={1}
+            <Grid item md={12} xs={12}>
+              <TextField
+                inputProps={{
+                  style: {
+                    height: "20px",
+                  },
+                }}
+                fullWidth
+                label="Price-USD"
+                name="price"
+                required
+                onChange={formik.handleChange}
+                value={formik.values.price}
+                InputLabelProps={{ shrink: true }}
+                type={"number"}
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item md={12} xs={12}>
+              <TextField
+                type="number"
+                fullWidth
+                label="Rating"
+                name="rating"
+                variant="outlined"
+                InputLabelProps={{ shrink: true }}
+                onChange={formik.handleChange}
+                value={formik.values.rating}
+                inputProps={{
+                  style: {
+                    height: "20px",
+                  },
+                }}
+              />
+            </Grid>
+            <Grid item md={12} xs={12}>
+              <FormGroup aria-label="position" row>
+                <FormControlLabel
+                  value={true}
+                  control={
+                    <Checkbox
+                      onChange={handleOnchangeCheckBox("proServices")}
+                      defaultChecked={dataEdit?.pro}
                       sx={{
-                        ":hover": {
-                          opacity: 0.5,
-                          overflow: "hidden",
-                          position: "relative",
+                        color: pink[800],
+                        "&.Mui-checked": {
+                          color: pink[600],
                         },
                       }}
+                    />
+                  }
+                  label="ProServices"
+                  labelPlacement="end"
+                  name="proServices"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      onChange={handleOnchangeCheckBox("deliveryTime")}
+                      defaultChecked={dataEdit?.delivery}
+                      sx={{
+                        color: pink[800],
+                        "&.Mui-checked": {
+                          color: pink[600],
+                        },
+                      }}
+                    />
+                  }
+                  label="Delivery"
+                  labelPlacement="end"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      onChange={handleOnchangeCheckBox("localSellers")}
+                      defaultChecked={dataEdit?.local}
+                      sx={{
+                        color: pink[800],
+                        "&.Mui-checked": {
+                          color: pink[600],
+                        },
+                      }}
+                    />
+                  }
+                  label="LocalSeller"
+                  labelPlacement="end"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      onChange={handleOnchangeCheckBox("onlineSellers")}
+                      defaultChecked={dataEdit?.online}
+                      sx={{
+                        color: pink[800],
+                        "&.Mui-checked": {
+                          color: pink[600],
+                        },
+                      }}
+                    />
+                  }
+                  label="OnlineSeller"
+                  labelPlacement="end"
+                />
+              </FormGroup>
+            </Grid>
+            <Grid item md={12} xs={12}>
+              <Typography paddingBottom={1}>
+                Upload Image (image.png)
+              </Typography>
+
+              <Box>
+                <label htmlFor="icon-button-file">
+                  <Input
+                    accept="image/png"
+                    id="icon-button-file"
+                    type="file"
+                    onChange={handleChangeImage}
+                  />
+                  <Card
+                    raised
+                    elevation={1}
+                    sx={{
+                      ":hover": {
+                        opacity: 0.5,
+                        overflow: "hidden",
+                        position: "relative",
+                      },
+                    }}
+                  >
+                    <CardActionArea
+                      sx={{
+                        overflow: "hidden",
+                        width: "350px",
+                        height: "230px",
+                      }}
+                      component="span"
                     >
-                      <CardActionArea
-                        sx={{
-                          overflow: "hidden",
-                          width: "350px",
-                          height: "230px",
-                        }}
-                        component="span"
-                      >
+                      <CardMedia
+                        component="img"
+                        image={imageService === "" ? data?.image : imageService}
+                        alt={data?.name}
+                        srcSet={
+                          imageService === ""
+                            ? data?.image
+                            : imageService || noImg
+                        }
+                      />
+                      {imageService === "" && data?.image === undefined && (
                         <CardMedia
                           component="img"
-                          image={
-                            imageService === "" ? data?.image : imageService
-                          }
-                          alt={data?.name}
-                          srcSet={
-                            imageService === ""
-                              ? data?.image
-                              : imageService || noImg
-                          }
+                          image={noImg}
+                          srcSet={noImg}
                         />
-                        {imageService === "" && data?.image === undefined && (
-                          <CardMedia
-                            component="img"
-                            image={noImg}
-                            srcSet={noImg}
-                          />
-                        )}
-                        <AddPhotoAlternateIcon
-                          sx={{
-                            fontSize: 40,
-                            position: "absolute",
-                            right: 0,
-                            top: 0,
-                            color: "#fff",
-                            zIndex: 909,
-                            cursor: "pointer",
-                          }}
-                        />
-                      </CardActionArea>
-                    </Card>
-                  </label>
-                </Box>
-              </Grid>
+                      )}
+                      <AddPhotoAlternateIcon
+                        sx={{
+                          fontSize: 40,
+                          position: "absolute",
+                          right: 0,
+                          top: 0,
+                          color: "#fff",
+                          zIndex: 909,
+                          cursor: "pointer",
+                        }}
+                      />
+                    </CardActionArea>
+                  </Card>
+                </label>
+              </Box>
             </Grid>
-          </CardContent>
-          <CardContent>
-            <Divider />
-            <CardHeader
-              sx={{ py: 0 }}
-              action={
-                <LoadingButton
-                  type="submit"
-                  color="secondary"
-                  loadingPosition="start"
-                  startIcon={<AddBoxSharpIcon />}
-                  variant="contained"
-                  loading={loading ? loading : loadings}
-                  loadingIndicator={
-                    <CircularProgress color="success" size={16} />
-                  }
-                >
-                  Add User
-                </LoadingButton>
-              }
-            />
-          </CardContent>
-        </form>
-      )}
+          </Grid>
+        </CardContent>
+        <CardContent>
+          <Divider />
+          <CardHeader
+            sx={{ py: 0 }}
+            action={
+              <LoadingButton
+                type="submit"
+                color="secondary"
+                loadingPosition="start"
+                startIcon={<AddBoxSharpIcon />}
+                variant="contained"
+                loading={loading ? loading : loadings}
+                loadingIndicator={
+                  <CircularProgress color="success" size={16} />
+                }
+              >
+                Add User
+              </LoadingButton>
+            }
+          />
+        </CardContent>
+      </form>
     </>
   );
 }
