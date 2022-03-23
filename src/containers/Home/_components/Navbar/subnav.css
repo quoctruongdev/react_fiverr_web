@@ -21,9 +21,8 @@
   z-index: 60;
   opacity: 0;
   visibility: hidden;
-
   -webkit-transition: transform 0.2s;
-  transform: rotateX(90deg);
+  transform: rotateX(45deg);
   -webkit-transform: rotateX(90deg);
   transition: opcity 0.2s, transform 0.2s, -webkit-transform 0.2s;
   -webkit-transition: opcity 0.2s, transform 0.2s, -webkit-transform 0.2s;
@@ -36,4 +35,9 @@
 }
 .categories .hidden_subnav {
   display: none;
+}
+
+#mouse-over-popper3 div {
+  /* transform: translate3d(530px, 115px, 0px) !important; */
+  margin-right: 30px !important;
 }

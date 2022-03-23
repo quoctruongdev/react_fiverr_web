@@ -1,6 +1,6 @@
 import * as ActionType from "./constants";
 import { apiAdmin } from "../../../../../utils/apiutils";
-// import { actFetchListUser } from "../../_modules/actions";
+import { actSetMessage } from "../../../../../components/Notification/module/actions";
 
 export const actFetchDeleteUser = (id) => {
   return (dispatch) => {
@@ -10,12 +10,11 @@ export const actFetchDeleteUser = (id) => {
       .delete(`users/${id}`)
       .then((result) => {
         dispatch(actDeleteUserSuccess(result.data));
-        // alert("Bạn đã xoá thành công");
-        // dispatch(actFetchListUser());
+        dispatch(actSetMessage("Delete user success!", "success"));
       })
       .catch((err) => {
         dispatch(actDeleteUserFailed(err));
-        alert(`${err.message}`);
+        dispatch(actSetMessage(`${err?.response?.data.message}`, "error"));
       });
   };
 };

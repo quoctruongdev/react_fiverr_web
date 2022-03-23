@@ -29,6 +29,7 @@
     "i": "^0.3.7",
     "jquery": "^3.6.0",
     "lodash": "^4.17.21",
+    "material-ui-image": "^3.3.2",
     "material-ui-popup-state": "^2.0.0",
     "moment": "^2.29.1",
     "npm": "^8.5.4",
@@ -53,7 +54,8 @@
     "stylelint-config-recommended": "^6.0.0",
     "svgs": "^4.2.0",
     "swiper": "^8.0.3",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "craco start",

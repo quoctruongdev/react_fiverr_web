@@ -1,0 +1,19 @@
+.slick-prev:before,
+.slick-next:before {
+  content: "" !important;
+  display: inline-block;
+  background: url(https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/arrows.a8b0bad.svg)
+    no-repeat;
+  background-size: 16px 64px;
+  width: 16px;
+  height: 16px;
+  margin-top: 8px;
+  color: none;
+}
+.slick-next:before {
+  transform: rotate(180deg);
+}
+/* .ant-carousel .slick-next */
+.ant-carousel .slick-prev {
+  right: 100px !important;
+}

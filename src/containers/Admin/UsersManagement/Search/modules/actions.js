@@ -2,11 +2,11 @@
 import * as ActionType from "./constants";
 import { apiAdmin } from "../../../../../utils/apiutils";
 
-export const actFetchSearchUser = (keyword) => {
+export const actFetchSearchUser = (keyword, limit) => {
   return (dispatch) => {
     dispatch(actSearchUserRequest());
     apiAdmin
-      .get(`users/pagination-search?name=${keyword}&skip=0&limit=0`)
+      .get(`users/pagination-search?name=${keyword}&skip=0&limit=${limit}`)
       .then((result) => {
         dispatch(actSearchUserSuccess(result.data));
       })

@@ -1,3 +1,4 @@
+import { Skeleton } from "@mui/material";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -13,13 +14,24 @@ function Footer() {
   }, []);
 
   const renderData = () => {
-    return data?.map((item, index) => {
-      return (
-        <li key={index}>
-          <NavLink to={`/list-type-job/${item?._id}`}>{item?.name}</NavLink>
-        </li>
-      );
-    });
+    return data
+      ?.filter((item) => item?.__v > 10)
+      ?.map((item, index) => {
+        return (
+          <li key={index}>
+            <NavLink to={`/list-type-job/${item?._id}`}>{item?.name}</NavLink>
+          </li>
+        );
+      });
+  };
+  const renderListSkeleton = (length) => {
+    const array = [];
+    for (let index = 0; index < length; index++) {
+      array.push(index);
+    }
+    return array?.map((item) => (
+      <Skeleton sx={{ mb: 2 }} key={item} width="80%" />
+    ));
   };
 
   return (
@@ -51,7 +63,7 @@ function Footer() {
                   </div>
                 </div>
                 <div className="footer-collapsible-content">
-                  <ul>{renderData()}</ul>
+                  <ul>{data ? renderData() : renderListSkeleton(8)}</ul>
                 </div>
               </article>
             </div>

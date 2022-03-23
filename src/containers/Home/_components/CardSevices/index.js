@@ -1,4 +1,3 @@
-import * as React from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ShareIcon from "@mui/icons-material/Share";
@@ -15,6 +14,7 @@ import IconButton from "@mui/material/IconButton";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
+import * as React from "react";
 import { Link } from "react-router-dom";
 import Loader from "../../../../components/Loader/Loader";
 
@@ -51,7 +51,7 @@ export default function CardSevices(props) {
           component={Link}
           to={`/detail-job/${item?._id}/${item?.userCreated}`}
         >
-          {!item?.image ? (
+          {!item?.image || loading ? (
             <Skeleton
               sx={{ height: 208 }}
               animation="wave"
@@ -95,7 +95,7 @@ export default function CardSevices(props) {
             </IconButton>
           }
           title={
-            !UserCreated?.name ? (
+            loading ? (
               <Skeleton
                 animation="wave"
                 height={10}
@@ -134,7 +134,6 @@ export default function CardSevices(props) {
             <>
               <Skeleton animation="wave" />
               <Skeleton animation="wave" width="80%" />
-              {/* <Skeleton animation="wave" height={10} width="60%" /> */}
             </>
           ) : (
             <Typography

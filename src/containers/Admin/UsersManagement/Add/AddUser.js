@@ -16,48 +16,88 @@ import moment from "moment";
 import LoadingButton from "@mui/lab/LoadingButton";
 import AddBoxSharpIcon from "@mui/icons-material/AddBoxSharp";
 import { Divider } from "antd";
+import { useFormik } from "formik";
+import * as yup from "yup";
 
-export default function AddUser() {
+export default function AddUser({ onClose, onOpen, type }) {
   const loadingBtn = useSelector((state) => state.addUserReducer.loading);
-  // const [loadingBtn, setLoadingBtn] = useState(false);
-  // function handleClickLoadingBtn() {
-  //   setLoadingBtn(true);
-  // }
+  const error = useSelector((state) => state.addUserReducer.error);
+  const errorMessage = error?.response?.data.message;
   const dispatch = useDispatch();
-  const [dataAddUser, setdataAddUser] = useState({
-    name: "",
-    email: "",
-    password: "",
-    phone: "",
-    skill: "",
-    certification: "",
-    birthday: null,
-    gender: false,
-    role: "CLIENT",
+  const validationSchema = yup.object({
+    name: yup
+      .string("Enter your name")
+      .max(50, "Name should be of maximum 50 characters length!")
+      .required("Name is required"),
+    skill: yup
+      .string("Enter your skill")
+      .min(2, "Too Short!")
+      .max(50, "Too Long!"),
+    phone: yup
+      .string("Enter your phone")
+      .min(8, "Too Short!")
+      .max(20, "Too Long!")
+      .required("phone is required"),
+
+    certification: yup
+      .string("Enter your certification")
+      .min(2, "Too Short!")
+      .max(50, "Too Long!"),
+    email: yup
+      .string("Enter your email")
+      .email("Enter a valid email")
+      .required("Email is required"),
+    password: yup
+      .string("Enter your password")
+      .min(8, "Password should be of minimum 8 characters length")
+      .required("Password is required"),
+  });
+
+  const formik = useFormik({
+    enableReinitialize: true,
+    initialValues: {
+      name: "",
+      email: "",
+      password: "",
+      phone: "",
+      skill: "",
+      certification: "",
+      birthday: moment(new Date()).format("YYYY-MM-DD"),
+      gender: false,
+      role: "CLIENT",
+    },
+    validationSchema: validationSchema,
+
+    onSubmit: (values) => {
+      dispatch(actFetchAddUser(values));
+      if (!errorMessage) {
+        formik.resetForm();
+      }
+    },
   });
 
   const handleOnChangeDate = (valueDate) => {
-    setdataAddUser({
-      ...dataAddUser,
-      birthday: moment(valueDate).format("YYYY-MM-DD"),
-    });
-    console.log(dataAddUser);
+    const date = moment(valueDate).format("YYYY-MM-DD");
+    formik.setFieldValue("birthday", date);
   };
-  const handleAddUser = (e) => {
-    e.preventDefault();
-    dispatch(actFetchAddUser(dataAddUser));
-  };
-  const handleOnchange = (e) => {
-    const { name, value } = e.target;
-    setdataAddUser({
-      ...dataAddUser,
-      [name]: value,
-    });
-  };
+  // const handleAddUser = (e) => {
+  //   e.preventDefault();
+  //   dispatch(actFetchAddUser(dataAddUser));
+  // };
+  // const handleOnchange = (e) => {
+  //   const { name, value } = e.target;
+  //   setdataAddUser({
+  //     ...dataAddUser,
+  //     [name]: value,
+  //   });
+  // };
+  // const resetForm = () => {
+  //   document.getElementById("formAddUser").reset();
+  // };
 
   return (
     <>
-      <form id="formAddUser" onSubmit={handleAddUser} autoComplete="off">
+      <form id="formAddUser" onSubmit={formik.handleSubmit}>
         <CardContent>
           <Grid container spacing={3}>
             <Grid item md={6} xs={12}>
@@ -69,10 +109,13 @@ export default function AddUser() {
                 }}
                 fullWidth
                 label="Full name"
+                id="name"
                 name="name"
-                onChange={handleOnchange}
-                required
+                onChange={formik.handleChange}
                 variant="outlined"
+                value={formik.values.name}
+                error={formik.touched.name && Boolean(formik.errors.name)}
+                helperText={formik.touched.name && formik.errors.name}
               />
             </Grid>
             <Grid item md={6} xs={12}>
@@ -80,15 +123,17 @@ export default function AddUser() {
                 fullWidth
                 label="Phone Number"
                 name="phone"
-                onChange={handleOnchange}
+                onChange={formik.handleChange}
                 type="number"
-                //   value={values.phone}
                 variant="outlined"
                 inputProps={{
                   style: {
                     height: "20px",
                   },
                 }}
+                value={formik.values.phone}
+                error={formik.touched.phone && Boolean(formik.errors.phone)}
+                helperText={formik.touched.phone && formik.errors.phone}
               />
             </Grid>
             <Grid item md={6} xs={12}>
@@ -101,9 +146,10 @@ export default function AddUser() {
                 fullWidth
                 label="Email Address"
                 name="email"
-                onChange={handleOnchange}
-                required
-                //   value={values.email}
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                error={formik.touched.email && Boolean(formik.errors.email)}
+                helperText={formik.touched.email && formik.errors.email}
                 variant="outlined"
               />
             </Grid>
@@ -113,14 +159,18 @@ export default function AddUser() {
                 fullWidth
                 label="Password"
                 name="password"
-                onChange={handleOnchange}
-                //   value={values.phone}
+                onChange={formik.handleChange}
                 variant="outlined"
                 inputProps={{
                   style: {
                     height: "20px",
                   },
                 }}
+                value={formik.values.password}
+                error={
+                  formik.touched.password && Boolean(formik.errors.password)
+                }
+                helperText={formik.touched.password && formik.errors.password}
               />
             </Grid>
 
@@ -132,7 +182,7 @@ export default function AddUser() {
                 <DesktopDatePicker
                   label="Birthday"
                   name="birthday"
-                  value={dataAddUser.birthday || new Date()}
+                  value={formik.values.birthday || new Date()}
                   minDate={new Date("1950-01-01")}
                   onChange={handleOnChangeDate}
                   renderInput={(params) => <TextField fullWidth {...params} />}
@@ -152,8 +202,8 @@ export default function AddUser() {
                 <RadioGroup
                   aria-labelledby="demo-controlled-radio-buttons-group"
                   name="gender"
-                  value={dataAddUser?.gender}
-                  onChange={handleOnchange}
+                  value={formik.values.gender}
+                  onChange={formik.handleChange}
                   row
                 >
                   <FormControlLabel
@@ -185,11 +235,12 @@ export default function AddUser() {
                 fullWidth
                 label="Skill"
                 name="skill"
-                onChange={handleOnchange}
-                required
-                //   value={values.country}
+                onChange={formik.handleChange}
+                value={formik.values.skill}
                 variant="outlined"
                 type="text"
+                error={formik.touched.skill && Boolean(formik.errors.skill)}
+                helperText={formik.touched.skill && formik.errors.skill}
               />
             </Grid>
             <Grid item md={6} xs={12}>
@@ -204,8 +255,8 @@ export default function AddUser() {
                   },
                 }}
                 name="role"
-                value={dataAddUser?.role}
-                onChange={handleOnchange}
+                value={formik.values.role}
+                onChange={formik.handleChange}
               >
                 <MenuItem key="1" value="ADMIN">
                   Admin
@@ -225,8 +276,15 @@ export default function AddUser() {
                 fullWidth
                 label="Certification"
                 name="certification"
-                onChange={handleOnchange}
-                required
+                onChange={formik.handleChange}
+                value={formik.values.certification}
+                error={
+                  formik.touched.certification &&
+                  Boolean(formik.errors.certification)
+                }
+                helperText={
+                  formik.touched.certification && formik.errors.certification
+                }
                 variant="outlined"
               />
             </Grid>
@@ -236,18 +294,18 @@ export default function AddUser() {
             sx={{ py: 0 }}
             action={
               <LoadingButton
-                // onClick={handleClickLoadingBtn}
                 type="submit"
                 color="secondary"
                 loadingPosition="start"
                 startIcon={<AddBoxSharpIcon />}
+                // disabled={!formik.isValid || !formik.dirty}
                 variant="contained"
                 loading={loadingBtn}
                 loadingIndicator={
                   <CircularProgress color="success" size={16} />
                 }
               >
-                Add User
+                Create
               </LoadingButton>
             }
           />

@@ -8,7 +8,7 @@ import usersListReducer from "../../containers/Admin/UsersManagement/_modules/re
 import deleteUserReducer from "../../containers/Admin/UsersManagement/Delete/modules/reducer";
 import addUserReducer from "../../containers/Admin/UsersManagement/Add/modules/reducer";
 import updateUserReducer from "../../containers/Admin/UsersManagement/Update/modules/reducer";
-import detailUserReducer from "../../containers/Admin/UsersManagement/Detail/_modules/reducer";
+import detailUserReducer from "../../containers/Admin/UsersManagement/Edit/_modules/reducer";
 // import uploadAvatarReducer from "../../containers/Home/ProfilePage/UploadAvatar/modules/reducer";
 import searchUserReducer from "../../containers/Admin/UsersManagement/Search/modules/reducer";
 // import detailUserReducer from "../../containers/Home/DetailPage/Overview/_JobSlider/_modules/reducer";
@@ -20,7 +20,7 @@ import servicesListReducer from "../../containers/Admin/ServicesManagement/_modu
 import deleteServiceReducer from "../../containers/Admin/ServicesManagement/Delete/modules/reducer";
 import addServiceReducer from "../../containers/Admin/ServicesManagement/Add/modules/reducer";
 // import detailServiceReducer from "../../containers/Home/DetailPage/_modules/reducer";
-import detailServiceReducer from "../../containers/Admin/ServicesManagement/Detail/_modules/reducer";
+import detailServiceReducer from "../../containers/Admin/ServicesManagement/Edit/_modules/reducer";
 import jobUserBookingReducer from "../../containers/Home/ProfilePage/JobUserBooking/modules/reducer";
 import bookingJobReducer from "../../containers/Home/DetailPage/BookingJob/modules/reducer";
 import uploadImageServiceReducer from "../../containers/Admin/ServicesManagement/UploadImage/modules/reducer";
@@ -35,6 +35,11 @@ import categoriesSubTypeReducer from "../../containers/Home/CategoriesSubPage/mo
 
 //film
 import addCarouselReducer from "../../containers/Home/HomePage/Carousel/modules/reducer";
+
+//messageReducer
+import messagesReducer from "../../components/Notification/module/reducer";
+import modalReducer from "../../components/ModalPopup/module/reducer";
+import popoverGlobalReducer from "../../components/Popover/module/reducer";
 
 const rootReducer = combineReducers({
   homePageReducer,
@@ -76,5 +81,10 @@ const rootReducer = combineReducers({
 
   // Home Page Film
   addCarouselReducer,
+
+  //Message global
+  messagesReducer,
+  modalReducer,
+  popoverGlobalReducer,
 });
 export default rootReducer;

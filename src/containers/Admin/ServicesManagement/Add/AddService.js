@@ -1,44 +1,43 @@
-import React, { useState } from "react";
+import AddBoxSharpIcon from "@mui/icons-material/AddBoxSharp";
+import LoadingButton from "@mui/lab/LoadingButton";
 import {
-  Box,
+  CardContent,
   CardHeader,
   Checkbox,
+  CircularProgress,
   FormGroup,
   Grid,
-  MenuItem,
+  TextField,
 } from "@mui/material";
-import { CardContent, TextField } from "@mui/material";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
+import { pink } from "@mui/material/colors";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
-import { actFetchAddUser } from "../../UsersManagement/Add/modules/actions";
-import { actFetchAddService } from "./modules/actions";
-import { useSelector, useDispatch } from "react-redux";
-import { CircularProgress } from "@mui/material";
-import moment from "moment";
-import LoadingButton from "@mui/lab/LoadingButton";
-import AddBoxSharpIcon from "@mui/icons-material/AddBoxSharp";
 import { Divider } from "antd";
 import { useFormik } from "formik";
-import { pink } from "@mui/material/colors";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as yup from "yup";
+import { actFetchAddService } from "./modules/actions";
 
 export default function AddService() {
-  const loadingBtn = useSelector((state) => state.addUserReducer.loading);
-  // const [loadingBtn, setLoadingBtn] = useState(false);
-  // function handleClickLoadingBtn() {
-  //   setLoadingBtn(true);
-  // }
+  const loadingBtn = useSelector((state) => state.addServiceReducer.loading);
+  const error = useSelector((state) => state.addServiceReducer.error);
+  const errorMessage = error?.response?.data.message;
+
+  const validationSchema = yup.object({
+    name: yup
+      .string("Enter service name")
+      .min(10, "Name should be of maximum 10 characters length!")
+      .max(100, "Name should be of maximum 50 characters length!")
+      .required("Name is required"),
+    rating: yup.string("Enter service rating").required("Rating is required"),
+    price: yup.string("Enter service price").required("Price is required"),
+  });
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      name: null,
-      rating: null,
-      price: null,
+      name: "",
+      rating: "",
+      price: "",
       proServices: false,
       deliveryTime: false,
       localSellers: false,
@@ -46,21 +45,23 @@ export default function AddService() {
       type: null,
       subType: null,
     },
+    validationSchema: validationSchema,
+
     onSubmit: (values) => {
       dispatch(actFetchAddService(values));
+      if (!errorMessage) {
+        formik.handleReset();
+      }
     },
   });
   const dispatch = useDispatch();
+
   const handleOnchangeCheckBox = (name) => (event) => {
     formik.setFieldValue(name, event.target.checked);
   };
   return (
     <>
-      <form
-        id="formAddService"
-        onSubmit={formik.handleSubmit}
-        autoComplete="off"
-      >
+      <form id="formAddService" onSubmit={formik.handleSubmit}>
         <CardContent>
           <Grid container spacing={3}>
             <Grid item md={12} xs={12}>
@@ -73,9 +74,11 @@ export default function AddService() {
                 fullWidth
                 label="Name Service"
                 name="name"
+                value={formik.values.name}
                 onChange={formik.handleChange}
-                required
                 variant="outlined"
+                error={formik.touched.name && Boolean(formik.errors.name)}
+                helperText={formik.touched.name && formik.errors.name}
               />
             </Grid>
 
@@ -89,10 +92,12 @@ export default function AddService() {
                 fullWidth
                 label="Price-USD"
                 name="price"
-                required
+                value={formik.values.price}
                 onChange={formik.handleChange}
                 type={"number"}
                 variant="outlined"
+                error={formik.touched.price && Boolean(formik.errors.price)}
+                helperText={formik.touched.price && formik.errors.price}
               />
             </Grid>
             <Grid item md={12} xs={12}>
@@ -100,6 +105,7 @@ export default function AddService() {
                 type="number"
                 fullWidth
                 label="Rating"
+                value={formik.values.rating}
                 name="rating"
                 variant="outlined"
                 onChange={formik.handleChange}
@@ -107,7 +113,11 @@ export default function AddService() {
                   style: {
                     height: "20px",
                   },
+                  min: 0,
+                  max: 10,
                 }}
+                error={formik.touched.rating && Boolean(formik.errors.rating)}
+                helperText={formik.touched.rating && formik.errors.rating}
               />
             </Grid>
             <Grid item md={12} xs={12}>
@@ -187,7 +197,6 @@ export default function AddService() {
             sx={{ py: 0 }}
             action={
               <LoadingButton
-                // onClick={handleClickLoadingBtn}
                 type="submit"
                 color="secondary"
                 loadingPosition="start"

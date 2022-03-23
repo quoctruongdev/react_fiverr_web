@@ -1,6 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import Loader from "../../../../components/Loader/Loader";
 
 export default function SearchNotFound() {
+  const loading = useSelector((state) => state.categoriesMainReducer.loading);
+
+  if (loading) return <Loader />;
+
   return (
     <section className="flex items-center h-full p-16  dark:text-black">
       <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">

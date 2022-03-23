@@ -1,11 +1,7 @@
-import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import Logout from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import Settings from "@mui/icons-material/Settings";
 import {
-  Avatar,
   ListItem,
   ListItemIcon,
   Menu,
@@ -14,7 +10,6 @@ import {
   Typography,
 } from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
-import Badge from "@mui/material/Badge";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
@@ -27,15 +22,15 @@ import Toolbar from "@mui/material/Toolbar";
 import * as React from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { BrowserRouter, NavLink, Route, useHistory } from "react-router-dom";
+import { BrowserRouter, Route, useHistory } from "react-router-dom";
 import BadgeStyle from "../../../components/Badge/BadgeComponent";
 import { logo } from "../../../components/Logo/logo";
 import useWindowSize from "../../../Hook/useWindowSize";
 import { actLogout } from "../../Admin/AuthPage/modules/actions";
 import ServicesManagement from "../ServicesManagement/ServicesManagement";
 import UsersManagement from "./../UsersManagement/UserManagement";
-import { mainListItems } from "./listItems";
-import { Link } from "react-router-dom";
+import MenuItemDashBoard from "./MenuItem";
+
 const drawerWidth = 240;
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -85,11 +80,8 @@ const mdTheme = createTheme();
 
 export default function DashboardPage() {
   const userAdmin = JSON.parse(localStorage.getItem("UserAdmin")).user;
-  console.log(userAdmin);
   const history = useHistory();
   const dispatch = useDispatch();
-  // const classes = useStyles();
-
   const size = useWindowSize();
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
@@ -150,12 +142,12 @@ export default function DashboardPage() {
               </IconButton>
 
               <ListItem
+                // sx={{ display: { md: "none" } }}
+                sx={{ display: open ? "none" : "block" }}
                 color="inherit"
                 disableRipple
-
-                // sx={{ flexGrow: 1 }}
               >
-                {logo}
+                {logo("#404145")}
               </ListItem>
               <Typography align="right" sx={{ flexGrow: 1 }}>
                 <IconButton>
@@ -200,7 +192,7 @@ export default function DashboardPage() {
                       transformOrigin={{ horizontal: "right", vertical: "top" }}
                       anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
                     >
-                      <MenuItem
+                      {/* <MenuItem
                         sx={{
                           color: "#74767e",
                           ":hover": {
@@ -216,13 +208,13 @@ export default function DashboardPage() {
                       <MenuItem>
                         <Avatar /> My account
                       </MenuItem>
-                      <Divider />
-                      <MenuItem>
+                      <Divider /> */}
+                      {/* <MenuItem>
                         <ListItemIcon>
                           <Settings fontSize="small" />
                         </ListItemIcon>
                         Settings
-                      </MenuItem>
+                      </MenuItem> */}
                       <MenuItem
                         onClick={() => {
                           dispatch(actLogout(history));
@@ -258,13 +250,16 @@ export default function DashboardPage() {
                 backgroundColor: "#253053",
               }}
             >
+              <ListItem sx={{ pl: 10, pr: 0 }} disableRipple>
+                {logo("#fff")}
+              </ListItem>
               <IconButton onClick={toggleDrawer}>
                 <ChevronLeftIcon color="#ffff" />
               </IconButton>
             </Toolbar>
             <Divider />
             <List component="nav">
-              {mainListItems}
+              <MenuItemDashBoard />
               <Divider sx={{ my: 1 }} />
             </List>
           </Drawer>

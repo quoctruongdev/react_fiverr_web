@@ -9,7 +9,6 @@ export default function JobUserBooking(props) {
   // const imageDefault = "/asset/image_defaut.png";
   const imageDefault = "/asset/image_defaut.png";
   const data = props.data;
-  console.log(data?.image);
   return (
     <>
       <div className="blog-card">

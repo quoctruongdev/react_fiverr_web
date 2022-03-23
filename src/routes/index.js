@@ -44,6 +44,13 @@ const routesHome = [
   },
   {
     exact: false,
+    path: "/categoriess/:name/:id",
+    component: lazy(() =>
+      import("../containers/Home/CategoriesServicePage/index.js")
+    ),
+  },
+  {
+    exact: false,
     path: "/total-job",
     component: lazy(() =>
       import("../containers/Home/TotalJobPage/TotalJobPage.js")

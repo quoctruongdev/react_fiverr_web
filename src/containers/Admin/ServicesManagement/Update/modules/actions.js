@@ -1,5 +1,6 @@
 import * as ActionType from "./constants";
 import { apiAdmin } from "../../../../../utils/apiutils";
+import { actSetMessage } from "../../../../../components/Notification/module/actions";
 
 // ************Update Service************
 export const actFetchUpdateService = (id, user) => {
@@ -9,10 +10,11 @@ export const actFetchUpdateService = (id, user) => {
       .put(`jobs/${id}`, user)
       .then((result) => {
         dispatch(actUpdateServiceSuccess(result.data));
-        // alert("Add service successfull");
+        dispatch(actSetMessage("Delete user success!", "success"));
       })
       .catch((err) => {
         dispatch(actUpdateServiceFailed(err));
+        dispatch(actSetMessage(`${err?.response?.data.message}`, "error"));
       });
   };
 };

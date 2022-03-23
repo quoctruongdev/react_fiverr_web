@@ -1,6 +1,6 @@
 import * as ActionType from "./constants";
-import { apiAdmin} from "../../../../../utils/apiutils";
-
+import { apiAdmin } from "../../../../../utils/apiutils";
+import { actSetMessage } from "../../../../../components/Notification/module/actions";
 // ************Add User************
 export const actFetchAddUser = (user, history) => {
   return (dispatch) => {
@@ -9,10 +9,11 @@ export const actFetchAddUser = (user, history) => {
       .post("users", user)
       .then((result) => {
         dispatch(actAddUserSuccess(result.data));
-        alert("Add administrator successfully");
+        dispatch(actSetMessage("Add user success!", "success"));
       })
       .catch((err) => {
         dispatch(actAddUserFailed(err));
+        dispatch(actSetMessage(`${err?.response?.data.message}`, "error"));
       });
   };
 };

@@ -1,8 +1,14 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
+import MessageNotification from "../../components/Notification";
 
 function LayoutAdmin(props) {
-  return <>{props.children}</>;
+  return (
+    <>
+      {/* <MessageNotification /> */}
+      {props.children}
+    </>
+  );
 }
 
 export default function AdminTemplate({ Component, ...props }) {

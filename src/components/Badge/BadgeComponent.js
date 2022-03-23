@@ -7,7 +7,6 @@ import Badge from "@mui/material/Badge";
 export default function BadgeStyle(props) {
   const data = props.data;
   const styles = props.styles;
-  console.log(data);
   const StyledBadge = styled(Badge)(({ theme }) => ({
     "& .MuiBadge-badge": {
       backgroundColor: "#44b700",

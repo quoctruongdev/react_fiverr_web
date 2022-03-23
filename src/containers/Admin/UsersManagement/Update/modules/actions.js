@@ -1,19 +1,20 @@
 import * as ActionType from "./constants";
 import { apiAdmin } from "../../../../../utils/apiutils";
+import { actSetMessage } from "../../../../../components/Notification/module/actions";
 
 // ************Update User************
-export const actFetchUpdateUser = (id, user, history) => {
+export const actFetchUpdateUser = (id, user) => {
   return (dispatch) => {
     dispatch(actUpdateUserRequest());
     apiAdmin
       .put(`users/${id}`, user)
       .then((result) => {
         dispatch(actUpdateUserSuccess(result.data));
-        alert("Update administrator successfully");
-        history.push("/dashboard/users");
+        dispatch(actSetMessage("Update user success!", "success"));
       })
       .catch((err) => {
         dispatch(actUpdateUserFailed(err));
+        dispatch(actSetMessage(`${err?.response?.data.message}`, "error"));
       });
   };
 };

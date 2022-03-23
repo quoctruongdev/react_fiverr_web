@@ -13,20 +13,25 @@ export default function MarketPlace() {
   //   dispatch(actFetchCategoriesMain());
   // }, []);
 
+  // const newData = ;
+
+  const newData = data?.filter((item) => item?.__v >= 10);
+
   const renderData = () => {
-    return data?.map((item, index) => {
-      // console.log(item);
+    return newData?.map((item) => {
       return (
-        <li key={index}>
-          <NavLink to={`/list-type-job/${item?._id}`}>
-            <img
-              src={`/asset/img/marketplace/${item?.name}.svg`}
-              alt={item?.name}
-              loading="lazy"
-            />
-            {item?.name}
-          </NavLink>
-        </li>
+        <>
+          <li key={item?.name}>
+            <NavLink to={`/list-type-job/${item?._id}`}>
+              <img
+                src={`/asset/img/marketplace/${item?.name}.svg`}
+                alt={item?.name}
+                loading="lazy"
+              />
+              {item?.name}
+            </NavLink>
+          </li>
+        </>
       );
     });
   };

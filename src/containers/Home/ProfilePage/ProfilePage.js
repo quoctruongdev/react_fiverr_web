@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./style.css";
 import { actFetchUploadAvatar } from "./UploadAvatar/modules/actions";
 import { LoadingOutlined, MailFilled, PhoneFilled } from "@ant-design/icons";
-import { actFetchDetailUser } from "../../Admin/UsersManagement/Detail/_modules/actions";
+import { actFetchDetailUser } from "../../Admin/UsersManagement/Edit/_modules/actions";
 import { actFetchJobUserBooking } from "./JobUserBooking/modules/actions";
 import Loader from "../../../components/Loader/Loader";
 import moment from "moment";

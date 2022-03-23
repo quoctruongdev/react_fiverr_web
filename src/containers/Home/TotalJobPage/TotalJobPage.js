@@ -7,6 +7,7 @@ import Loader from "../../../components/Loader/Loader";
 import { actFetchServicesList } from "../../Admin/ServicesManagement/_module/actions";
 import { actFetchUsersList } from "../../Admin/UsersManagement/_modules/actions";
 import CardSevices from "../_components/CardSevices";
+import SkeletonCard from "../_components/CardSevices/SkeletonCard";
 import "./style.css";
 
 export default function TotalJobPage(props) {
@@ -59,6 +60,14 @@ export default function TotalJobPage(props) {
       );
     });
   };
+  const rendeListSkeletonCard = (length, Component) => {
+    const array = [];
+    for (let index = 0; index < length; index++) {
+      array.push(index);
+    }
+    return array?.map((item) => <Component key={item} />);
+  };
+
   if (loading) {
     return <Loader />;
   }
@@ -74,7 +83,7 @@ export default function TotalJobPage(props) {
           </div>
         </div>
         <Grid sx={{ py: 4 }} container spacing={4}>
-          {renderListJob()}
+          {data ? renderListJob() : rendeListSkeletonCard(12, SkeletonCard)}
         </Grid>
       </div>
       <div className="pagination">

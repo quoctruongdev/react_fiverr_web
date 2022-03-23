@@ -30,7 +30,6 @@ export default function DetailPage(props) {
     dispatch(actFetchDetailUser(userCreated));
   }, []);
 
-  console.log(dataComment);
 
   if (loading) {
     return <Loader />;

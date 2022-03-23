@@ -1,6 +1,6 @@
 import * as ActionType from "./constants";
 import { apiAdmin } from "../../../../../utils/apiutils";
-import { actFetchListService } from "../../_module/actions";
+import { actSetMessage } from "../../../../../components/Notification/module/actions";
 
 export const actFetchDeleteService = (id) => {
   return (dispatch) => {
@@ -10,12 +10,11 @@ export const actFetchDeleteService = (id) => {
       .delete(`jobs/${id}`)
       .then((result) => {
         dispatch(actDeleteServiceSuccess(result.data));
-        // alert("Bạn đã xoá thành công");
-        // dispatch(actFetchListService());
+        dispatch(actSetMessage("Delete service success!", "success"));
       })
       .catch((err) => {
+        dispatch(actSetMessage(`${err?.response?.data.message}`, "error"));
         dispatch(actDeleteServiceFailed(err));
-        alert(`${err.message}`);
       });
   };
 };
