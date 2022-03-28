@@ -32,6 +32,8 @@ const pagesLogin = [
 
 export default function MainNavbar() {
   const data = useSelector((state) => state.detailUserReducer.data);
+  const loading = useSelector((state) => state.loginReducerHome.loading);
+
   const dispatch = useDispatch();
   const history = useHistory();
   const [sideBar, setSideBar] = React.useState(false);
@@ -61,7 +63,7 @@ export default function MainNavbar() {
   useEffect(() => {
     defaultMainNavbar();
     userLogin?.user?._id && dispatch(actFetchDetailUser(userLogin?.user?._id));
-  }, []);
+  }, [loading]);
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -107,17 +109,17 @@ export default function MainNavbar() {
         position="unset"
         color="inherit"
         sx={{
-          paddingLeft: "26px",
-          paddingRight: "26px",
+          paddingX: "50px",
           boxShadow: "none",
           backgroundColor: "unset",
           height: "71px",
           borderBottom: "1px solid #e4e5e7",
           justifyContent: "center",
+          width: "100%",
         }}
         className="Navbar__header"
       >
-        <Container maxWidth={false}>
+        <Container disableGutters maxWidth={false}>
           <Toolbar disableGutters>
             <Box
               sx={{
@@ -155,7 +157,6 @@ export default function MainNavbar() {
               sx={{
                 display: { xs: "none", sm: "flex", md: "flex" },
               }}
-              overflow="visible"
               className="logo__navbar"
             >
               {logo("#404145")}
@@ -168,7 +169,6 @@ export default function MainNavbar() {
                 width: { md: "374px", sm: "250px" },
                 display: { xs: "none", sm: "flex", md: "flex" },
               }}
-              overflow={"visible"}
             >
               <div id="SearchNavbar" className="header__search hidden_search">
                 <div className="search-bar-package search_bar-package">
@@ -225,10 +225,11 @@ export default function MainNavbar() {
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <BadgeStyle styles={32} data={data} />
+                    <BadgeStyle styles={32} data={data} loading={loading} />
                   </IconButton>
                 </Tooltip>
                 <Menu
+                  disableScrollLock
                   anchorEl={anchorElUser}
                   id="menu-appbar"
                   open={Boolean(anchorElUser)}
@@ -237,7 +238,6 @@ export default function MainNavbar() {
                   PaperProps={{
                     elevation: 0,
                     sx: {
-                      overflow: "visible",
                       filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
                       mt: 1.5,
                       "& .MuiAvatar-root": {
@@ -276,16 +276,7 @@ export default function MainNavbar() {
                   >
                     <Avatar src={data?.avatar} /> Profile
                   </MenuItem>
-                  <MenuItem>
-                    <Avatar /> My account
-                  </MenuItem>
                   <Divider />
-                  <MenuItem>
-                    <ListItemIcon>
-                      <Settings fontSize="small" />
-                    </ListItemIcon>
-                    Settings
-                  </MenuItem>
                   <MenuItem
                     onClick={() => {
                       dispatch(actLogout(history));

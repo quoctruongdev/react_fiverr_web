@@ -7,8 +7,13 @@ import ModalVideo from "../_components/ModalVideo/ModalVideo";
 import MarketPlace from "./MarketPlace/MarketPlace";
 import Testimonial from "./Testimonials/Testimonial";
 import "./style.css";
+import { useSelector } from "react-redux";
+import Loader from "../../../components/Loader/Loader";
 
 export default function HomePage() {
+  const loading = useSelector((state) => state.loginReducerHome.loading);
+  console.log(loading);
+
   const controlMainNavbar = () => {
     if (window.scrollY > 30) {
       document.getElementById("MainNavbar").classList.add("showNavbar");
@@ -44,16 +49,15 @@ export default function HomePage() {
     };
   }, []);
 
+  if (loading) return <Loader />;
   return (
-    <>
-      <section id="HomePage">
-        <Carousel />
-        <SliderShow />
-        <Feature />
-        <ModalVideo />
-        <MarketPlace />
-        <Testimonial />
-      </section>
-    </>
+    <section id="HomePage">
+      <Carousel />
+      <SliderShow />
+      <Feature />
+      <ModalVideo />
+      <MarketPlace />
+      <Testimonial />
+    </section>
   );
 }

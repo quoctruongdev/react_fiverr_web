@@ -5,34 +5,67 @@ import "./style.css";
 import { actFetchUploadAvatar } from "./UploadAvatar/modules/actions";
 import { LoadingOutlined, MailFilled, PhoneFilled } from "@ant-design/icons";
 import { actFetchDetailUser } from "../../Admin/UsersManagement/Edit/_modules/actions";
+import { actFetchDeleteService } from "../../Admin/ServicesManagement/Delete/modules/actions";
 import { actFetchJobUserBooking } from "./JobUserBooking/modules/actions";
 import Loader from "../../../components/Loader/Loader";
 import moment from "moment";
 import JobUserBooking from "./JobUserBooking";
+import CardServiceVertical from "./JobUserBooking/CardServiceVertical";
 
 export default function ProfilePage() {
   let users = JSON.parse(localStorage.getItem("UserClient"));
   const dispatch = useDispatch();
 
-  const dataDetail = useSelector((state) => state.jobUserBookingReducer.data);
+  const dataDone = useSelector((state) => state.doneServiceBookingReducer.data);
+
+  //Delete Services
+  const dataDeleteService = useSelector(
+    (state) => state.deleteServiceReducer.data
+  );
+
+  //Services user booking
+  const dataUserBooking = useSelector(
+    (state) => state.jobUserBookingReducer.data?.bookingJob
+  );
+
+  // remove duplicate
+  const ids = dataUserBooking?.map((item) => item._id);
+  const dataJobBooking = dataUserBooking?.filter(
+    ({ _id }, index) => !ids?.includes(_id, index + 1)
+  );
+
   const loading = useSelector((state) => state.jobUserBookingReducer.loading);
+  //Detail user
+  const data = useSelector((state) => state.detailUserReducer.data);
+
   useEffect(() => {
     dispatch(actFetchDetailUser(users.user?._id || users?._id));
     dispatch(actFetchJobUserBooking());
-  }, []);
-
-  const data = useSelector((state) => state.editUserReducer.data);
+  }, [dataDone]);
 
   const [imgstate, setimgState] = useState("");
 
+  const newIds = dataUserBooking?.reduce((unique, item) => {
+    return unique.includes(item?._id) ? unique : [...unique, item?._id];
+  }, []);
+
   const handleJobUserBooking = () => {
-    return dataDetail?.bookingJob?.map((item, index) => {
-      return <JobUserBooking data={item} key={`jobUser${index}`} />;
+    return dataJobBooking?.map((item, index) => {
+      return (
+        <>
+          <CardServiceVertical
+            data={item}
+            key={index}
+            dataJobBooking={dataJobBooking}
+            newIds={newIds}
+          />
+        </>
+      );
     });
   };
 
   const handleOnchangeFile = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     const file = e.target.files[0];
     const formData = new FormData();
     let reader = new FileReader();
@@ -74,8 +107,6 @@ export default function ProfilePage() {
                             aria-hidden="true"
                           >
                             <svg
-                              width={50}
-                              height={50}
                               fill="white"
                               viewBox="0 0 16 16"
                               xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +125,6 @@ export default function ProfilePage() {
                           accept="image/png,image/jpeg,image/jpg"
                           id="profile_image_4003498219193"
                           className="hidden"
-                          name="profile[image]"
                           onChange={handleOnchangeFile}
                         />
                         <span className="missing-profile-image">
@@ -140,17 +170,6 @@ export default function ProfilePage() {
                     </div>
                   </div>
                 </div>
-                {/* <div className="buttons-wrapper">
-                  <div className="flex flex-col" style={{ flex: 1 }}>
-                    <a
-                      className="btn-view-as btn btn-outline-secondary  "
-                      text="seller_card.view_as_buyer"
-                      href="/quctrng?public_mode=true"
-                    >
-                      Preview Fiverr Profile
-                    </a>
-                  </div>
-                </div> */}
                 <div className="user-stats-desc">
                   <ul className="user-stats-profile ">
                     <li className="location">
@@ -265,7 +284,7 @@ export default function ProfilePage() {
                         </aside>
                         <section>
                           <div className="empty-list">
-                            {!data?.skill
+                            {data?.skill?.length === 0
                               ? "Add your Skills."
                               : data?.skill.toString()}
 
@@ -286,7 +305,7 @@ export default function ProfilePage() {
                         </aside>
                         <section>
                           <div className="empty-list">
-                            {!data?.certification
+                            {data?.certification?.length === 0
                               ? "Add your Certification"
                               : data?.certification.toString()}
                             <input

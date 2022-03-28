@@ -10,7 +10,6 @@ import SubNavbar from "./_components/Navbar/subNav";
 function LayoutHome(props) {
   return (
     <>
-      {/* <Navbar /> */}
       <MainNavbar />
       <SubNavbar />
       {props.children}

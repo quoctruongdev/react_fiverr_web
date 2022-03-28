@@ -2,6 +2,8 @@ import * as React from "react";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
+import BottomNavigation from "@mui/material/BottomNavigation";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import MessageIcon from "@mui/icons-material/Message";
 import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -9,13 +11,11 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import SettingsIcon from "@mui/icons-material/Settings";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import { NavLink } from "react-router-dom";
-import { IconButton, ListItemIcon } from "@mui/material";
-
+import { IconButton, ListItemIcon, Stack } from "@mui/material";
+import NotificationsOffIcon from "@mui/icons-material/NotificationsOff";
 import "./style.css";
 
 function TabPanel(props) {
@@ -89,13 +89,12 @@ export default function Message() {
           value={value}
           onChange={handleChange}
           indicatorColor="unset"
-          // TabIndicatorProps={{ style: { backgroundColor: "#1dbf73" } }}
+          TabIndicatorProps={{
+            style: { backgroundColor: "#1dbf73", bottom: " 5px" },
+          }}
           textColor="inherit"
           variant="fullWidth"
           aria-label="full width tabs example"
-          // sx={{
-          //   borderBottom: "1px solid #e4e5e7",
-          // }}
         >
           <Tab
             sx={{
@@ -156,7 +155,27 @@ export default function Message() {
             </ul>
           </div>
         </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}></TabPanel>
+        <TabPanel value={value} index={1} dir={theme.direction}>
+          <Stack
+            justifyContent="center"
+            alignItems="center"
+            direction="column"
+            textAlign="center"
+            height="350px"
+          >
+            <NotificationsOffIcon
+              sx={{
+                color: "#62646a",
+                fontSize: 60,
+              }}
+            />
+            <Typography>No Notifications</Typography>
+            <Typography>
+              ​Browse our amazing catalog of Gigs or offer your talent on
+              Fiverr.
+            </Typography>
+          </Stack>
+        </TabPanel>
       </SwipeableViews>
       <BottomNavigation
         sx={{
@@ -166,12 +185,13 @@ export default function Message() {
           width: "100%",
           bottom: 0,
           justifyContent: "space-between",
+          color: "#000000",
         }}
         showLabels
         value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
+        // onChange={(event, newValue) => {
+        //   setValue(newValue);
+        // }}
       >
         <ListItemIcon>
           <IconButton>
@@ -182,10 +202,7 @@ export default function Message() {
           </IconButton>
         </ListItemIcon>
 
-        <BottomNavigationAction
-          LinkComponent={NavLink}
-          label="See All in Inbox"
-        />
+        <BottomNavigationAction label="See All in Inbox" />
       </BottomNavigation>
     </Box>
   );

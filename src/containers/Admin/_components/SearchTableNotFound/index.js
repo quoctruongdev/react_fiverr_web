@@ -3,7 +3,7 @@ import { Typography } from "@mui/material";
 import { TableRow, TableCell } from "@mui/material";
 import { Empty } from "antd";
 
-export default function SearchNotFoundTable({
+export default function SearchTableNotFound({
   searchQuery = "",
   colSpan,
   ...other
@@ -24,6 +24,6 @@ export default function SearchNotFoundTable({
   );
 }
 
-SearchNotFoundTable.propTypes = {
+SearchTableNotFound.propTypes = {
   searchQuery: PropTypes.string,
 };

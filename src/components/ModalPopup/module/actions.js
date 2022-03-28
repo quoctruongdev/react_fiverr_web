@@ -1,13 +1,6 @@
 import * as ActionType from "./constants";
 
-export const actShowModalPopup = ({
-  Component,
-  open,
-  title,
-  action,
-  width,
-  height,
-}) => {
+export const actShowModalPopup = ({ Component, open, title, action, sx }) => {
   return {
     type: ActionType.SHOW_MODAL_POPUP,
     payload: {
@@ -15,8 +8,7 @@ export const actShowModalPopup = ({
       open,
       title,
       action,
-      width,
-      height,
+      sx,
     },
   };
 };

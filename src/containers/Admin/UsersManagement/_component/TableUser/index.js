@@ -17,8 +17,7 @@ import { actPopoverGlobal } from "../../../../../components/Popover/module/actio
 import useWindowSize from "../../../../../Hook/useWindowSize";
 import SearchNotFoundTable from "../../../_components/SearchTableNotFound";
 import { actFetchDeleteUser } from "../../Delete/modules/actions.js";
-import ListActionUser from "../listActionUser";
-import ListAction from "../../../_components/listAction";
+import ListAction from "../../../_components/listAction/index";
 import { visuallyHidden } from "@mui/utils";
 
 function descendingComparator(a, b, orderBy) {

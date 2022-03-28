@@ -4,6 +4,7 @@ import BreadcrumbsComponent from "../../_components/Breadcrumbs/BreadcrumbsCompo
 import Avatar from "@mui/material/Avatar";
 import { deepOrange } from "@mui/material/colors";
 import { Rate } from "antd";
+import { Box, Typography } from "@mui/material";
 
 export default function Overview({ data, dataUserCreated }) {
   function renderLevelSeller() {
@@ -20,8 +21,8 @@ export default function Overview({ data, dataUserCreated }) {
   return (
     <div id="overview">
       <BreadcrumbsComponent data={data} />
-      <h3> {data?.name}</h3>
-      <div name="overview" className="seller-overview d-flex">
+      <Typography variant="h5"> {data?.name}</Typography>
+      <Box display="flex" name="overview" className="seller-overview ">
         <Avatar
           id="box-1"
           sx={{
@@ -31,6 +32,7 @@ export default function Overview({ data, dataUserCreated }) {
             height: 32,
             width: 32,
             textTransform: "uppercase",
+            marginRight: "8px",
           }}
           alt={dataUserCreated?.name ? dataUserCreated.name : "Hidden Name"}
           src={
@@ -39,7 +41,12 @@ export default function Overview({ data, dataUserCreated }) {
               : dataUserCreated?.avatar
           }
         />
-        <span className="user-status">
+        <span
+          style={{
+            marginRight: "5px",
+          }}
+          className="user-status"
+        >
           <a href="#/" className="seller-link ">
             {dataUserCreated?.name ? dataUserCreated.name : "Hidden Name"}
           </a>
@@ -64,10 +71,8 @@ export default function Overview({ data, dataUserCreated }) {
           value={1}
           count={1}
         />
-        <span class="ratings-count">({Math.floor(Math.random() * 20)})</span>
-
         <span class="orders-in-queue" style={{ margin: "12px" }}>
-          ({Math.floor(Math.random() * 20)}) Orders in Queue
+          (10) Orders in Queue
         </span>
         <span className=" gig-overview-tooltip">
           <img
@@ -75,7 +80,7 @@ export default function Overview({ data, dataUserCreated }) {
             src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/gig_page_perseus/apps/fiverr-choice-badge.6942bc6.svg"
           />
         </span>
-      </div>
+      </Box>
       <JobSlider data={data} />
     </div>
   );

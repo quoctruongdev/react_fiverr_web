@@ -7,13 +7,20 @@ import "./topnav.css";
 
 import ScrollSpy from "react-scrollspy-navigation";
 import { createRef } from "react";
+import { Box, Button } from "@mui/material";
 
 export default function TopNav() {
   return (
     <>
-      <div className="top__navbar px-5 ">
+      <Box
+        sx={{
+          display: { xs: "none", sm: "none", md: "block" },
+          px: 6,
+        }}
+        className="top__navbar"
+      >
         <ul className="scrollspy">
-          <ScrollSpy offsetTop={-130}>
+          <ScrollSpy offsetTop={65}>
             <a href="#overview" ref={createRef()}>
               Overview
             </a>
@@ -32,17 +39,17 @@ export default function TopNav() {
           </ScrollSpy>
         </ul>
         <div className="icons-list">
-          <button className="btn">
+          <button>
             <FavoriteIcon fontSize="small" sx={{ color: grey[500] }} />
           </button>
-          <button className="btn btn-collect ">
+          <button className="btn-collect ">
             <span className="collect-count">563</span>
           </button>
-          <button className="btn">
+          <button>
             <ShareIcon fontSize="small" sx={{ color: green["A700"] }} />
           </button>
         </div>
-      </div>
+      </Box>
     </>
   );
 }

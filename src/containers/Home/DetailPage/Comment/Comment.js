@@ -17,6 +17,7 @@ export default function CommentReview({ dataComment }) {
       setShowResults(false);
     }
   };
+  console.log(dataComment);
 
   const renderDataComment = () => {
     return dataComment?.map((item, index) => {
@@ -31,6 +32,7 @@ export default function CommentReview({ dataComment }) {
                 fontSize: 25,
                 height: 32,
                 width: 32,
+                marginRight: 1,
               }}
               alt={item.user?.name ? item.user?.name : "Secreat Name"}
               src={
@@ -142,6 +144,7 @@ export default function CommentReview({ dataComment }) {
                   fontSize: 25,
                   height: 32,
                   width: 32,
+                  marginRight: 1,
                 }}
                 alt={dataComment?.name ? dataComment.name : "Other Name"}
                 src={

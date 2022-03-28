@@ -1,6 +1,9 @@
 import * as ActionType from "./constants";
 import { apiClient } from "../../../../../utils/apiutils";
 import { successNotice } from "../../Alert";
+import { actSetMessage } from "../../../../../components/Notification/module/actions";
+import { useDispatch } from "react-redux";
+import { actShowModalPopup } from "../../../../../components/ModalPopup/module/actions";
 
 const TIME_EXP = 3600000;
 
@@ -13,6 +16,12 @@ export const actLoginApi = (user, history) => {
       .post("auth/signin", user)
       .then((result) => {
         if (result.data.user.role === "ADMIN") {
+          dispatch(
+            actSetMessage(
+              "Account is an administrator account with no access",
+              "error"
+            )
+          );
           return Promise.reject({
             response: {
               data: {
@@ -25,33 +34,56 @@ export const actLoginApi = (user, history) => {
         const date = new Date().getTime();
         const exp = date + TIME_EXP;
         localStorage.setItem("expClient", exp);
-
         //setTimeOut để logout
         dispatch(actSetTimeLogout(history, TIME_EXP));
-
         //Luu trang thai login
         localStorage.setItem("UserClient", JSON.stringify(result.data));
-        successNotice("You are already logged in", "0vh");
-        history.replace("/");
-
+        // dispatch(actSetMessage(result?.data?.message, "success"));
+        dispatch(actSetMessage("You are already logged in", "success"));
         dispatch(actLoginSuccess(result.data));
+        dispatch(actShowModalPopup({ open: false }));
+        history.replace("/");
       })
       .catch((error) => {
         dispatch(actLoginFailed(error));
+        error?.response?.data.message !== undefined &&
+          dispatch(actSetMessage(`${error?.response?.data.message}`, "error"));
       });
   };
 };
 
+// export const actLogout = (history, dispatch) => {
+//   //xoa localStorage
+//   localStorage.removeItem("UserClient");
+//   localStorage.removeItem("expClient");
+
+//   //redirect ve trang /auth
+//   // history.replace("/login");
+//   dispatch(actSetMessage("You are logged out", "success"));
+
+//   //clear reducer
+//   return {
+//     type: ActionType.LOGIN_CLEAR_DATA,
+//   };
+// };
 export const actLogout = (history) => {
-  //xoa localStorage
-  localStorage.removeItem("UserClient");
-  localStorage.removeItem("expClient");
+  return async function (dispatch) {
+    dispatch(actLogOutRequest());
+    setTimeout(() => {
+      localStorage.removeItem("UserClient");
+      localStorage.removeItem("expClient");
+      dispatch(actLogOutSuccess());
+      dispatch(actSetMessage("You are logged out", "success"));
+    }, 300);
+  };
+};
 
-  //redirect ve trang /auth
-  history.replace("/login");
-  successNotice("You are logged out", 10, "0vh");
-
-  //clear reducer
+const actLogOutRequest = () => {
+  return {
+    type: ActionType.LOGIN_CLEAR_DATA_REQUEST,
+  };
+};
+const actLogOutSuccess = () => {
   return {
     type: ActionType.LOGIN_CLEAR_DATA,
   };
@@ -78,6 +110,7 @@ export const actTryLoginHome = (history) => {
     if (date > exp) {
       //logout
       dispatch(actLogout(history));
+
       return;
     }
     // console.log(exp - date);

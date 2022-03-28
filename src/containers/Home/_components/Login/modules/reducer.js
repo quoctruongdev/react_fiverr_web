@@ -26,6 +26,11 @@ const loginReducerHome = (state = initialState, action) => {
       state.error = action.payload;
       return { ...state };
 
+    case ActionType.LOGIN_CLEAR_DATA_REQUEST:
+      state.loading = true;
+      state.data = null;
+      state.error = null;
+      return { ...state };
     case ActionType.LOGIN_CLEAR_DATA:
       state.loading = false;
       state.data = null;

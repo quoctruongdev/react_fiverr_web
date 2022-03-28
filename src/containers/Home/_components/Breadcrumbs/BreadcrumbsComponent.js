@@ -8,15 +8,20 @@ export default function BreadcrumbsComponent(props) {
   const data = props.data;
   const id = data?.type?._id;
   const breadcrumbs = [
-    <NavLink style={{ color: "#1dbf73" }} underline="hover" key="1" to="/">
+    <NavLink
+      style={{ color: "#1dbf73", fontSize: 12 }}
+      underline="hover"
+      key="1"
+      to="/"
+    >
       FIVERR
     </NavLink>,
     <NavLink
-      className=" uppercase "
+      className="uppercase"
       underline="hover"
       key="2"
       color="red"
-      style={{ color: "#1dbf73" }}
+      style={{ color: "#1dbf73", fontSize: 12 }}
       to={`/list-type-job/${id}`}
     >
       {data?.type?.name ? data?.type?.name : "SERVICE"}
@@ -28,7 +33,6 @@ export default function BreadcrumbsComponent(props) {
   return (
     <>
       <Breadcrumbs
-        sx={{ fontSize: "12px" }}
         separator={<NavigateNextIcon fontSize="small" />}
         aria-label="breadcrumb"
       >

@@ -16,8 +16,12 @@
   width: 400px;
   height: 480px;
 }
+.user_level div {
+  margin-left: 5px !important;
+}
 
 .oneliner-wrapper {
+  margin-top: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -407,7 +411,6 @@
 .row.flex {
   justify-content: space-between;
   min-height: 1500px;
-  overflow-x: hidden;
   margin: 0 100px;
   padding: 20px 0 40px;
 }

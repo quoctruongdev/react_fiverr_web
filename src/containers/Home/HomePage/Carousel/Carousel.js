@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import BranchCarousel from "./_Branch";
 import SearchCarousel from "./Search /_searchCarousel";
-import "./style.scss";
+// import "./style.scss";
 
 const contentStyle = {
   height: "680px",
@@ -79,14 +79,12 @@ export default function Carousel() {
   };
 
   return (
-    <div>
-      <div className="banner__carousel">
-        <Slider arrows={false} {...settings}>
-          {renderBannerCarousel()}
-        </Slider>
-        <SearchCarousel />
-        <BranchCarousel />
-      </div>
-    </div>
+    <>
+      <Slider arrows={false} {...settings}>
+        {renderBannerCarousel()}
+      </Slider>
+      <SearchCarousel />
+      <BranchCarousel />
+    </>
   );
 }

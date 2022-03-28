@@ -6,7 +6,7 @@ export const actFetchDetailService = (id) => {
     dispatch(actDetailServiceRequest());
 
     apiAdmin
-      .get(`users/${id}`)
+      .get(`jobs/${id}`)
       .then((result) => {
         dispatch(actDetailServiceSuccess(result.data));
       })

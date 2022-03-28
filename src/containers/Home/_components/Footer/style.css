@@ -13,9 +13,6 @@
 .footer-package .footer-collapsibles {
   max-height: 460px;
 }
-svg:not(:root) {
-  overflow: hidden;
-}
 
 .footer-package .footer-collapsibles {
   margin-bottom: 8px;

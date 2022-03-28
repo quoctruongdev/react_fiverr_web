@@ -5,8 +5,7 @@ const initialState = {
     open: false,
     title: null,
     action: null,
-    width: null,
-    height: null,
+    sx: null,
   },
 };
 

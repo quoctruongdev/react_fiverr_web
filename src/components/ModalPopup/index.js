@@ -20,61 +20,68 @@ export default function ModalPopup(props) {
 
   return (
     <div>
-      <Dialog
-        open={data?.open }
-        onClose={handleClose}
-        aria-labelledby="scroll-dialog-title"
-        aria-describedby="scroll-dialog-description"
-      >
-        {data?.title && (
-          <DialogTitle
-            sx={{
-              paddingY: "5px",
-            }}
-            id="scroll-dialog-title"
-          >
-            {/* <Typography> */}
-            <Stack alignItems="center" direction="row">
-              <ListItem>{data?.title}</ListItem>
-              <ToggleButton
-                onClick={handleClose}
-                sx={{
-                  p: 0,
-                  bgcolor: "red",
-                  ":hover": { bgcolor: "#fff" },
-                  marginRight: "5px",
-                  height: "25px",
-                }}
-                size="small"
-              >
-                <CloseIcon sx={{ color: "#fff", ":hover": { color: "red" } }} />
-              </ToggleButton>
-            </Stack>
-            {/* </Typography> */}
-          </DialogTitle>
-        )}
-        {data?.open && (
-          <DialogContent dividers>{data?.Component}</DialogContent>
-        )}
-        {data?.action && (
-          <DialogActions
-            sx={{
-              px: 4,
-              py: 2,
-            }}
-          >
-            <LoadingButton
-              type="submit"
-              color="secondary"
-              loadingPosition="start"
-              startIcon={<AddBoxSharpIcon />}
-              variant="contained"
+      {data?.open && (
+        <Dialog
+          open={data?.open}
+          onClose={handleClose}
+          aria-labelledby="scroll-dialog-title"
+          aria-describedby="scroll-dialog-description"
+        >
+          {data?.title && (
+            <DialogTitle
+              sx={{
+                paddingY: "5px",
+              }}
+              id="scroll-dialog-title"
             >
-              {data?.action}
-            </LoadingButton>
-          </DialogActions>
-        )}
-      </Dialog>
+              {/* <Typography> */}
+              <Stack alignItems="center" direction="row">
+                <ListItem>{data?.title}</ListItem>
+                <ToggleButton
+                  onClick={handleClose}
+                  sx={{
+                    p: 0,
+                    bgcolor: "red",
+                    ":hover": { bgcolor: "#fff" },
+                    marginRight: "5px",
+                    height: "25px",
+                  }}
+                  size="small"
+                >
+                  <CloseIcon
+                    sx={{ color: "#fff", ":hover": { color: "red" } }}
+                  />
+                </ToggleButton>
+              </Stack>
+              {/* </Typography> */}
+            </DialogTitle>
+          )}
+          {data?.open && (
+            <DialogContent sx={data?.sx} dividers>
+              {data?.Component}
+            </DialogContent>
+          )}
+
+          {data?.action && (
+            <DialogActions
+              sx={{
+                px: 4,
+                py: 2,
+              }}
+            >
+              <LoadingButton
+                type="submit"
+                color="secondary"
+                loadingPosition="start"
+                startIcon={<AddBoxSharpIcon />}
+                variant="contained"
+              >
+                {data?.action}
+              </LoadingButton>
+            </DialogActions>
+          )}
+        </Dialog>
+      )}
     </div>
   );
 }

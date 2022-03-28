@@ -20,32 +20,21 @@ const MyCarousel = ({ id, name }) => {
   const dispatch = useDispatch();
   const slider = useRef(null);
   const dataList = useSelector((state) => state.listSubTypeReducer.data);
-  const [slideNumber, setSlideNumber] = useState();
+  const [slideNumber, setSlideNumber] = useState(0);
   useEffect(() => {
     dispatch(actFetchSubTypeJob(id));
   }, [id]);
+  console.log(slideNumber);
 
   const settings = {
-    // slidesToScroll: 5,
+    className: "slider variable-width",
     dots: false,
-    // variableWidth: true,
-    infinite: false,
     speed: 500,
-    slidesToScroll: 4,
-    slidesToShow: 4,
+    slidesToShow: 5,
+    // slidesToScroll: 5,
+    swipeToSlide: true,
   };
-  const contentStyle = {
-    textAlign: "center",
-    background: "#fff",
-    borderRadius: "12px",
-    color: "#404145",
-    minWidth: "fit-content",
-    fontWeight: 600,
-    fontSize: "16px",
-    border: "1px solid #efeff0",
-    boxShadow:
-      "0 0.14px 2.29266px rgb(0 0 0 / 3%), 0 0.37px 4.42626px rgb(0 0 0 / 5%), 0 3px 7px rgb(0 0 0 / 9%)",
-  };
+
   const styleArrow = {
     bgcolor: "#fff",
     width: 32,
@@ -57,10 +46,8 @@ const MyCarousel = ({ id, name }) => {
     border: "1px solid #efeff0",
     minWidth: "fit-content",
     borderRadius: "12px",
-    minWidth: "fit-content",
     cursor: "pointer",
-    // width: "auto",
-    padding: "12px",
+    padding: "16px",
     fontWeight: 600,
     ":hover": { color: "#1dbf73" },
     boxShadow:
@@ -109,17 +96,21 @@ const MyCarousel = ({ id, name }) => {
         <ListItem sx={{ width: "100px", gap: "12px" }}>
           <IconButton
             sx={styleArrow}
+            disabled={slider?.current?.goTo(0)}
             onClick={(event) => {
+              // slider.current.prev();
               slider.current.goTo(0);
             }}
           >
             <KeyboardArrowLeft />
           </IconButton>
           <IconButton
-            disabled={slideNumber === 10}
+            disabled={slider?.current?.goTo(10)}
             sx={styleArrow}
             onClick={() => {
-              slider.current.goTo(5);
+              // slider.current.next();
+              slider.current.goTo(10);
+              console.log(slider.current);
             }}
           >
             <KeyboardArrowRight />
@@ -127,7 +118,15 @@ const MyCarousel = ({ id, name }) => {
         </ListItem>
       </Stack>
 
-      <Carousel ref={slider} {...settings}>
+      <Carousel
+        style={{
+          maxWidth: "1400px",
+          padding: "0 32px ",
+          margin: "0 18px",
+        }}
+        ref={slider}
+        {...settings}
+      >
         {renderListItem()}
       </Carousel>
     </>

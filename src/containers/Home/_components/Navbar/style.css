@@ -1,3 +1,7 @@
+.MainNavbar {
+  overflow-x: hidden !important;
+}
+
 .navbar__home {
   background-color: transparent !important;
   display: flex;
@@ -9,26 +13,6 @@
   min-height: 71px;
   /* color: white; */
 }
-
-/* .navbar__home .site-logo g:first-child {
-  fill: white;
-} */
-
-/* .nav-item .nav-link:hover {
-  color: #02c2a9 !important;
-}
-.nav-item .nav-link:active {
-  color: #02c2a9 !important;
-} */
-/* .main_header {
-  border-bottom: 1px solid #e4e5e7;
-} */
-
-/* .fixed-top {
-  z-index: 99 !important;
-} */
-/* 
-*/
 
 .active_navbar {
   color: #02c2a9 !important;

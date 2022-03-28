@@ -12,6 +12,7 @@ import PageNotFound from "./containers/PageNotFound/PageNotFound";
 import { renderRoutesAdmin, renderRoutesHome } from "./routes";
 import "./App.css";
 import PopoverGlobal from "./components/Popover";
+import CheckoutPage from "./containers/Home/CheckoutPage/CheckoutPage";
 
 function App(props) {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ function App(props) {
       <Switch>
         {renderRoutesHome()}
         {renderRoutesAdmin()}
+        <Route path="/checkout/customize/:id" component={CheckoutPage} />
         <Route path="/auth" component={AuthPage} />
         <Route path="" component={PageNotFound} />
       </Switch>

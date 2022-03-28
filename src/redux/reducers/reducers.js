@@ -35,6 +35,7 @@ import categoriesSubTypeReducer from "../../containers/Home/CategoriesSubPage/mo
 
 //film
 import addCarouselReducer from "../../containers/Home/HomePage/Carousel/modules/reducer";
+import doneServiceBookingReducer from "../../containers/Home/ProfilePage/RemoveServiceUserBooking/modules/reducer";
 
 //messageReducer
 import messagesReducer from "../../components/Notification/module/reducer";
@@ -72,6 +73,7 @@ const rootReducer = combineReducers({
   categoriesSubTypeReducer,
   uploadImageServiceReducer,
   updateServiceReducer,
+  doneServiceBookingReducer,
 
   // Jobmain
   listJobMainReducer,

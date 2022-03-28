@@ -29,7 +29,7 @@ import { useDispatch } from "react-redux";
 import CircularColor from "../../../../../components/MaterialUI/Progress";
 import { actSetMessage } from "../../../../../components/Notification/module/actions";
 import { actPopoverGlobal } from "../../../../../components/Popover/module/actions";
-import ListAction from "../../../_components/listAction";
+import ListAction from "../../../_components/listAction/index";
 import SearchNotFoundTable from "../../../_components/SearchTableNotFound";
 import * as funcTable from "../../../_components/TableFunction/index";
 import { actFetchDeleteService } from "../../Delete/modules/actions";

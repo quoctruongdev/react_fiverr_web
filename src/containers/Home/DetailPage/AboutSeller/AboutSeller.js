@@ -84,7 +84,6 @@ export default function AboutSeller({ dataUserCreated, data }) {
                   <Rate
                     style={{
                       fontSize: "1rem",
-                      marginLeft: "8px",
                       lineHeight: 1,
                     }}
                     count={1}

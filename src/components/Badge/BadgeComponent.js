@@ -3,10 +3,9 @@ import Avatar from "@mui/material/Avatar";
 import { deepOrange } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
 import Badge from "@mui/material/Badge";
+import { Skeleton } from "@mui/material";
 
-export default function BadgeStyle(props) {
-  const data = props.data;
-  const styles = props.styles;
+export default function BadgeStyle({ loading, data, styles }) {
   const StyledBadge = styled(Badge)(({ theme }) => ({
     "& .MuiBadge-badge": {
       backgroundColor: "#44b700",
@@ -36,43 +35,27 @@ export default function BadgeStyle(props) {
     },
   }));
 
-  // const content = (
-  //   <ul
-  //     className="nav-popover-items-content"
-  //     style={{ width: "auto", padding: "12px 16px" }}
-  //   >
-  //     <li>
-  //       <a href="#/" className="nav-link">
-  //         Dashboard
-  //       </a>
-  //     </li>
-  //   </ul>
-  // );
-
   return (
-    // <Popover
-    //   placement="bottomRight"
-    //   content={props.children}
-    //   trigger="click"
-    //   destroyTooltipOnHide={false}
-    // >
     <StyledBadge
       overlap="circular"
       anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       variant="dot"
     >
-      <Avatar
-        sx={{
-          bgcolor: deepOrange[500],
-          width: styles,
-          height: styles,
-          cursor: "pointer",
-          textTransform: "uppercase",
-        }}
-        alt={data?.name?.toUpperCase()}
-        src={!data?.avatar ? "/static/images/avatar/1.jpg" : data?.avatar}
-      />
+      {loading || !data?.avatar ? (
+        <Skeleton variant="circular" width={32} height={32} />
+      ) : (
+        <Avatar
+          sx={{
+            bgcolor: deepOrange[500],
+            width: styles,
+            height: styles,
+            cursor: "pointer",
+            textTransform: "uppercase",
+          }}
+          alt={data?.name?.toUpperCase()}
+          src={data?.avatar}
+        />
+      )}
     </StyledBadge>
-    // </Popover>
   );
 }
