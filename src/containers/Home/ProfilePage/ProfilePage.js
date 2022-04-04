@@ -1,33 +1,28 @@
 /* eslint-disable no-use-before-define */
+import { MailFilled, PhoneFilled } from "@ant-design/icons";
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Loader from "../../../components/Loader/Loader";
+import { actFetchDetailUser } from "../../Admin/UsersManagement/Edit/_modules/actions";
+import CardServiceVertical from "./JobUserBooking/CardServiceVertical";
+import { actFetchJobUserBooking } from "./JobUserBooking/modules/actions";
 import "./style.css";
 import { actFetchUploadAvatar } from "./UploadAvatar/modules/actions";
-import { LoadingOutlined, MailFilled, PhoneFilled } from "@ant-design/icons";
-import { actFetchDetailUser } from "../../Admin/UsersManagement/Edit/_modules/actions";
-import { actFetchDeleteService } from "../../Admin/ServicesManagement/Delete/modules/actions";
-import { actFetchJobUserBooking } from "./JobUserBooking/modules/actions";
-import Loader from "../../../components/Loader/Loader";
-import moment from "moment";
-import JobUserBooking from "./JobUserBooking";
-import CardServiceVertical from "./JobUserBooking/CardServiceVertical";
+import { Box, Grid } from "@mui/material";
 
 export default function ProfilePage() {
   let users = JSON.parse(localStorage.getItem("UserClient"));
   const dispatch = useDispatch();
-
   const dataDone = useSelector((state) => state.doneServiceBookingReducer.data);
-
   //Delete Services
   const dataDeleteService = useSelector(
     (state) => state.deleteServiceReducer.data
   );
-
   //Services user booking
   const dataUserBooking = useSelector(
     (state) => state.jobUserBookingReducer.data?.bookingJob
   );
-
   // remove duplicate
   const ids = dataUserBooking?.map((item) => item._id);
   const dataJobBooking = dataUserBooking?.filter(
@@ -39,7 +34,7 @@ export default function ProfilePage() {
   const data = useSelector((state) => state.detailUserReducer.data);
 
   useEffect(() => {
-    dispatch(actFetchDetailUser(users.user?._id || users?._id));
+    dispatch(actFetchDetailUser(users?.user?._id || users?._id));
     dispatch(actFetchJobUserBooking());
   }, [dataDone]);
 
@@ -80,10 +75,15 @@ export default function ProfilePage() {
   };
   if (loading) return <Loader />;
   return (
-    <section className="Profile__Detail">
-      <div className="container-fluid ">
-        <div className="row flex">
-          <div className="profile__left">
+    <>
+      <Box
+        sx={{
+          px: { xs: 3, sm: 5, md: 8, lg: 12 },
+          my: 8,
+        }}
+      >
+        <Grid spacing={{ sx: 3, sm: 6, md: 8, lg: 12 }} container>
+          <Grid item xs={12} sm={6} md={4} lg={4}>
             <div id="SellerCard-component">
               <div className="seller-card seller_card-package">
                 <div className="user-online-indicator is-online ">
@@ -253,162 +253,161 @@ export default function ProfilePage() {
                 </div>
               </div>
             </div>
+            <div className="mp-seller-profile">
+              <section className="form-thin">
+                <article>
+                  <form autoComplete="off" className="js-form-overview">
+                    <div className="inner-row description">
+                      <aside>
+                        <h3 className="alt hint--top">
+                          Description
+                          <a href="#/" className="add">
+                            Edit Description
+                          </a>
+                        </h3>
+                      </aside>
+                    </div>
+                  </form>
+                  <div className="js-seller-tests" />
+                  <form autoComplete="off" className="js-form-skills">
+                    <div className="inner-row skills">
+                      <aside>
+                        <h3 className="alt hint--top">
+                          <span>Skills</span>
+                        </h3>
+                      </aside>
+                      <section>
+                        <div className="empty-list">
+                          {data?.skill?.length === 0
+                            ? "Add your Skills."
+                            : data?.skill.toString()}
 
-            {/* **************** */}
-            <section
-              id="user-segmentation"
-              className="segmentation js-segmentation"
-            >
-              <div data-reactroot className="mp-seller-profile">
-                <section className="form-thin">
-                  <article>
-                    <form autoComplete="off" className="js-form-overview">
-                      <div className="inner-row description">
-                        <aside>
-                          <h3 className="alt hint--top">
-                            Description
-                            <a href="#/" className="add">
-                              Edit Description
-                            </a>
-                          </h3>
-                        </aside>
-                      </div>
-                    </form>
-                    <div className="js-seller-tests" />
-                    <form autoComplete="off" className="js-form-skills">
-                      <div className="inner-row skills">
-                        <aside>
-                          <h3 className="alt hint--top">
-                            <span>Skills</span>
-                          </h3>
-                        </aside>
-                        <section>
-                          <div className="empty-list">
-                            {data?.skill?.length === 0
-                              ? "Add your Skills."
-                              : data?.skill.toString()}
-
-                            <input
-                              type="hidden"
-                              name="[seller_profile]"
-                              defaultValue
-                            />
-                          </div>
-                          <input type="hidden" defaultValue={0} />
-                        </section>
-                      </div>
-                    </form>
-                    <form autoComplete="off" className="js-form-educations">
-                      <div className="inner-row education">
-                        <aside>
-                          <h3 className="alt hint--top">Certification</h3>
-                        </aside>
-                        <section>
-                          <div className="empty-list">
-                            {data?.certification?.length === 0
-                              ? "Add your Certification"
-                              : data?.certification.toString()}
-                            <input
-                              type="hidden"
-                              name="[seller_profile]"
-                              defaultValue
-                            />
-                          </div>
-                          <input type="hidden" defaultValue={0} />
-                        </section>
-                      </div>
-                    </form>
-                    <form autoComplete="off" className="js-form-certifications">
-                      <div className="inner-row certification">
-                        <aside>
-                          <h3 className="alt hint--top">Other</h3>
-                        </aside>
-                        <section>
-                          <div className="empty-list">
-                            Add your other description
-                            <input
-                              type="hidden"
-                              name="[seller_profile]"
-                              defaultValue
-                            />
-                          </div>
-                          <input type="hidden" />
-                        </section>
-                      </div>
-                    </form>
-                  </article>
-                </section>
-              </div>
-            </section>
-          </div>
-          <div className="buyer-profile  ">
-            <div className="business-identification">
-              <article
-                aria-label="Fiverr business banner"
-                className="flex flex-justify-between"
-              >
-                <div
-                  className="flex flex-justify-between p-t-16 p-r-16 p-b-24 p-l-32"
-                  style={{ flex: "1 1 0%" }}
+                          <input
+                            type="hidden"
+                            name="[seller_profile]"
+                            defaultValue
+                          />
+                        </div>
+                        <input type="hidden" defaultValue={0} />
+                      </section>
+                    </div>
+                  </form>
+                  <form autoComplete="off" className="js-form-educations">
+                    <div className="inner-row education">
+                      <aside>
+                        <h3 className="alt hint--top">Certification</h3>
+                      </aside>
+                      <section>
+                        <div className="empty-list">
+                          {data?.certification?.length === 0
+                            ? "Add your Certification"
+                            : data?.certification.toString()}
+                          <input
+                            type="hidden"
+                            name="[seller_profile]"
+                            defaultValue
+                          />
+                        </div>
+                        <input type="hidden" defaultValue={0} />
+                      </section>
+                    </div>
+                  </form>
+                  <form autoComplete="off" className="js-form-certifications">
+                    <div className="inner-row certification">
+                      <aside>
+                        <h3 className="alt hint--top">Other</h3>
+                      </aside>
+                      <section>
+                        <div className="empty-list">
+                          Add your other description
+                          <input
+                            type="hidden"
+                            name="[seller_profile]"
+                            defaultValue
+                          />
+                        </div>
+                        <input type="hidden" />
+                      </section>
+                    </div>
+                  </form>
+                </article>
+              </section>
+            </div>
+          </Grid>
+          <Grid item xs={12} sm={6} md={8} lg={8}>
+            <div className="buyer-profile  ">
+              <div className="business-identification">
+                <article
+                  aria-label="Fiverr business banner"
+                  className="flex flex-justify-between"
                 >
-                  <div className="flex flex-items-center">
-                    <img
-                      src="https://npm-assets.fiverrcdn.com/assets/@fiverr-private/business_blocks/office-building.7ac5061.gif"
-                      alt="Office building"
-                      // style={{ width: 60, height: 60 }}
-                    />
-                    <div className="m-l-24 flex flex-col mt-2 flex-items-start pl-3">
-                      <p>
-                        <span>
-                          <strong>Buying services for work?</strong> Get the
-                          best experience for your business with 3 quick
-                          questions.
-                        </span>
-                      </p>
-                      <div className="link__button">
-                        <button className="flex" style={{ lineHeight: "1.75" }}>
-                          <h5> What’s your industry</h5>
+                  <div
+                    className="flex flex-justify-between p-t-16 p-r-16 p-b-24 p-l-32"
+                    style={{ flex: "1 1 0%" }}
+                  >
+                    <div className="flex flex-items-center">
+                      <img
+                        src="https://npm-assets.fiverrcdn.com/assets/@fiverr-private/business_blocks/office-building.7ac5061.gif"
+                        alt="Office building"
+                        // style={{ width: 60, height: 60 }}
+                      />
+                      <div className="m-l-24 flex flex-col mt-2 flex-items-start pl-3">
+                        <p>
+                          <span>
+                            <strong>Buying services for work?</strong> Get the
+                            best experience for your business with 3 quick
+                            questions.
+                          </span>
+                        </p>
+                        <div className="link__button">
+                          <button
+                            className="flex"
+                            style={{ lineHeight: "1.75" }}
+                          >
+                            <h5> What’s your industry</h5>
 
-                          <div className=" flex ">
-                            <span
-                              aria-hidden="true"
-                              style={{
-                                width: 12,
-                                height: 12,
-                                fill: "#02c2a9",
-                              }}
-                            >
-                              <svg
-                                width={8}
-                                height={16}
-                                viewBox="0 0 8 16"
-                                xmlns="http://www.w3.org/2000/svg"
+                            <div className=" flex ">
+                              <span
+                                aria-hidden="true"
+                                style={{
+                                  width: 12,
+                                  height: 12,
+                                  fill: "#02c2a9",
+                                }}
                               >
-                                <path d="M0.772126 1.19065L0.153407 1.80934C0.00696973 1.95578 0.00696973 2.19322 0.153407 2.33969L5.80025 8L0.153407 13.6603C0.00696973 13.8067 0.00696973 14.0442 0.153407 14.1907L0.772126 14.8094C0.918563 14.9558 1.156 14.9558 1.30247 14.8094L7.84666 8.26519C7.99309 8.11875 7.99309 7.88131 7.84666 7.73484L1.30247 1.19065C1.156 1.04419 0.918563 1.04419 0.772126 1.19065Z" />
-                              </svg>
-                            </span>
-                          </div>
-                        </button>
+                                <svg
+                                  width={8}
+                                  height={16}
+                                  viewBox="0 0 8 16"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path d="M0.772126 1.19065L0.153407 1.80934C0.00696973 1.95578 0.00696973 2.19322 0.153407 2.33969L5.80025 8L0.153407 13.6603C0.00696973 13.8067 0.00696973 14.0442 0.153407 14.1907L0.772126 14.8094C0.918563 14.9558 1.156 14.9558 1.30247 14.8094L7.84666 8.26519C7.99309 8.11875 7.99309 7.88131 7.84666 7.73484L1.30247 1.19065C1.156 1.04419 0.918563 1.04419 0.772126 1.19065Z" />
+                                </svg>
+                              </span>
+                            </div>
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </article>
+                </article>
+              </div>
+              <div className="create-a-gig">
+                <p>
+                  It seems that you don't have any active Gigs. Get selling!
+                </p>
+                <a
+                  href="/seller_onboarding/overview"
+                  className="btn-lrg-standard cta-btn js-create-a-gig-btn"
+                >
+                  Create a New Gig
+                </a>
+              </div>
+              {handleJobUserBooking()}
             </div>
-            <div className="create-a-gig">
-              <p>It seems that you don't have any active Gigs. Get selling!</p>
-              <a
-                href="/seller_onboarding/overview"
-                className="btn-lrg-standard cta-btn js-create-a-gig-btn"
-              >
-                Create a New Gig
-              </a>
-            </div>
-
-            {handleJobUserBooking()}
-          </div>
-        </div>
-      </div>
-    </section>
+          </Grid>
+        </Grid>
+      </Box>
+    </>
   );
 }

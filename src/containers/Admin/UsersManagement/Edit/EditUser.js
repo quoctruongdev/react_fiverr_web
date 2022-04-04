@@ -28,7 +28,7 @@ import { actPopoverGlobal } from "../../../../components/Popover/module/actions"
 
 export default function EditUser({ userItem, onClose, history }) {
   const loadingBtn = useSelector((state) => state.updateUserReducer.loading);
-  const data = useSelector((state) => state.updateUserReducer.data);
+  // const data = useSelector((state) => state.updateUserReducer.data);
   const error = useSelector((state) => state.updateUserReducer.error);
   const errorMessage = error?.response?.data.message;
   const dispatch = useDispatch();

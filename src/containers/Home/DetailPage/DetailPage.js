@@ -5,7 +5,7 @@ import { actFetchDetailUser } from "./Overview/_JobSlider/_modules/actions";
 import { actFetchListComment } from "./Comment/modules/actions";
 import Loader from "../../../components/Loader/Loader";
 import Overview from "./Overview/Overview";
-import TopNav from "../_components/Navbar/_topNav";
+import TopNav from "../_components/Navbar/TopNavigation/_topNav";
 import CommentReview from "./Comment/Comment";
 import BookingJob from "./BookingJob/BookingJob";
 import Description from "./Description/Description";

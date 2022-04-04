@@ -5,6 +5,10 @@
 
 #SellerCard-component {
   margin-bottom: 30px;
+  min-width: 300px;
+}
+.mp-seller-profile {
+  min-width: 300px;
 }
 .seller-card {
   position: relative;
@@ -13,8 +17,6 @@
   padding: 30px;
   font-size: 14px;
   line-height: 130%;
-  width: 400px;
-  height: 480px;
 }
 .user_level div {
   margin-left: 5px !important;
@@ -325,9 +327,6 @@
 }
 
 /* *********Right Profile******** */
-.buyer-profile {
-  width: 736px;
-}
 
 .buyer-profile .create-a-gig {
   background-color: #fff;

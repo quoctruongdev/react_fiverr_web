@@ -1,17 +1,16 @@
 import MuiAlert from "@mui/material/Alert";
 import Grow from "@mui/material/Grow";
-import Slide from "@mui/material/Slide";
+// import Slide from "@mui/material/Slide";
 import Snackbar from "@mui/material/Snackbar";
 import Stack from "@mui/material/Stack";
 import * as React from "react";
 import { forwardRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { actFetchDeleteUser } from "../../containers/Admin/UsersManagement/Delete/modules/actions";
 import { actSetMessage } from "./module/actions";
 
-function SlideTransition(props) {
-  return <Slide {...props} direction="up" />;
-}
+// function SlideTransition(props) {
+//   return <Slide {...props} direction="up" />;
+// }
 function GrowTransition(props) {
   return <Grow {...props} />;
 }
@@ -24,14 +23,14 @@ export default function MessageNotification() {
   const dispatch = useDispatch();
 
   const handleClose = () => {
-    dispatch(actSetMessage(false));
+    dispatch(actSetMessage(""));
   };
 
   return (
     <Stack spacing={2} sx={{ width: "100%" }}>
       <Snackbar
         open={data?.text}
-        autoHideDuration={6000}
+        autoHideDuration={4000}
         anchorOrigin={{
           vertical: "top",
           horizontal: "center",

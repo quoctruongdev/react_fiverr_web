@@ -42,6 +42,9 @@ import messagesReducer from "../../components/Notification/module/reducer";
 import modalReducer from "../../components/ModalPopup/module/reducer";
 import popoverGlobalReducer from "../../components/Popover/module/reducer";
 
+//My List Service
+import myListServiceReducer from "../../containers/Home/_components/CardSevices/module/reducer";
+
 const rootReducer = combineReducers({
   homePageReducer,
 
@@ -88,5 +91,7 @@ const rootReducer = combineReducers({
   messagesReducer,
   modalReducer,
   popoverGlobalReducer,
+
+  myListServiceReducer,
 });
 export default rootReducer;

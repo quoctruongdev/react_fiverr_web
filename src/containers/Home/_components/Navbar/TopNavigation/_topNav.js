@@ -14,8 +14,8 @@ export default function TopNav() {
     <>
       <Box
         sx={{
-          display: { xs: "none", sm: "none", md: "block" },
-          px: 6,
+          px: { xs: 3, sm: 6, md: 6 },
+          whiteSpace: "nowrap",
         }}
         className="top__navbar"
       >

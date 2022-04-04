@@ -1,18 +1,27 @@
+import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
+import {
+  Box,
+  Card,
+  CardMedia,
+  Divider,
+  Grid,
+  ListItem,
+  ListItemText,
+  Stack,
+  Typography,
+} from "@mui/material";
+import ImageListItemBar from "@mui/material/ImageListItemBar";
 import * as React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
-import ImageListItemBar from "@mui/material/ImageListItemBar";
-import "./style.css";
-import ModalVideo from "../_components/ModalVideo/ModalVideo";
-import { actFetchListJobMain } from "./modules/actions";
-import { actFetchSubTypeJob } from "./modules/_modulesSubtypeJob/actions";
 import { NavLink } from "react-router-dom";
 import Loader from "../../../components/Loader/Loader";
-const defaultImage = "/asset/image_defaut.png";
+import ModalVideo from "../_components/ModalVideo/ModalVideo";
+import { actFetchSubTypeJob } from "./modules/_modulesSubtypeJob/actions";
+import "./style.css";
 
 export default function ListTypeJobPage(props) {
+  const defaultImage = "/asset/image_defaut.png";
   const id = props.match.params.id;
   const data2 = useSelector((state) => state.listSubTypeReducer.data);
   const loading2 = useSelector((state) => state.listSubTypeReducer.loading);
@@ -32,68 +41,104 @@ export default function ListTypeJobPage(props) {
   const renderSubTypeJob = () => {
     return data2?.subTypeJobs?.map((job, index) => {
       return (
-        <NavLink
-          key={`100${index}`}
-          to={`/categories/${data2?.name}/${id}/${job?.name}/${job?._id}`}
-        >
-          {job?.name}
-        </NavLink>
+        <>
+          <NavLink
+            style={{
+              color: "#7a7d85",
+            }}
+            key={`100${index}`}
+            to={`/categories/${data2?.name}/${id}/${job?.name}/${job?._id}`}
+          >
+            <ListItem
+              sx={{
+                px: 0,
+                py: 2,
+                justifyContent: "space-between",
+              }}
+            >
+              {job?.name}
+              <KeyboardArrowRightOutlinedIcon
+                sx={{
+                  display: { sm: "none", md: "none" },
+                }}
+                color="disabled"
+              />
+            </ListItem>
+          </NavLink>
+          <Divider
+            sx={{
+              display: { xs: "block", sm: "none", md: "none" },
+            }}
+          />
+        </>
       );
     });
   };
 
   const renderImageSubTypeJob = () => {
     return data2?.subTypeJobs?.map((item, index) => (
-      <ImageListItem
-        style={{
-          maxWidth: 310,
-          maxHeight: 250,
-        }}
-        key={`1231${index}`}
-      >
+      <Grid key={index} item sm={4} md={4}>
         <NavLink
-          style={{ maxWidth: 310, maxHeight: 200 }}
           to={`/categories/${data2?.name}/${id}/${item?.name}/${item?._id}`}
         >
-          <img
-            className="image__marketplace"
-            style={{
-              borderRadius: "5px",
-              width: "100%",
-              height: "100%",
-            }}
-            src={`${
-              !item?.image ? defaultImage : item?.image
-            }?w=248&fit=crop&auto=format`}
-            srcSet={`${
-              !item?.image ? defaultImage : item?.image
-            }?w=248&fit=crop&auto=format&dpr=2 2x`}
-            alt={item.name}
-            loading="lazy"
-          />
+          <Card elevation={0}>
+            <CardMedia
+              loading="lazy"
+              component="img"
+              image={!item?.image ? defaultImage : item?.image}
+              alt={item?.name}
+              srcSet={!item?.image ? defaultImage : item?.image}
+            />
+          </Card>
         </NavLink>
         <ImageListItemBar title={item.name} position="below" />
-      </ImageListItem>
+      </Grid>
     ));
   };
-
   if (loading2) return <Loader />;
 
   return (
     <>
-      <section style={{ minHeigt: "500px" }} className="mx-5 px-2">
-        <div className="inner__header  ">
-          <h1 className="desktop">{data2?.name}</h1>
-          <p className="subtitle">
-            A single place, millions of creative talents
-          </p>
-          <div
-            onClick={() => {
-              handleOpen();
+      <Box className="header__title">
+        <Box
+          sx={{
+            backgroundImage: {
+              // xs: `url(${data2?.subTypeJobs?.[1]?.image})`,
+              xs: 'url("https://fiverr-res.cloudinary.com/w_iw_div_3.0,q_auto,f_auto/general_assets/categories/assets/f3/mobile_Video_and_Animation.jpg")',
+              md: "none",
+              sm: "none",
+            },
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            height: { xs: 220, sm: "auto", md: "auto" },
+          }}
+          className="inner__header"
+        >
+          <Typography
+            sx={{
+              fontSize: { xs: 24, sm: 32, md: 36 },
+              color: { xs: "#fff", sm: "#222325", md: "#222325" },
+            }}
+            fontWeight={600}
+          >
+            {data2?.name}
+          </Typography>
+          <ListItemText
+            sx={{
+              flex: "0!important",
+            }}
+            primaryTypographyProps={{
+              color: { xs: "#fff", sm: "#62646a", md: "#62646a" },
+            }}
+            primary="A single place, millions of creative talents"
+          />
+          <Box
+            sx={{
+              display: { xs: "none", sm: "block", md: "block" },
             }}
             className="explanation-video"
           >
-            <button className=" icon_play">
+            <button onClick={handleOpen} className=" icon_play">
               <span
                 className=" play-icon"
                 style={{ width: 14, height: 14, marginRight: "4px" }}
@@ -110,31 +155,62 @@ export default function ListTypeJobPage(props) {
               </span>
               How Fiverr Works
             </button>
-          </div>
-        </div>
-        <div className=" flex flex-col-reverse py-8 mx-auto lg:flex-row">
-          <div className="flex flex-col  space-y-6 rounded-sm lg:w-1/3 xl:w-3/12 ">
-            <aside className="w-full left__bar  sm:w-65  dark:text-coolGray-100">
-              <nav className=" left__bar space-y-8 text-base">
-                <div className="space-y-2">
-                  <h2 className="text-base font-semibold tracking-widest  ">
-                    {data2?.name}
-                  </h2>
-                  <div className="flex flex-col  space-y-1  ">
-                    {renderSubTypeJob()}
-                  </div>
-                </div>
-              </nav>
-            </aside>
-          </div>
-          <div className="lg:w-3/4 xl:w-9/12 ">
-            <ImageList cols={3} gap={12}>
-              {renderImageSubTypeJob()}
-            </ImageList>
-          </div>
-        </div>
-      </section>
-      <div className="footer__wrapper">
+          </Box>
+        </Box>
+      </Box>
+      <Box
+        sx={{
+          px: { xs: 3, sm: 4.5, md: 6.5 },
+          pb: { xs: 0, sm: 6, md: 8 },
+        }}
+      >
+        <Grid container spacing={5}>
+          <Grid
+            sx={{
+              display: { xs: "block", sm: "none", md: "block" },
+            }}
+            item
+            md={3}
+            xs={12}
+          >
+            <ListItem sx={{ px: 0 }}>
+              <Typography
+                sx={{
+                  display: { xs: "none", md: "block" },
+                }}
+                color="#222325"
+                fontWeight={600}
+              >
+                {data2?.name}
+              </Typography>
+            </ListItem>
+            {renderSubTypeJob()}
+          </Grid>
+          <Grid
+            sx={{
+              display: { xs: "none", sm: "flex", md: "flex" },
+              marginTop: 0,
+            }}
+            spacing={3}
+            item
+            container
+            md={9}
+          >
+            {renderImageSubTypeJob()}
+          </Grid>
+        </Grid>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row", md: "row" },
+          justifyContent: "center",
+          alignItems: "center",
+          bgcolor: "#f5f5f5",
+          py: 3,
+        }}
+        className="footer__wrapper"
+      >
         <span className="footer__item">
           <h3>
             Your <b>Terms</b>
@@ -154,7 +230,7 @@ export default function ListTypeJobPage(props) {
           Your payment is always secure, Fiverr is built to protect your peace
           of mind.
         </span>
-      </div>
+      </Box>
       <ModalVideo data={dataVideo} open={open} onClose={handleClose} />
     </>
   );

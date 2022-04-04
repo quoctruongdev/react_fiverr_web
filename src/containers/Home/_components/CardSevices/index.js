@@ -1,7 +1,7 @@
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ShareIcon from "@mui/icons-material/Share";
-import { ListItem, ListItemText } from "@mui/material";
+import { ListItem, ListItemText, Tooltip } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -15,11 +15,30 @@ import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
 import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Loader from "../../../../components/Loader/Loader";
+import { actShowModalPopup } from "../../../../components/ModalPopup/module/actions";
+import LoginForm from "../Login/LoginForm/LoginForm";
+import { actAddToListService } from "./module/action";
+import { useState } from "react";
 
 export default function CardSevices(props) {
   const { item, loading } = props;
+  const data = useSelector((state) => state.myListServiceReducer.data);
+  const useClient = localStorage.getItem("UserClient");
+  const [selected, setSelected] = useState();
+  const listsService = JSON.parse(localStorage.getItem("myList"));
+  const duplicates = listsService?.filter((items) => items?._id === item?._id);
+  console.log(duplicates);
+  console.log(selected);
+  const changeColorIcon = () => {
+    if (duplicates?.[0]?._id === item?._id) {
+      setSelected(false);
+    } else {
+      setSelected(true);
+    }
+  };
+  const dispatch = useDispatch();
   const handleUserCreated = () => {
     if (props.UserCreated) {
       return props.UserCreated[0];
@@ -28,16 +47,17 @@ export default function CardSevices(props) {
     }
   };
   const UserCreated = handleUserCreated();
-  const imageDefault = `https://source.unsplash.com/random/300x200?sig=incrementingIdentifier${item?.name}}.`;
+  const imageDefault = "/asset/image_defaut.png";
 
-  if (loading) return <Loader />;
+  const handleAddToList = () => {
+    dispatch(actAddToListService(item));
+  };
 
   return (
     <Grid item key={"card"} xs={12} sm={6} md={4} lg={3}>
       <Card
         sx={{
           maxWidth: "100%",
-          // maxHeight: 380,
           transition: "all 0.1s ease-in-out",
           ":hover": {
             transform: "scale(1.019) translateY(-2px)",
@@ -51,22 +71,14 @@ export default function CardSevices(props) {
           component={Link}
           to={`/detail-job/${item?._id}/${item?.userCreated}`}
         >
-          {!item?.image || loading ? (
-            <Skeleton
-              sx={{ height: 208 }}
-              animation="wave"
-              variant="rectangular"
-            />
-          ) : (
-            <CardMedia
-              component="img"
-              src={item?.image ? item?.image : imageDefault}
-              srcSet={item?.image ? item?.image : imageDefault}
-              image={item?.image ? item?.image : imageDefault}
-              alt={item?.name}
-              loading="lazy"
-            />
-          )}
+          <CardMedia
+            component="img"
+            src={item?.image ? item?.image : imageDefault}
+            srcSet={item?.image ? item?.image : imageDefault}
+            image={item?.image ? item?.image : imageDefault}
+            alt={item?.name}
+            loading="lazy"
+          />
         </Box>
         <CardHeader
           avatar={
@@ -177,7 +189,49 @@ export default function CardSevices(props) {
           ) : (
             <>
               <ListItem sx={{ width: "32%" }} disableGutters>
-                <FavoriteIcon sx={{ marginLeft: "5px" }} fontSize="small" />
+                <Tooltip arrow placement="top-start" title={"Save to My list"}>
+                  {useClient ? (
+                    <IconButton
+                      onClick={() => {
+                        handleAddToList();
+                        changeColorIcon();
+                      }}
+                      disableRipple
+                    >
+                      <FavoriteIcon
+                        color={
+                          selected ?? duplicates?.[0]?.count === 1
+                            ? "error"
+                            : "disabled"
+                        }
+                        sx={{
+                          marginLeft: "5px",
+                          cursor: "pointer",
+                        }}
+                        fontSize="small"
+                      />
+                    </IconButton>
+                  ) : (
+                    <IconButton
+                      onClick={() => {
+                        dispatch(
+                          actShowModalPopup({
+                            Component: <LoginForm />,
+                            open: true,
+                            sx: { p: 0 },
+                          })
+                        );
+                      }}
+                      disableRipple
+                    >
+                      <FavoriteIcon
+                        sx={{ marginLeft: "5px", cursor: "pointer" }}
+                        fontSize="small"
+                      />
+                    </IconButton>
+                  )}
+                </Tooltip>
+
                 <ShareIcon sx={{ marginLeft: "5px" }} fontSize="small" />
               </ListItem>
               <ListItem

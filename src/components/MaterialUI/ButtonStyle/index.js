@@ -71,7 +71,7 @@ CustomButton.propTypes = {
 
 export default function ButtonStyle({ children }) {
   return (
-    <Stack spacing={2} direction="row">
+    <Stack spacing={2} justifyContent="center" direction="row">
       <CustomButton onClick={() => console.log("click!")}>
         {children}
       </CustomButton>

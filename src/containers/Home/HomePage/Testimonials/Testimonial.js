@@ -1,9 +1,23 @@
-import React from "react";
-import { useRef } from "react";
+import { Box, Grid } from "@mui/material";
+import { Carousel } from "antd";
+import React, { useRef } from "react";
 import { useSelector } from "react-redux";
-import { Row, Col, Carousel } from "antd";
 import ModalVideo from "../../_components/ModalVideo/ModalVideo";
 import "./style.css";
+
+const styleArrow = {
+  background: " #fff",
+  borderRadius: "50%",
+  display: "flex!important",
+  alignItem: "center",
+  width: "48px",
+  height: "48px",
+  zIndex: "50",
+  // top: "50%",
+  position: "absolute",
+  boxShadow: "0 2px 5px 0 rgb(0 0 0 / 15%)",
+  textAlign: "center",
+};
 
 const SampleNextArrow = (props) => {
   const { className, style, onClick } = props;
@@ -12,16 +26,8 @@ const SampleNextArrow = (props) => {
       className={className}
       style={{
         ...style,
-        display: "block",
-        background: " #fff",
-        borderRadius: "50%",
-        width: "48px",
-        height: "48px",
-        zIndex: "50",
-        top: "50%",
-        boxShadow: "0 2px 5px 0 rgb(0 0 0 / 15%)",
-        right: "-0.5%",
-        textAlign: "center",
+        ...styleArrow,
+        // right: "-1.8%!important",
       }}
       onClick={onClick}
     />
@@ -35,16 +41,8 @@ const SamplePrevArrow = (props) => {
       className={className}
       style={{
         ...style,
-        display: "block",
-        background: "#fff",
-        borderRadius: "50%",
-        width: "48px",
-        height: "48px",
-        zIndex: "50",
-        top: "50%",
-        boxShadow: "0 2px 5px 0 rgb(0 0 0 / 15%)",
-        textAlign: "center",
-        left: "-0.5%",
+        ...styleArrow,
+        // left: "-1.8%!important",
       }}
       onClick={onClick}
     />
@@ -63,7 +61,6 @@ export default function Testimonial() {
   const dataTestimonials = useSelector(
     (state) => state.homePageReducer.dataTestimonials
   );
-
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -72,36 +69,41 @@ export default function Testimonial() {
   const handleDataVideo = (dataItem) => {
     dataVideo.current = dataItem;
   };
-
   const renderItemTestimonal = () => {
     return dataTestimonials?.map((item, index) => {
       return (
-        <div key={index}>
-          <div className="testimonial px-4  ">
-            <div className="video-modal testimonial-modal">
-              <div
-                className="picture__wrapper"
-                role="button"
-                aria-label="Play video"
-                onClick={() => {
-                  handleOpen();
-                  handleDataVideo(item);
-                }}
-              >
-                <picture>
-                  <source media="(min-width: 1160px)" srcSet={item?.urlImage} />
-                  <source media="(min-width: 900px)" srcSet={item.urlImage} />
-                  <source media="(min-width: 600px)" srcSet={item.urlImage} />
-                  <source media="(min-width: 361px)" srcSet={item.urlImage} />
-                  <source media="(max-width: 360px)" srcSet={item.urlImage} />
-                  <img
-                    alt="Videoteaserimage"
-                    src={item?.urlImage}
-                    loading="lazy"
-                  />
-                </picture>
-              </div>
+        <Grid
+          container
+          sx={{
+            display: "flex!important",
+          }}
+          key={index}
+        >
+          <Grid
+            sx={{
+              pl: 3.5,
+              pr: { md: 0, lg: 3.5, sm: 3.5, xs: 3.5 },
+            }}
+            pb={4}
+            item
+            xs={12}
+            sm={12}
+            md={5}
+            lg={5}
+          >
+            <div
+              className="picture__wrapper"
+              role="button"
+              aria-label="Play video"
+              onClick={() => {
+                handleOpen();
+                handleDataVideo(item);
+              }}
+            >
+              <img alt="Videoteaserimage" src={item?.urlImage} loading="lazy" />
             </div>
+          </Grid>
+          <Grid px={3.5} item xs={12} sm={12} lg={7} md={7}>
             <div className="text-content">
               <h5>
                 {item?.name}
@@ -113,27 +115,24 @@ export default function Testimonial() {
                 <i>{item?.description}</i>
               </blockquote>
             </div>
-          </div>
-        </div>
+          </Grid>
+        </Grid>
       );
     });
   };
 
   return (
-    <div className=" slider__show">
-      <Row justify="center">
-        <Col span={25}>
-          <Carousel arrows {...settings}>
-            {renderItemTestimonal()}
-          </Carousel>
-        </Col>
-      </Row>
-      <ModalVideo
-        open={open}
-        onClose={handleClose}
-        // disableScroll={disableScroll}
-        data={dataVideo.current}
-      />
-    </div>
+    <Box
+      className="testimonial"
+      sx={{
+        pb: { md: "64px", xs: "10px", sm: "36px" },
+        px: { md: 3, sx: 0, sm: 1 },
+      }}
+    >
+      <Carousel arrows {...settings}>
+        {renderItemTestimonal()}
+      </Carousel>
+      <ModalVideo open={open} onClose={handleClose} data={dataVideo.current} />
+    </Box>
   );
 }

@@ -1,14 +1,13 @@
 import React from "react";
-// import "./style.css";
 export default function BranchCarousel() {
   return (
     <>
-      <div className="container-fluid trusted-by-wrapper  d-flex justify-content-center mx-auto ">
+      <div className="container-fluid trusted-by-wrapper  d-flex justify-content-center  ">
         <div className="row">
           <div className="col-md-12  ">
             <ul className="branch__list ">
               <li>
-                <p className="trusted-by-text  ">Trusted by:</p>
+                <p className="trusted-by-text">Trusted by:</p>
               </li>
               <li>
                 <picture>

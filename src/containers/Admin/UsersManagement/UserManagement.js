@@ -24,6 +24,7 @@ export default function UserManagement() {
 
   useEffect(() => {
     dispatch(actFetchSearchUser(keySearch, 0));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [keySearch, dataDelete, dataUpdate, dataAdd]);
 
   const handleSearch = useCallback((value) => {

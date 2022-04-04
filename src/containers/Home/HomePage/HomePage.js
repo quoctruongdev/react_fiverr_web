@@ -12,7 +12,9 @@ import Loader from "../../../components/Loader/Loader";
 
 export default function HomePage() {
   const loading = useSelector((state) => state.loginReducerHome.loading);
-  console.log(loading);
+  const loadingCategories = useSelector(
+    (state) => state.categoriesMainReducer.loading
+  );
 
   const controlMainNavbar = () => {
     if (window.scrollY > 30) {
@@ -49,7 +51,7 @@ export default function HomePage() {
     };
   }, []);
 
-  if (loading) return <Loader />;
+  if (loadingCategories ?? loading) return <Loader />;
   return (
     <section id="HomePage">
       <Carousel />

@@ -13,6 +13,7 @@ import CardSevices from "../_components/CardSevices";
 import { Grid } from "@mui/material";
 import useModal from "../../../Hook/ModalHook";
 import "./style.css";
+import BreadcrumbsComponent from "../_components/Breadcrumbs/BreadcrumbsComponent";
 
 export default function CategoriesSubPage(props) {
   let pageSize = 50;
@@ -90,13 +91,9 @@ export default function CategoriesSubPage(props) {
     <>
       <div className="List__Job m-5">
         <header className="subcategory-header px-2">
-          <Breadcrumbs
-            sx={{ fontSize: "12px" }}
-            separator={<NavigateNextIcon fontSize="small" />}
-            aria-label="breadcrumb"
-          >
+          <BreadcrumbsComponent sx={{ fontSize: "12px" }}>
             {breadcrumbs}
-          </Breadcrumbs>
+          </BreadcrumbsComponent>
           <div className="title-wrapper">
             <h1>{subname}</h1>
           </div>

@@ -15,24 +15,25 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { actFetchSubTypeJob } from "../../ListTypeJobPage/modules/_modulesSubtypeJob/actions";
+import Slider from "react-slick";
 
 const MyCarousel = ({ id, name }) => {
   const dispatch = useDispatch();
   const slider = useRef(null);
   const dataList = useSelector((state) => state.listSubTypeReducer.data);
-  const [slideNumber, setSlideNumber] = useState(0);
   useEffect(() => {
     dispatch(actFetchSubTypeJob(id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
-  console.log(slideNumber);
 
   const settings = {
-    className: "slider variable-width",
-    dots: false,
     speed: 500,
-    slidesToShow: 5,
-    // slidesToScroll: 5,
     swipeToSlide: true,
+    dots: false,
+    infinite: false,
+    slidesToShow: 5,
+    slidesToScroll: 5,
+    initialSlide: 0,
   };
 
   const styleArrow = {
@@ -43,6 +44,8 @@ const MyCarousel = ({ id, name }) => {
   };
   const styleItem = {
     bgcolor: "#fff",
+    minHeight: "90px",
+
     border: "1px solid #efeff0",
     minWidth: "fit-content",
     borderRadius: "12px",
@@ -74,7 +77,8 @@ const MyCarousel = ({ id, name }) => {
             </ListItemAvatar>
             <ListItemText
               sx={{
-                whiteSpace: "nowrap",
+                mx: 0,
+                maxWidth: "fit-content",
                 ":hover": { color: "#1dbf73" },
               }}
               primaryTypographyProps={{
@@ -93,24 +97,21 @@ const MyCarousel = ({ id, name }) => {
     <>
       <Stack mb={2} justifyContent="space-between" direction="row">
         <Typography variant="h5">Most Popular in {name}</Typography>
-        <ListItem sx={{ width: "100px", gap: "12px" }}>
+        <ListItem sx={{ gap: "12px" }}>
           <IconButton
             sx={styleArrow}
-            disabled={slider?.current?.goTo(0)}
+            disabled={slider?.current?.goTo(0) ? true : false}
             onClick={(event) => {
-              // slider.current.prev();
               slider.current.goTo(0);
             }}
           >
             <KeyboardArrowLeft />
           </IconButton>
           <IconButton
-            disabled={slider?.current?.goTo(10)}
+            disabled={slider?.current?.goTo(9) ? true : false}
             sx={styleArrow}
             onClick={() => {
-              // slider.current.next();
-              slider.current.goTo(10);
-              console.log(slider.current);
+              slider.current.goTo(9);
             }}
           >
             <KeyboardArrowRight />
@@ -120,8 +121,8 @@ const MyCarousel = ({ id, name }) => {
 
       <Carousel
         style={{
-          maxWidth: "1400px",
-          padding: "0 32px ",
+          // maxWidth: "1400px",
+          padding: "0 30px ",
           margin: "0 18px",
         }}
         ref={slider}
@@ -129,6 +130,7 @@ const MyCarousel = ({ id, name }) => {
       >
         {renderListItem()}
       </Carousel>
+      {/* <Slider {...settings}>{renderListItem()}</Slider> */}
     </>
   );
 };

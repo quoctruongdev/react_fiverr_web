@@ -11,6 +11,17 @@ const contentStyle = {
   textAlign: "center",
   padding: "2px 16px",
 };
+const styleArrow = {
+  display: "block",
+  background: " #fff",
+  borderRadius: "50%",
+  width: "48px",
+  height: "48px",
+  zIndex: "50",
+  top: "50%",
+  boxShadow: "0 2px 5px 0 rgb(0 0 0 / 15%)",
+  textAlign: "center",
+};
 
 const SampleNextArrow = (props) => {
   const { className, style, onClick } = props;
@@ -19,16 +30,8 @@ const SampleNextArrow = (props) => {
       className={className}
       style={{
         ...style,
-        display: "block",
-        background: " #fff",
-        borderRadius: "50%",
-        width: "48px",
-        height: "48px",
-        zIndex: "50",
-        top: "50%",
-        boxShadow: "0 2px 5px 0 rgb(0 0 0 / 15%)",
+        ...styleArrow,
         right: "-0.5%",
-        textAlign: "center",
       }}
       onClick={onClick}
     />
@@ -42,15 +45,7 @@ const SamplePrevArrow = (props) => {
       className={className}
       style={{
         ...style,
-        display: "block",
-        background: "#fff",
-        borderRadius: "50%",
-        width: "48px",
-        height: "48px",
-        zIndex: "50",
-        top: "50%",
-        boxShadow: "0 2px 5px 0 rgb(0 0 0 / 15%)",
-        textAlign: "center",
+        ...styleArrow,
         left: "-0.5%",
       }}
       onClick={onClick}
@@ -91,11 +86,10 @@ export default function PopularJob() {
   }
 
   return (
-    <div className=" slider__show">
+    <div className=" Popular__service slider__show">
       <div className="slider_title mx-3">
         <h2>Popular professional services</h2>
       </div>
-
       <Row justify="center">
         <Col span={25}>
           <Carousel

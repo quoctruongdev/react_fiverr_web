@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Typography,
   Stepper,
@@ -8,26 +7,33 @@ import {
   StepLabel,
 } from "@mui/material";
 import AddressForm from "./AddressForm";
+import { useDispatch } from "react-redux";
 import PaymentForm from "./PaymentForm";
-import Review from "./Review";
-import { useState } from "react";
+import OrderDetail from "./OrderDetail";
+import React, { useState } from "react";
+import Success from "./Success";
+import { actFetchBookingJob } from "../DetailPage/BookingJob/modules/actions";
 
-const steps = ["Shipping address", "Payment details", "Review your order"];
+const steps = ["Order Detail", "Confirm & Pay", , "Review your order"];
 
-function getStepContent(step) {
+function getStepContent(step, data) {
   switch (step) {
     case 0:
-      return <AddressForm />;
+      return <OrderDetail data={data} />;
     case 1:
       return <PaymentForm />;
+    // case 2:
+    //   return <AddressForm />;
     case 2:
-      return <Review />;
+      return <Success />;
+
     default:
       throw new Error("Unknown step");
   }
 }
 
-function CheckoutPage() {
+function CheckoutPage({ data }) {
+  const dispatch = useDispatch();
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
@@ -44,22 +50,34 @@ function CheckoutPage() {
 
   return (
     <>
-      <React.Fragment>
+      <>
         <main>
           <Paper elevation={0}>
-            <Typography component="h1" variant="h4" align="center">
+            <Typography
+              sx={{
+                paddingBottom: "15px",
+              }}
+              component="h1"
+              variant="h4"
+              align="center"
+            >
               Checkout
             </Typography>
-            <Stepper activeStep={activeStep}>
+            <Stepper
+              sx={{
+                paddingBottom: "10px",
+              }}
+              activeStep={activeStep}
+            >
               {steps.map((label) => (
                 <Step key={label}>
                   <StepLabel>{label}</StepLabel>
                 </Step>
               ))}
             </Stepper>
-            <React.Fragment>
+            <>
               {activeStep === steps.length ? (
-                <React.Fragment>
+                <>
                   <Typography variant="h5" gutterBottom>
                     Thank you for your order.
                   </Typography>
@@ -68,10 +86,10 @@ function CheckoutPage() {
                     confirmation, and will send you an update when your order
                     has shipped.
                   </Typography>
-                </React.Fragment>
+                </>
               ) : (
-                <React.Fragment>
-                  {getStepContent(activeStep)}
+                <>
+                  {getStepContent(activeStep, data)}
                   <div>
                     {activeStep !== 0 && (
                       <Button onClick={handleBack}>Back</Button>
@@ -79,17 +97,20 @@ function CheckoutPage() {
                     <Button
                       variant="contained"
                       color="primary"
-                      onClick={handleNext}
+                      onClick={() => {
+                        handleNext();
+                        dispatch(actFetchBookingJob(data?._id));
+                      }}
                     >
                       {activeStep === steps.length - 1 ? "Place order" : "Next"}
                     </Button>
                   </div>
-                </React.Fragment>
+                </>
               )}
-            </React.Fragment>
+            </>
           </Paper>
         </main>
-      </React.Fragment>
+      </>
     </>
   );
 }

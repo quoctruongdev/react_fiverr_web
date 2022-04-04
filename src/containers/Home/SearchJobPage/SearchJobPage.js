@@ -9,6 +9,7 @@ import { Redirect } from "react-router-dom";
 import "./style.css";
 import Grid from "@mui/material/Grid";
 import CardSevices from "../_components/CardSevices";
+import { Box, ListItemText } from "@mui/material";
 
 export default function SearchJobPage(props) {
   let pageSize = 50;
@@ -41,10 +42,10 @@ export default function SearchJobPage(props) {
   useEffect(() => {
     dispatch(actFetchSearchService(name));
     dispatch(actFetchUsersList());
-  }, []);
+  }, [name]);
 
   const renderListJob = () => {
-    if (data && data.length === 0) {
+    if (data && data?.length === 0) {
       return <Redirect to="/search-error" />;
     } else {
       return (
@@ -71,18 +72,28 @@ export default function SearchJobPage(props) {
   if (loading) return <Loader />;
   return (
     <>
-      <div className="List__Job mx-5">
+      <Box
+        sx={{
+          px: { xs: 3, sm: 4, md: 6 },
+          pt: 5,
+        }}
+        className="List__Job "
+      >
         <div className="layout-row header-wrapper">
           <div className="search-header">
             <span className="title">Results for "{name}"</span>
           </div>
+          <ListItemText
+            style={{
+              color: "#74767e",
+            }}
+            primary={`${data?.length ?? "No"} services available`}
+          />
         </div>
-        {/* <Container sx={{ py: 4, px: 5 }} maxWidth="1400"> */}
         <Grid sx={{ py: 4 }} container spacing={4}>
           {renderListJob()}
         </Grid>
-        {/* </Container> */}
-      </div>
+      </Box>
 
       <div className="pagination">
         <Pagination

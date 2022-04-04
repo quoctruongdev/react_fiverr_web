@@ -1,321 +1,96 @@
-import { Skeleton } from "@mui/material";
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import { Box, Collapse, Grid, List } from "@mui/material";
+import { ListItem, ListItemText, Skeleton } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import useWindowSize from "../../../../Hook/useWindowSize";
 import { actFetchCategoriesMain } from "../../HomePage/MarketPlace/modules/actions";
 import "./style.css";
 
 function Footer() {
+  const size = useWindowSize();
   const data = useSelector((state) => state.categoriesMainReducer.data);
+  const dataNew = data?.filter((item) => item?.__v > 10);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(actFetchCategoriesMain());
   }, []);
 
-  const renderData = () => {
-    return data
-      ?.filter((item) => item?.__v > 10)
-      ?.map((item, index) => {
-        return (
-          <li key={index}>
-            <NavLink to={`/list-type-job/${item?._id}`}>{item?.name}</NavLink>
-          </li>
-        );
-      });
-  };
-  const renderListSkeleton = (length) => {
-    const array = [];
-    for (let index = 0; index < length; index++) {
-      array.push(index);
-    }
-    return array?.map((item) => (
-      <Skeleton sx={{ mb: 2 }} key={item} width="80%" />
-    ));
-  };
+  const footerContent = [
+    {
+      id: 0,
+      title: "Categories",
+      text: dataNew,
+    },
+    {
+      id: 1,
+      title: "About",
+      text: [
+        { name: "Careers" },
+        { name: "Press & News" },
+        { name: "Partnerships" },
+        { name: "Privacy Policy" },
+        { name: "Terms of Service" },
+        { name: "Intellectual Property Claims" },
+        { name: "Investor Relations" },
+      ],
+    },
+    {
+      id: 2,
+      title: "Support",
+      text: [
+        { name: "Help & Support" },
+        { name: "  Trust & Safety" },
+        { name: "Selling on Fiverr" },
+        { name: "  Buying on Fiverr" },
+      ],
+    },
+    {
+      id: 3,
+      title: "Community",
+      text: [
+        { name: "Events" },
+        { name: "Blog" },
+        { name: "Forum" },
+        { name: "Community Standards" },
+        { name: "Podcast" },
+        { name: "Affiliates" },
+        { name: "Invite a Friend" },
+      ],
+    },
+    {
+      id: 4,
+      title: "More From Fiverr",
+      text: [
+        { name: " Fiverr Business" },
+        { name: " Fiverr Pro" },
+        { name: "  Fiverr Studios" },
+        { name: "  Fiverr Logo Maker" },
+        { name: "Fiverr Guides" },
+        { name: "  Get Inspired" },
+        { name: "  ClearVoice" },
+        { name: "  Content Marketing" },
+      ],
+    },
+  ];
 
   return (
     <section id="Footer">
-      <footer className="footer-package site-footer" data-reactroot>
+      <footer className="footer-package site-footer">
+        <Box
+          sx={{
+            px: { md: 4, sm: 3, xs: 2 },
+          }}
+        >
+          <CategoriesResults
+            width={size?.width}
+            data={footerContent}
+            dataNew={dataNew}
+          />
+        </Box>
         <div className="footer-wrapper max-width-containers px-5">
-          <div className="footer-collapsibles grid-15">
-            <div className="col-15-xs col-5-sm col-3-md">
-              <article className="_3dF2AcM footer-collapsible categories">
-                <div className="ggYvR3i footer-collapsible-title-wrapper">
-                  <div className="_1h_B1hH">
-                    <h6 className="text-display-7">Categories</h6>
-                  </div>
-                  <div className="_2NVSqpn footer-collapsible-chevron-wrapper">
-                    <span
-                      className="_3_ME_EA _1pNZ60x"
-                      style={{ width: 14, height: 14 }}
-                      aria-hidden="true"
-                    >
-                      <svg
-                        width={8}
-                        height={16}
-                        viewBox="0 0 8 16"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M0.772126 1.19065L0.153407 1.80934C0.00696973 1.95578 0.00696973 2.19322 0.153407 2.33969L5.80025 8L0.153407 13.6603C0.00696973 13.8067 0.00696973 14.0442 0.153407 14.1907L0.772126 14.8094C0.918563 14.9558 1.156 14.9558 1.30247 14.8094L7.84666 8.26519C7.99309 8.11875 7.99309 7.88131 7.84666 7.73484L1.30247 1.19065C1.156 1.04419 0.918563 1.04419 0.772126 1.19065Z" />
-                      </svg>
-                    </span>
-                  </div>
-                </div>
-                <div className="footer-collapsible-content">
-                  <ul>{data ? renderData() : renderListSkeleton(8)}</ul>
-                </div>
-              </article>
-            </div>
-            <div className="col-15-xs col-5-sm col-3-md">
-              <article className="_3dF2AcM footer-collapsible">
-                <div className="ggYvR3i footer-collapsible-title-wrapper">
-                  <div className="_1h_B1hH">
-                    <h6 className="text-display-7">About</h6>
-                  </div>
-                  <div className="_2NVSqpn footer-collapsible-chevron-wrapper">
-                    <span
-                      className="_3_ME_EA _1pNZ60x"
-                      style={{ width: 14, height: 14 }}
-                      aria-hidden="true"
-                    >
-                      <svg
-                        width={8}
-                        height={16}
-                        viewBox="0 0 8 16"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M0.772126 1.19065L0.153407 1.80934C0.00696973 1.95578 0.00696973 2.19322 0.153407 2.33969L5.80025 8L0.153407 13.6603C0.00696973 13.8067 0.00696973 14.0442 0.153407 14.1907L0.772126 14.8094C0.918563 14.9558 1.156 14.9558 1.30247 14.8094L7.84666 8.26519C7.99309 8.11875 7.99309 7.88131 7.84666 7.73484L1.30247 1.19065C1.156 1.04419 0.918563 1.04419 0.772126 1.19065Z" />
-                      </svg>
-                    </span>
-                  </div>
-                </div>
-                <div className="footer-collapsible-content">
-                  <ul>
-                    <li>
-                      <a href="#/">Careers</a>
-                    </li>
-                    <li>
-                      <a href="#/">Press &amp; News</a>
-                    </li>
-                    <li>
-                      <a href="#/">Partnerships</a>
-                    </li>
-                    <li>
-                      <a href="#/">Privacy Policy</a>
-                    </li>
-                    <li>
-                      <a href="#/">Terms of Service</a>
-                    </li>
-                    <li>
-                      <a href="#/">Intellectual Property Claims</a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://investors.fiverr.com"
-                        rel="noreferrer"
-                        target="_blank"
-                      >
-                        Investor Relations
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </article>
-            </div>
-            <div className="col-15-xs col-5-sm col-3-md">
-              <article className="_3dF2AcM footer-collapsible">
-                <div className="ggYvR3i footer-collapsible-title-wrapper">
-                  <div className="_1h_B1hH">
-                    <h6 className="text-display-7">Support</h6>
-                  </div>
-                  <div className="_2NVSqpn footer-collapsible-chevron-wrapper">
-                    <span
-                      className="_3_ME_EA _1pNZ60x"
-                      style={{ width: 14, height: 14 }}
-                      aria-hidden="true"
-                    >
-                      <svg
-                        width={8}
-                        height={16}
-                        viewBox="0 0 8 16"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M0.772126 1.19065L0.153407 1.80934C0.00696973 1.95578 0.00696973 2.19322 0.153407 2.33969L5.80025 8L0.153407 13.6603C0.00696973 13.8067 0.00696973 14.0442 0.153407 14.1907L0.772126 14.8094C0.918563 14.9558 1.156 14.9558 1.30247 14.8094L7.84666 8.26519C7.99309 8.11875 7.99309 7.88131 7.84666 7.73484L1.30247 1.19065C1.156 1.04419 0.918563 1.04419 0.772126 1.19065Z" />
-                      </svg>
-                    </span>
-                  </div>
-                </div>
-                <div className="footer-collapsible-content">
-                  <ul>
-                    <li>
-                      <a href="#/">Help &amp; Support</a>
-                    </li>
-                    <li>
-                      <a href="#/">Trust &amp; Safety</a>
-                    </li>
-                    <li>
-                      <a href="#/">Selling on Fiverr</a>
-                    </li>
-                    <li>
-                      <a href="#/">Buying on Fiverr</a>
-                    </li>
-                  </ul>
-                </div>
-              </article>
-            </div>
-            <div className="col-15-xs col-5-sm col-3-md">
-              <article className="_3dF2AcM footer-collapsible">
-                <div className="ggYvR3i footer-collapsible-title-wrapper">
-                  <div className="_1h_B1hH">
-                    <h6 className="text-display-7">Community</h6>
-                  </div>
-                  <div className="_2NVSqpn footer-collapsible-chevron-wrapper">
-                    <span
-                      className="_3_ME_EA _1pNZ60x"
-                      style={{ width: 14, height: 14 }}
-                      aria-hidden="true"
-                    >
-                      <svg
-                        width={8}
-                        height={16}
-                        viewBox="0 0 8 16"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M0.772126 1.19065L0.153407 1.80934C0.00696973 1.95578 0.00696973 2.19322 0.153407 2.33969L5.80025 8L0.153407 13.6603C0.00696973 13.8067 0.00696973 14.0442 0.153407 14.1907L0.772126 14.8094C0.918563 14.9558 1.156 14.9558 1.30247 14.8094L7.84666 8.26519C7.99309 8.11875 7.99309 7.88131 7.84666 7.73484L1.30247 1.19065C1.156 1.04419 0.918563 1.04419 0.772126 1.19065Z" />
-                      </svg>
-                    </span>
-                  </div>
-                </div>
-                <div className="footer-collapsible-content">
-                  <ul>
-                    <li>
-                      <a
-                        href="https://events.fiverr.com"
-                        rel="noreferrer"
-                        target="_blank"
-                      >
-                        Events
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://blog.fiverr.com/?utm_source=fiverr&utm_medium=website"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        Blog
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="http://forum.fiverr.com/?utm_source=fiverr&utm_medium=website"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        Forum
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/community/standards?source=footer"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        Community Standards
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://podfollow.com/ninetwentynine"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        Podcast
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://affiliates.fiverr.com"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        Affiliates
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#/">Invite a Friend</a>
-                    </li>
-                    <li>
-                      <a href="#/">Become a Seller</a>
-                    </li>
-                  </ul>
-                </div>
-              </article>
-            </div>
-            <div className="col-15-xs col-5-sm col-3-md">
-              <article className="_3dF2AcM footer-collapsible">
-                <div className="ggYvR3i footer-collapsible-title-wrapper">
-                  <div className="_1h_B1hH">
-                    <h6 className="text-display-7">More From Fiverr</h6>
-                  </div>
-                  <div className="_2NVSqpn footer-collapsible-chevron-wrapper">
-                    <span
-                      className="_3_ME_EA _1pNZ60x"
-                      style={{ width: 14, height: 14 }}
-                      aria-hidden="true"
-                    >
-                      <svg
-                        width={8}
-                        height={16}
-                        viewBox="0 0 8 16"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M0.772126 1.19065L0.153407 1.80934C0.00696973 1.95578 0.00696973 2.19322 0.153407 2.33969L5.80025 8L0.153407 13.6603C0.00696973 13.8067 0.00696973 14.0442 0.153407 14.1907L0.772126 14.8094C0.918563 14.9558 1.156 14.9558 1.30247 14.8094L7.84666 8.26519C7.99309 8.11875 7.99309 7.88131 7.84666 7.73484L1.30247 1.19065C1.156 1.04419 0.918563 1.04419 0.772126 1.19065Z" />
-                      </svg>
-                    </span>
-                  </div>
-                </div>
-                <div className="footer-collapsible-content">
-                  <ul>
-                    <li>
-                      <a href="#/">Fiverr Business</a>
-                    </li>
-                    <li>
-                      <a href="#/">Fiverr Pro</a>
-                    </li>
-                    <li>
-                      <a href="#/">Fiverr Studios</a>
-                    </li>
-                    <li>
-                      <a href="#/">Fiverr Logo Maker</a>
-                    </li>
-                    <li>
-                      <a href="#/">Fiverr Guides</a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://discover.fiverr.com?utm_source=fiverr&utm_medium=link&utm_content=footer_link"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        Get Inspired
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://www.clearvoice.com"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        ClearVoice<p>Content Marketing</p>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </article>
-            </div>
-          </div>
           <div className="bottom">
             <div className="left">
               <span className="fiverr-logo-footer">
@@ -500,3 +275,97 @@ function Footer() {
   );
 }
 export default Footer;
+
+function CategoriesResults({ data, width, dataNew }) {
+  return (
+    <List component="nav" aria-labelledby="nested-list-subheader">
+      <Grid container={width <= 500 ? false : true}>
+        {data?.map((item) => {
+          return (
+            <CustomizedListItem
+              key={item.id}
+              data={item}
+              width={width}
+              dataNew={dataNew}
+            />
+          );
+        })}
+      </Grid>
+    </List>
+  );
+}
+function CustomizedListItem({ data, width, dataNew }) {
+  const [open, setOpen] = useState(false);
+  const handleClick = () => {
+    setOpen((open) => !open);
+  };
+
+  const renderListSkeleton = (length) => {
+    const array = [];
+    for (let index = 0; index < length; index++) {
+      array.push(index);
+    }
+    return array?.map((item) => (
+      <Skeleton sx={{ mb: 2 }} key={item} width="80%" />
+    ));
+  };
+  return (
+    <Grid item sx={12} sm={4} md={2.4}>
+      <ListItem
+        disableRipple
+        sx={{
+          cursor: width <= 500 ? "pointer" : "default",
+        }}
+        key={data.id}
+        onClick={handleClick}
+      >
+        <ListItemText
+          primaryTypographyProps={{
+            sx: { fontWeight: 600 },
+          }}
+          color="#404145"
+          primary={data.title}
+        />
+        {open ? (
+          <ExpandLess
+            sx={{ display: width <= 500 ? "block" : "none" }}
+            color="disabled"
+          />
+        ) : (
+          <ExpandMore
+            sx={{ display: width <= 500 ? "block" : "none" }}
+            color="disabled"
+          />
+        )}
+      </ListItem>
+      <Collapse in={width <= 500 ? open : true} timeout="auto" unmountOnExit>
+        {dataNew ? (
+          <List
+            sx={{
+              cursor: "pointer",
+            }}
+            component="li"
+            key={data?.id}
+          >
+            {data?.text?.map((text, index) => {
+              return (
+                <>
+                  <ListItem disableRipple key={index}>
+                    <NavLink
+                      style={{ color: "#7a7d85" }}
+                      to={text?._id ? `/list-type-job/${text?._id}` : "#/"}
+                    >
+                      {text?.name}
+                    </NavLink>
+                  </ListItem>
+                </>
+              );
+            })}
+          </List>
+        ) : (
+          renderListSkeleton(data?.text?.length || 8)
+        )}
+      </Collapse>
+    </Grid>
+  );
+}

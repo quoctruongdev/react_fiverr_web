@@ -34,7 +34,12 @@ export default function SubNavbar() {
 
   return (
     <>
-      <div onMouseLeave={handlePopoverClose}>
+      <Box
+        sx={{
+          display: { xs: "none", sm: "block" },
+        }}
+        onMouseLeave={handlePopoverClose}
+      >
         <Box
           id="CategoriesMenu"
           className="categories hidden_subnav"
@@ -113,11 +118,12 @@ export default function SubNavbar() {
                         }}
                         aria-haspopup="true"
                         component={Link}
-                        to={
-                          (index + 4) % 2 === 0
-                            ? `/list-type-job/${item?._id}`
-                            : `/categoriess/${item?.name}/${item?._id}`
-                        }
+                        to={`/list-type-job/${item?._id}`}
+                        // to={
+                        //   (index + 4) % 2 === 0
+                        //     ? `/list-type-job/${item?._id}`
+                        //     : `/categoriess/${item?.name}/${item?._id}`
+                        // }
                       />
                     </>
                   );
@@ -177,7 +183,7 @@ export default function SubNavbar() {
             </MenuList>
           </Paper>
         </Popper>
-      </div>
+      </Box>
     </>
   );
 }

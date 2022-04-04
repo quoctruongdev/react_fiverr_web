@@ -5,7 +5,7 @@ const useModal = () => {
   const handleOpen = useCallback((value) => {
     setOpen(true);
     setType(value);
-  });
+  }, []);
   const handleClose = useCallback(() => setOpen(false), []);
 
   return {

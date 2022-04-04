@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
+import Box from "@mui/material/Box";
 import "./search.css";
-import { NavLink, Redirect } from "react-router-dom";
-import { Path } from "svgs";
 
 export default function SearchCarousel() {
   const [dataSearch, setDataSearch] = useState({
@@ -32,10 +32,10 @@ export default function SearchCarousel() {
   };
 
   return (
-    <div>
-      <div className="header mx-5 ">
-        <div className=" row align-items-center">
-          <div className="col-md-7">
+    <>
+      <div className="search__carousel">
+        <div>
+          <div>
             <div className="title__header">
               <h1 className="text__header ">
                 <span>
@@ -43,7 +43,7 @@ export default function SearchCarousel() {
                 </span>
               </h1>
             </div>
-            <div onSubmit={handleOnSubmit} className="search ">
+            <form onSubmit={handleOnSubmit} className="search ">
               <FaSearch className="icon__search" />
               <input
                 onChange={handleOnChange}
@@ -54,8 +54,7 @@ export default function SearchCarousel() {
                 required
               />
               {handleOnSubmit()}
-            </div>
-
+            </form>
             <div className="popular">
               Popular:
               <ul>
@@ -68,6 +67,11 @@ export default function SearchCarousel() {
                   </NavLink>
                 </li>
                 <li>
+                  <NavLink to="/search-job/NFT Art" className="text-body-2">
+                    NFT Art
+                  </NavLink>
+                </li>
+                <li>
                   <NavLink to="/search-job/WordPress" className="text-body-2">
                     WordPress
                   </NavLink>
@@ -77,16 +81,11 @@ export default function SearchCarousel() {
                     Logo Design
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink to="/search-job/NFT Art" className="text-body-2">
-                    NFT Art
-                  </NavLink>
-                </li>
               </ul>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

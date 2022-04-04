@@ -1,23 +1,28 @@
-import React, { useState } from "react";
-import { CardHeader, Grid, MenuItem } from "@mui/material";
-import { CardContent, TextField } from "@mui/material";
+import AddBoxSharpIcon from "@mui/icons-material/AddBoxSharp";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
+import LoadingButton from "@mui/lab/LoadingButton";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import {
+  CardContent,
+  CardHeader,
+  CircularProgress,
+  Grid,
+  MenuItem,
+  TextField,
+} from "@mui/material";
+import FormControl from "@mui/material/FormControl";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormLabel from "@mui/material/FormLabel";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
-import { actFetchAddUser } from "../../UsersManagement/Add/modules/actions";
-import { useSelector, useDispatch } from "react-redux";
-import { CircularProgress } from "@mui/material";
-import moment from "moment";
-import LoadingButton from "@mui/lab/LoadingButton";
-import AddBoxSharpIcon from "@mui/icons-material/AddBoxSharp";
 import { Divider } from "antd";
 import { useFormik } from "formik";
+import moment from "moment";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
+import { actFetchAddUser } from "../../UsersManagement/Add/modules/actions";
 
 export default function AddUser({ onClose, onOpen, type }) {
   const loadingBtn = useSelector((state) => state.addUserReducer.loading);

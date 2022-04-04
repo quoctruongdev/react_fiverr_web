@@ -55,9 +55,7 @@
 .ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab + .ant-tabs-tab {
   margin-left: 0px !important;
 }
-/* .ant-popover-arrow {
-  display: none !important;
-} */
+
 .ant-popover-inner-content {
   padding: 0 !important;
 }

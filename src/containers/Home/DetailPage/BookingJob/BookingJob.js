@@ -1,24 +1,19 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import Loader from "../../../../components/Loader/Loader";
-import { actFetchBookingJob } from "./modules/actions";
-import { actShowModalPopup } from "../../../../components/ModalPopup/module/actions";
-import { NavLink } from "react-router-dom";
-import Login from "../../_components/Login/Login";
-import "./style.css";
-import CheckoutPage from "../../CheckoutPage/CheckoutPage";
-import { actFetchDetailService } from "../../../Admin/ServicesManagement/Edit/_modules/actions";
-import PropTypes from "prop-types";
-import SwipeableViews from "react-swipeable-views";
-import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { useTheme } from "@mui/material/styles";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
-import LoginMui from "../../_components/Login/LoginForm/LoginForm";
+import PropTypes from "prop-types";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import SwipeableViews from "react-swipeable-views";
+import { actShowModalPopup } from "../../../../components/ModalPopup/module/actions";
+import CheckoutPage from "../../CheckoutPage/CheckoutPage";
 import LoginForm from "../../_components/Login/LoginForm/LoginForm";
+import "./style.css";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -77,7 +72,6 @@ export default function BookingJob(props) {
 
   return (
     <>
-      {/* <div className="col-md-5"> */}
       <div className="sticky-outer-wrapper sidebar">
         <Box sx={{ minWidth: 300, height: 500, border: "solid 1px #dadbdd" }}>
           <AppBar color="inherit" elevation={0} position="static">
@@ -255,7 +249,7 @@ export default function BookingJob(props) {
                           userLogin &&
                             dispatch(
                               actShowModalPopup({
-                                Component: <CheckoutPage />,
+                                Component: <CheckoutPage data={data} />,
                                 open: true,
                               })
                             );
@@ -395,16 +389,25 @@ export default function BookingJob(props) {
                     </article>
                   </div>
                   <footer className="tab-footer">
-                    <NavLink to={`/checkout/customize/${id}`}>
+                    <NavLink to="#/">
                       <button
                         onClick={() => {
-                          dispatch(
-                            actShowModalPopup({
-                              Component: <CheckoutPage />,
-                              open: true,
-                            })
-                          );
                           // dispatch(actFetchBookingJob(id));
+                          userLogin &&
+                            dispatch(
+                              actShowModalPopup({
+                                Component: <CheckoutPage data={data} />,
+                                open: true,
+                              })
+                            );
+                          !userLogin &&
+                            dispatch(
+                              actShowModalPopup({
+                                Component: <LoginForm />,
+                                open: true,
+                                sx: { p: 0 },
+                              })
+                            );
                         }}
                         className=" btn co-white bg-co-green-700 "
                       >
@@ -539,10 +542,25 @@ export default function BookingJob(props) {
                     </article>
                   </div>
                   <footer className="tab-footer">
-                    <NavLink to={`/checkout/customize/${id}`}>
+                    <NavLink to="#/">
                       <button
                         onClick={() => {
                           // dispatch(actFetchBookingJob(id));
+                          userLogin &&
+                            dispatch(
+                              actShowModalPopup({
+                                Component: <CheckoutPage data={data} />,
+                                open: true,
+                              })
+                            );
+                          !userLogin &&
+                            dispatch(
+                              actShowModalPopup({
+                                Component: <LoginForm />,
+                                open: true,
+                                sx: { p: 0 },
+                              })
+                            );
                         }}
                         className=" btn co-white bg-co-green-700 "
                       >
@@ -557,7 +575,6 @@ export default function BookingJob(props) {
           </SwipeableViews>
         </Box>
       </div>
-      {/* </div> */}
     </>
   );
 }

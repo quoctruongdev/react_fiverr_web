@@ -22,6 +22,7 @@ export const actAuthApi = (user, history) => {
             },
           });
         }
+
         //lưu exp xuống localStorage
         const date = new Date().getTime();
         const exp = date + TIME_EXP;
@@ -33,8 +34,8 @@ export const actAuthApi = (user, history) => {
         //Luu trang thai login
         localStorage.setItem("UserAdmin", JSON.stringify(result.data));
         history.replace("/dashboard/users");
-        //redirect dashboard
 
+        //redirect dashboard
         dispatch(actAuthSuccess(result.data));
       })
       .catch((error) => {

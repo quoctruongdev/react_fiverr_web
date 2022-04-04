@@ -8,6 +8,7 @@ import { Button, CardActionArea, CardActions, Typography } from "@mui/material";
 import VideoLibraryRoundedIcon from "@mui/icons-material/VideoLibraryRounded";
 import PopularCarousel from "./PopularCarousel";
 import MyCarousel from "./PopularCarousel/exam";
+import ProductSlider from "./PopularCarousel/sliders";
 
 export default function Categories(props) {
   const { id, name } = props.match.params;

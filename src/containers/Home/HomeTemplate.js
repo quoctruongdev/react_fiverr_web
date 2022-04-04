@@ -1,18 +1,16 @@
-import React, { useState } from "react";
-import { Route, useHistory, Redirect, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { SnackbarProvider } from "notistack";
+import React from "react";
+import { Redirect, Route, useLocation } from "react-router-dom";
 import Footer from "./_components/Footer/Footer";
-import Join from "./_components/Join/Join";
-import Login from "./_components/Login/Login";
 import MainNavbar from "./_components/Navbar/Navbar";
-import SubNavbar from "./_components/Navbar/subNav";
+import SubNavbar from "./_components/Navbar/SubNavigation/subNav";
 
 function LayoutHome(props) {
   return (
     <>
       <MainNavbar />
       <SubNavbar />
-      {props.children}
+      <SnackbarProvider>{props.children}</SnackbarProvider>
       <Footer />
     </>
   );

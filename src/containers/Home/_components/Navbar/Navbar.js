@@ -1,6 +1,6 @@
 import * as React from "react";
-import { useEffect } from "react";
-import "./nav2.css";
+import { useEffect, useState } from "react";
+import "./navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useLocation, useHistory } from "react-router-dom";
 import { actFetchDetailUser } from "../../../Admin/UsersManagement/Edit/_modules/actions";
@@ -13,30 +13,30 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 
-import SwipeSideBar from "./SideBarNav";
+import SwipeSideBar from "./SideNav/SideBarNav";
 import { actLogout } from "../Login/modules/actions";
 import PopperPopup from "../../../../components/MaterialUI/Popover";
 import BadgeStyle from "../../../../components/Badge/BadgeComponent";
 import { logo } from "../../../../components/Logo/logo";
 
-const pages = [
-  { name: " List Services", url: "/total-job" },
-  { name: " Sign In", url: "/login" },
-  { name: "Join", url: "/join" },
-];
-const pagesLogin = [
-  { name: " List Services", url: "/total-job" },
-  { name: " Message", url: "#" },
-  // { name: "List", url: "#" },
-];
-
 export default function MainNavbar() {
   const data = useSelector((state) => state.detailUserReducer.data);
   const loading = useSelector((state) => state.loginReducerHome.loading);
 
+  const pages = [
+    { name: " List Services", url: "/total-job" },
+    { name: " Sign In", url: "/login" },
+    { name: "Join", url: "/join" },
+  ];
+  const pagesLogin = [
+    { name: "Services", url: "/total-job" },
+    { name: " Message", url: "#" },
+    { name: "Lists", url: `/my-list/${data?.name}` },
+  ];
+
   const dispatch = useDispatch();
   const history = useHistory();
-  const [sideBar, setSideBar] = React.useState(false);
+  const [sideBar, setSideBar] = useState(false);
   const userLogin = JSON.parse(localStorage.getItem("UserClient"));
   const location = useLocation();
 
@@ -65,7 +65,33 @@ export default function MainNavbar() {
     userLogin?.user?._id && dispatch(actFetchDetailUser(userLogin?.user?._id));
   }, [loading]);
 
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+
+  //Search Services
+  const [dataSearch, setDataSearch] = useState({
+    keysearch: "",
+  });
+  const handleOnSubmit = () => {
+    if (dataSearch.keysearch !== "") {
+      return (
+        <NavLink to={`/search-job/${dataSearch?.keysearch}`}>
+          <button className="btn_search">Search</button>
+        </NavLink>
+      );
+    } else {
+      return (
+        <button className="btn_search">
+          <span>Search</span>
+        </button>
+      );
+    }
+  };
+  const handleOnChange = (event) => {
+    event.preventDefault();
+    setDataSearch({
+      keysearch: event.target.value,
+    });
+  };
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -109,7 +135,7 @@ export default function MainNavbar() {
         position="unset"
         color="inherit"
         sx={{
-          paddingX: "50px",
+          paddingX: { xs: "15px", sm: "30px", md: "50px" },
           boxShadow: "none",
           backgroundColor: "unset",
           height: "71px",
@@ -129,6 +155,7 @@ export default function MainNavbar() {
               }}
             >
               <IconButton
+                disableRipple
                 className="button__toggle"
                 size="large"
                 aria-label="account of current user"
@@ -155,7 +182,7 @@ export default function MainNavbar() {
               noWrap
               component="div"
               sx={{
-                display: { xs: "none", sm: "flex", md: "flex" },
+                display: { xs: "flex", sm: "flex", md: "flex" },
               }}
               className="logo__navbar"
             >
@@ -172,7 +199,7 @@ export default function MainNavbar() {
             >
               <div id="SearchNavbar" className="header__search hidden_search">
                 <div className="search-bar-package search_bar-package">
-                  <form className>
+                  <form onSubmit={handleOnSubmit}>
                     <span
                       className="search-bar-icon"
                       style={{ width: 16, height: 16 }}
@@ -180,19 +207,27 @@ export default function MainNavbar() {
                       <svg
                         width={16}
                         height={16}
+                        xw
                         viewBox="0 0 16 16"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path d="M15.8906 14.6531L12.0969 10.8594C12.025 10.7875 11.9313 10.75 11.8313 10.75H11.4187C12.4031 9.60938 13 8.125 13 6.5C13 2.90937 10.0906 0 6.5 0C2.90937 0 0 2.90937 0 6.5C0 10.0906 2.90937 13 6.5 13C8.125 13 9.60938 12.4031 10.75 11.4187V11.8313C10.75 11.9313 10.7906 12.025 10.8594 12.0969L14.6531 15.8906C14.8 16.0375 15.0375 16.0375 15.1844 15.8906L15.8906 15.1844C16.0375 15.0375 16.0375 14.8 15.8906 14.6531ZM6.5 11.5C3.7375 11.5 1.5 9.2625 1.5 6.5C1.5 3.7375 3.7375 1.5 6.5 1.5C9.2625 1.5 11.5 3.7375 11.5 6.5C11.5 9.2625 9.2625 11.5 6.5 11.5Z" />
                       </svg>
                     </span>
-                    <input type="search" placeholder="Find Services" />
+                    <input
+                      onChange={handleOnChange}
+                      type="search"
+                      name="keysearch"
+                      placeholder="Find Services"
+                      required
+                    />
                     <Box
                       sx={{
                         display: { sm: "none", md: "flex" },
                       }}
                     >
-                      <button className="btn_search">Search</button>
+                      {handleOnSubmit()}
+                      {/* <button className="btn_search">Search</button> */}
                     </Box>
                   </form>
                 </div>

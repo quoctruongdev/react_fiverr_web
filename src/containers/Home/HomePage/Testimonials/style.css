@@ -1,15 +1,3 @@
-.slider__title {
-  border-radius: 4px;
-  padding-bottom: 24px;
-}
-.slider__title:focus {
-  box-shadow: 0 0 6px 3px #ffff00, 0 0 2px #333 inset !important;
-  border: 2px solid black !important;
-}
-.slider__title:hover {
-  box-shadow: 0 0 6px 3px blue, 0 0 2px #333 inset !important;
-  border: 2px solid black !important;
-}
 .ant-carousel .slick-slide img {
   display: block;
   border-radius: 5px;
@@ -18,21 +6,6 @@
 .ant-carousel .slick-prev::before,
 .ant-carousel .slick-next::before {
   content: "";
-}
-.slider__show {
-  padding: 0 30px;
-  margin-bottom: 96px;
-}
-
-/* ***************** */
-.text-content {
-  padding: 24px 24px 0;
-  width: 100%;
-}
-.text-content {
-  padding: 0 0 0 64px;
-  max-width: 750px;
-  width: 60%;
 }
 
 .text-content h5 {
@@ -49,49 +22,45 @@
   margin-left: 16px;
 }
 
-.testimonial {
-  display: flex !important;
-  width: 100%;
-  margin: auto;
-  align-items: center;
-}
-
 .text-content img {
   display: inline-block;
   vertical-align: middle;
   margin-left: 12px;
   height: 36px !important;
 }
-
-.video-modal .picture__wrapper {
-  position: relative !important;
+.picture__wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.video-modal .picture__wrapper:after {
+
+.picture__wrapper::before {
   content: "";
-  display: inline-block;
+  /* display: inline-block; */
   background: url(https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/desktop-play-button.c1196d6.png)
     no-repeat;
-  background-size: 80px;
-  width: 80px;
-  height: 80px;
-  position: absolute;
-  z-index: 10;
-  left: 45%;
-  top: 40%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-30%, -30%);
+  /* background-size: 80px; */
+  /* width: 80px;
+  height: 80px; */
+  /* position: absolute; */
+  /* z-index: 100; */
 }
 
 .text-content blockquote {
-  font-size: 30px;
+  font-size: 35px;
   line-height: 44px;
   color: #003912;
-  padding-bottom: 24px;
-  font-weight: 500;
+  font-weight: 550;
+  text-align: justify;
+  padding-right: 30px;
+  font-style: italic;
+  font-family: "Domine", serif;
+  margin-bottom: 0 !important;
 }
 
 /* Reponsive */
-@media only screen and (min-width: 900px) {
+/* @media only screen and (min-width: 900px) {
   .logged-out-homepage .testimonials .text-content {
     padding: 0 36px 0 16px;
     width: 50%;
@@ -101,12 +70,87 @@
   .logged-out-homepage .testimonials .text-content {
     padding: 0 48px 0 64px;
     max-width: 707px;
-    width: 60%;
   }
 }
 @media only screen and (min-width: 692px) {
   .logged-out-homepage .testimonials .text-content {
     padding: 24px 24px 0;
     width: 100%;
+  }
+} */
+
+/* .testimonial__content {
+  display: flex !important;
+  flex-direction: row;
+  flex-wrap: wrap;
+} */
+
+.testimonial .ant-carousel .slick-prev {
+  left: 0px !important;
+}
+
+.testimonial .ant-carousel .slick-next {
+  right: 0px !important;
+}
+@media screen and (max-width: 500px) {
+  .text-content blockquote {
+    font-size: 24px;
+    padding-bottom: 24px;
+  }
+  .text-content h5 {
+    padding-bottom: 10px;
+  }
+
+  /* .testimonial .ant-carousel .slick-prev,
+  .testimonial .ant-carousel .slick-next {
+    top: 25% !important;
+  } */
+}
+
+@media only screen and (max-width: 500px) {
+  .testimonial .ant-carousel .slick-prev,
+  .testimonial .ant-carousel .slick-next {
+    top: 25% !important;
+  }
+}
+@media only screen and (max-width: 692px) {
+  .testimonial .ant-carousel .slick-prev,
+  .testimonial .ant-carousel .slick-next {
+    top: 32%;
+  }
+}
+@media only screen and (min-width: 692px) {
+  .testimonial .ant-carousel .slick-prev,
+  .testimonial .ant-carousel .slick-next {
+    top: 35%;
+  }
+}
+@media only screen and (min-width: 900px) {
+  .testimonial .ant-carousel .slick-prev,
+  .testimonial .ant-carousel .slick-next {
+    top: 45%;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .testimonial .ant-carousel .slick-prev,
+  .testimonial .ant-carousel .slick-next {
+    top: 50%;
+  }
+}
+@media only screen and (max-width: 1000px) and(min-width:793) {
+  .text-content blockquote {
+    font-size: 24px;
+    padding-bottom: 24px;
+    line-height: 33px !important;
+  }
+
+  .text-content h5 {
+    padding-bottom: 8px;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .text-content blockquote {
+    line-height: 28px !important;
+    font-size: 26px;
   }
 }

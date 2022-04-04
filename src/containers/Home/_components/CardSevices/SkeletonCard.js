@@ -26,11 +26,7 @@ export default function SkeletonCard() {
         }}
       >
         <Box>
-          <Skeleton
-            sx={{ height: 208 }}
-            animation="wave"
-            variant="rectangular"
-          />
+          <Skeleton height={208} animation="wave" variant="rectangular" />
         </Box>
         <CardHeader
           avatar={
@@ -81,9 +77,13 @@ export default function SkeletonCard() {
           }}
           disableSpacing
         >
-          <Skeleton sx={{ marginLeft: "8px", width: "95%" }} animation="wave" />
-          <Skeleton sx={{ marginLeft: "8px", width: "95%" }} animation="wave" />
-          <Skeleton sx={{ marginLeft: "8px", width: "95%" }} animation="wave" />
+          {[1, 2, 3].map((item) => (
+            <Skeleton
+              key={item}
+              sx={{ marginLeft: "8px", width: "95%" }}
+              animation="wave"
+            />
+          ))}
         </CardActions>
       </Card>
     </Grid>

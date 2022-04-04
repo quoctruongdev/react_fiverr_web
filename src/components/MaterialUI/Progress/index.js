@@ -1,7 +1,6 @@
-import * as React from "react";
-import Stack from "@mui/material/Stack";
 import CircularProgress from "@mui/material/CircularProgress";
-import { Skeleton } from "@mui/material";
+import Stack from "@mui/material/Stack";
+import * as React from "react";
 
 export default function CircularColor({ ...props }) {
   return (

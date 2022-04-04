@@ -1,18 +1,15 @@
 import { Box, Button, Paper, Stack, Typography } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import useWindowSize from "../../../Hook/useWindowSize";
-import CustomizedSearch from "../_components/Search/SearchMui";
-import { actFetchSearchService } from "./Search/modules/actions";
 import { actShowModalPopup } from "../../../components/ModalPopup/module/actions";
+import CustomizedSearch from "../_components/Search/SearchMui";
+import AddService from "./Add/AddService";
+import { actFetchSearchService } from "./Search/modules/actions";
 import "./style.css";
 import TableServices from "./_component/TableServices";
-import { actFetchServicesList } from "./_module/actions";
-import AddService from "./Add/AddService";
 
 export default function ServicesManagement() {
   const [keySearch, setkeyName] = useState("");
-  const size = useWindowSize();
   const dispatch = useDispatch();
 
   const services = useSelector((state) => state.searchServiceReducer.data);
@@ -27,6 +24,7 @@ export default function ServicesManagement() {
 
   useEffect(() => {
     dispatch(actFetchSearchService(keySearch, 0));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [keySearch, dataDelete, dataUpdate, dataAdd]);
 
   ////Search //////

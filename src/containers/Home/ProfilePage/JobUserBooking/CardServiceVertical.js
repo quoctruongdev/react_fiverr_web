@@ -39,7 +39,7 @@ export default function CardServiceVertical({ data }) {
           />
           <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
             <CardContent sx={{ flex: "1 0 auto" }}>
-              <Typography component="div" variant="h5">
+              <Typography component="div" variant="h6">
                 {data?.name}
               </Typography>
               <Typography
@@ -70,7 +70,6 @@ export default function CardServiceVertical({ data }) {
               sx={{
                 display: "flex",
                 alignItems: "center",
-                p: 1,
                 justifyContent: "flex-end",
               }}
             >
@@ -83,7 +82,7 @@ export default function CardServiceVertical({ data }) {
               >
                 Read More
               </Button>
-              <Button
+              {/* <Button
                 onClick={() => {
                   dispatch(actFetchDoneServiceUserBooking(data?._id));
                 }}
@@ -92,7 +91,7 @@ export default function CardServiceVertical({ data }) {
                 color="error"
               >
                 Remove
-              </Button>
+              </Button> */}
             </Box>
           </Box>
         </Card>

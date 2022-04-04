@@ -103,6 +103,7 @@ export default function DashboardPage() {
     return () => {
       clearTimeout(ResizeSidebar);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [size.width]);
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);

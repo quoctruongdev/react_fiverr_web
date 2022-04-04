@@ -1,6 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import Loader from "../../../../components/Loader/Loader";
+import ButtonStyle from "../../../../components/MaterialUI/ButtonStyle/index";
 
 export default function SearchNotFound() {
   const loading = useSelector((state) => state.categoriesMainReducer.loading);
@@ -24,12 +26,15 @@ export default function SearchNotFound() {
             Try a new search or get a free quote for your project from our
             community of freelancers.
           </p>
-          <a
-            href="/#"
+          <NavLink
+            style={{
+              textDecoration: "none",
+            }}
+            to="/"
             className="px-8 py-3 font-semibold rounded dark:bg-green-400 dark:text-coolGray-900"
           >
-            Back to homepage
-          </a>
+            <ButtonStyle>Back to homepage</ButtonStyle>
+          </NavLink>
         </div>
       </div>
     </section>

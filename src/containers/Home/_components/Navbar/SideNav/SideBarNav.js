@@ -1,7 +1,7 @@
 import * as React from "react";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import { Box, Divider } from "@mui/material";
-import SidebarCollapse from "../SidebarCollapse/SidebarCollapse";
+import SidebarCollapse from "../../SidebarCollapse/SidebarCollapse";
 
 export default function SwipeSideBar({ sideBar, toggleDrawer }) {
   const list = () => (

@@ -75,6 +75,13 @@ const routesHome = [
       import("../containers/Home/CategoriesSubPage/CategoriesSubPage")
     ),
   },
+  {
+    exact: false,
+    path: "/my-list/:name",
+    component: lazy(() =>
+      import("../containers/Home/myListServicePage/myListService")
+    ),
+  },
 ];
 
 const routesAdmin = [

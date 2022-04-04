@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { actAuthApi } from "./modules/actions";
-import { useSelector, useDispatch } from "react-redux";
-import Loader from "./../../../components/Loader/Loader";
 
 function AuthPage(props) {
   const [state, setState] = useState({ email: "", password: "" });

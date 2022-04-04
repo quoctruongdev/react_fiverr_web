@@ -5,6 +5,7 @@ import Avatar from "@mui/material/Avatar";
 import { deepOrange } from "@mui/material/colors";
 import { Rate } from "antd";
 import { Box, Typography } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
 export default function Overview({ data, dataUserCreated }) {
   function renderLevelSeller() {
@@ -18,9 +19,34 @@ export default function Overview({ data, dataUserCreated }) {
     }
   }
 
+  const breadcrumbs = [
+    <NavLink
+      style={{ color: "#1dbf73", fontSize: 12 }}
+      underline="hover"
+      key="1"
+      to="/"
+    >
+      FIVERR
+    </NavLink>,
+    <NavLink
+      className="uppercase"
+      underline="hover"
+      key="2"
+      color="red"
+      style={{ color: "#1dbf73", fontSize: 12 }}
+      to={`/list-type-job/${data?.type?._id}`}
+    >
+      {data?.type?.name ? data?.type?.name : "SERVICE"}
+    </NavLink>,
+    <Typography key="3" color="text.primary">
+      {data?.subType?.name}
+    </Typography>,
+  ];
+
   return (
     <div id="overview">
-      <BreadcrumbsComponent data={data} />
+      {/* <BreadcrumbsComponent data={data} /> */}
+      <BreadcrumbsComponent>{breadcrumbs}</BreadcrumbsComponent>
       <Typography variant="h5"> {data?.name}</Typography>
       <Box display="flex" name="overview" className="seller-overview ">
         <Avatar
