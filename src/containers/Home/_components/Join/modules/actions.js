@@ -1,9 +1,10 @@
 import * as ActionType from "./constants";
 import { apiClient } from "../../../../../utils/apiutils";
 import { successNotice } from "../../Alert";
-const TIME_EXP = 3600000;
-
-// "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTk4YWQ2NGFlZjM0NDAwMWNlZDA5NGEiLCJlbWFpbCI6ImFuaFR1eWV0QGdtYWlsLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0MTYzNTA0Nn0.L4TaY1iZHjQE7UlbeMFbdtRY9BH3_32pOQcpYnFnz2U"
+import { actSetMessage } from "../../../../../components/Notification/module/actions";
+import { Button, IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { actLoginApi } from "../../Login/modules/actions";
 
 export const actJoinApi = (user, history) => {
   return (dispatch) => {
@@ -11,10 +12,16 @@ export const actJoinApi = (user, history) => {
     apiClient
       .post("auth/signup", user)
       .then((result) => {
-        history.replace("/login");
-        successNotice(
-          "You have successfully registered. Please login to experience Fiverr's services",
-          "0vh"
+        const dataLogin = {
+          email: user?.email,
+          password: user?.password,
+        };
+        dispatch(
+          actSetMessage(
+            "You have successfully registered.",
+            "success",
+            action(dispatch, dataLogin, history)
+          )
         );
         dispatch(actJoinSuccess(result.data));
       })
@@ -24,6 +31,29 @@ export const actJoinApi = (user, history) => {
   };
 };
 
+const action = (dispatch, dataLogin, history) => (
+  <>
+    <Button
+      onClick={() => {
+        dispatch(actLoginApi(dataLogin, history));
+      }}
+      sx={{ color: "#ffee33" }}
+      size="small"
+    >
+      Login Now
+    </Button>
+    <IconButton
+      size="small"
+      aria-label="close"
+      color="error"
+      onClick={() => {
+        dispatch(actSetMessage());
+      }}
+    >
+      <CloseIcon fontSize="small" />
+    </IconButton>
+  </>
+);
 const actJoinRequest = () => {
   return {
     type: ActionType.JOIN_REQUEST,

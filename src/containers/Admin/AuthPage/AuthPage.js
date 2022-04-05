@@ -7,7 +7,6 @@ function AuthPage(props) {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.authReducer.loading);
   const error = useSelector((state) => state.authReducer.error);
-  // const data = useSelector((state) => state.authReducer.data);
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -52,7 +51,8 @@ function AuthPage(props) {
               type="text"
               name="email"
               id="email"
-              placeholder="email"
+              defaultValue=""
+              placeholder="Email"
               className="w-full px-4 py-3 rounded-md border-gray-700 bg-gray-200 text-black"
             />
           </div>
@@ -69,6 +69,8 @@ function AuthPage(props) {
               className="w-full px-4 py-3 rounded-md border-gray-700 bg-gray-200 text-gray-900"
             />
             {renderNoti()}
+            <p>Acount Test: acountadmintest@gmail.com</p>
+            <p>Password: 12345678</p>
           </div>
           <button className="block w-full p-3 text-center rounded-sm text- bg-indigo-700   ">
             {loading ? (

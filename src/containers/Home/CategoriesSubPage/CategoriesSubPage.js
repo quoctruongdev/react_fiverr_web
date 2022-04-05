@@ -10,10 +10,11 @@ import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Typography from "@mui/material/Typography";
 import ModalVideo from "../_components/ModalVideo/ModalVideo";
 import CardSevices from "../_components/CardSevices";
-import { Grid } from "@mui/material";
+import { Box, Grid, Stack } from "@mui/material";
 import useModal from "../../../Hook/ModalHook";
 import "./style.css";
 import BreadcrumbsComponent from "../_components/Breadcrumbs/BreadcrumbsComponent";
+import { Empty } from "antd";
 
 export default function CategoriesSubPage(props) {
   let pageSize = 50;
@@ -30,6 +31,7 @@ export default function CategoriesSubPage(props) {
   );
   const dispatch = useDispatch();
   useEffect(() => {
+    document.title = `${subname} Service|Fiverr`;
     dispatch(actFetchCategoriesSubType(subId));
     dispatch(actFetchUsersList());
   }, [subId]);
@@ -89,8 +91,14 @@ export default function CategoriesSubPage(props) {
   if (loading) return <Loader />;
   return (
     <>
-      <div className="List__Job m-5">
-        <header className="subcategory-header px-2">
+      {/* <Box className="List__Job m-5"> */}
+      <Box
+        sx={{
+          px: { xs: 3, sm: 4, md: 6 },
+          py: { xs: 3, sm: 4, md: 6 },
+        }}
+      >
+        <header className="subcategory-header">
           <BreadcrumbsComponent sx={{ fontSize: "12px" }}>
             {breadcrumbs}
           </BreadcrumbsComponent>
@@ -129,9 +137,20 @@ export default function CategoriesSubPage(props) {
           </div>
         </header>
         <Grid sx={{ py: 4 }} container spacing={4}>
+          {data?.length === 0 && (
+            <Stack
+              direction="row"
+              width="100%"
+              justifyContent="center"
+              alignItems="center"
+              minHeight={350}
+            >
+              <Empty />
+            </Stack>
+          )}
           {renderListJob()}
         </Grid>
-      </div>
+      </Box>
       <div className="panigation">
         <Pagination
           defaultPageSize={pageSize}

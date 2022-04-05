@@ -9,6 +9,7 @@
 }
 .mp-seller-profile {
   min-width: 300px;
+  margin-bottom: 20px;
 }
 .seller-card {
   position: relative;
@@ -329,12 +330,13 @@
 /* *********Right Profile******** */
 
 .buyer-profile .create-a-gig {
+  text-align: justify;
   background-color: #fff;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding: 20px 24px;
   border: 1px solid #ddd;
-  margin-top: 20px;
   align-items: center;
 }
 

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import List from "@mui/material/List";
 import { useSelector } from "react-redux";
 import Collapse from "@mui/material/Collapse";
@@ -10,8 +11,14 @@ import ListSubheader from "@mui/material/ListSubheader";
 import ListItemButton from "@mui/material/ListItemButton";
 import ButtonStyle from "../../../../components/MaterialUI/ButtonStyle";
 import { NavLink } from "react-router-dom";
+import { actShowModalPopup } from "../../../../components/ModalPopup/module/actions";
+import JoinForm from "../Join/JoinForm/JoinForm";
+import { useHistory } from "react-router-dom";
+import LoginForm from "../Login/LoginForm/LoginForm";
 
 export default function NestedList() {
+  const history = useHistory();
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [opensub, setOpensub] = useState(false);
   const [refDataItem, setRefDataItem] = useState();
@@ -39,11 +46,33 @@ export default function NestedList() {
           component="div"
           id="nested-list-subheader"
         >
-          <ButtonStyle>Join Fivver</ButtonStyle>
+          <ButtonStyle
+            onClick={() => {
+              dispatch(
+                actShowModalPopup({
+                  Component: <JoinForm history={history} />,
+                  open: true,
+                  sx: { p: 0 },
+                })
+              );
+            }}
+          >
+            Join Fivver
+          </ButtonStyle>
         </ListSubheader>
       }
     >
-      <ListItemButton>
+      <ListItemButton
+        onClick={() => {
+          dispatch(
+            actShowModalPopup({
+              Component: <LoginForm history={history} />,
+              open: true,
+              sx:{p:0}
+            })
+          );
+        }}
+      >
         <ListItemText primary="Sign In" />
       </ListItemButton>
       <ListItemButton onClick={() => setOpen(!open)}>

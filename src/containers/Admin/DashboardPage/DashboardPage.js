@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import MuiDrawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
@@ -20,7 +19,7 @@ import Paper from "@mui/material/Paper";
 import { createTheme, styled, ThemeProvider } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, useHistory } from "react-router-dom";
 import BadgeStyle from "../../../components/Badge/BadgeComponent";
@@ -83,7 +82,7 @@ export default function DashboardPage() {
   const history = useHistory();
   const dispatch = useDispatch();
   const size = useWindowSize();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -106,7 +105,7 @@ export default function DashboardPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [size.width]);
 
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -119,8 +118,6 @@ export default function DashboardPage() {
     <BrowserRouter>
       <ThemeProvider theme={mdTheme}>
         <Paper sx={{ display: "flex" }}>
-          <CssBaseline />
-
           <AppBar color="inherit" position="absolute" open={open}>
             <Toolbar
               sx={{
@@ -151,10 +148,14 @@ export default function DashboardPage() {
                 {logo("#404145")}
               </ListItem>
               <Typography align="right" sx={{ flexGrow: 1 }}>
-                <IconButton>
+                <IconButton disableRipple>
                   <Box sx={{ flexGrow: 0 }}>
                     <Tooltip title="Open settings">
-                      <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                      <IconButton
+                        disableRipple
+                        onClick={handleOpenUserMenu}
+                        sx={{ p: 0 }}
+                      >
                         <BadgeStyle data={userAdmin} styles={32} />
                       </IconButton>
                     </Tooltip>
@@ -193,29 +194,6 @@ export default function DashboardPage() {
                       transformOrigin={{ horizontal: "right", vertical: "top" }}
                       anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
                     >
-                      {/* <MenuItem
-                        sx={{
-                          color: "#74767e",
-                          ":hover": {
-                            color: "#19a463",
-                            textDecoration: "none",
-                          },
-                        }}
-                        to={`/profile/${userAdmin?.name}`}
-                        component={Link}
-                      >
-                        <Avatar src={userAdmin?.avatar} /> Profile
-                      </MenuItem>
-                      <MenuItem>
-                        <Avatar /> My account
-                      </MenuItem>
-                      <Divider /> */}
-                      {/* <MenuItem>
-                        <ListItemIcon>
-                          <Settings fontSize="small" />
-                        </ListItemIcon>
-                        Settings
-                      </MenuItem> */}
                       <MenuItem
                         onClick={() => {
                           dispatch(actLogout(history));
@@ -254,7 +232,8 @@ export default function DashboardPage() {
               <ListItem sx={{ pl: 10, pr: 0 }} disableRipple>
                 {logo("#fff")}
               </ListItem>
-              <IconButton onClick={toggleDrawer}>
+
+              <IconButton disableRipple onClick={toggleDrawer}>
                 <ChevronLeftIcon color="#ffff" />
               </IconButton>
             </Toolbar>

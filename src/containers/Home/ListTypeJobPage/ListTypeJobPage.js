@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useRef, useLayoutEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Loader from "../../../components/Loader/Loader";
@@ -22,18 +22,20 @@ import "./style.css";
 
 export default function ListTypeJobPage(props) {
   const defaultImage = "/asset/image_defaut.png";
+  const imageBg = `/asset/img/mainCategories/${Math.floor(
+    Math.random() * 10
+  )}.jpeg`;
   const id = props.match.params.id;
   const data2 = useSelector((state) => state.listSubTypeReducer.data);
   const loading2 = useSelector((state) => state.listSubTypeReducer.loading);
   const dataVideo = useSelector(
     (state) => state.categoriesSubTypeReducer.dataVideo
   );
-
   const dispatch = useDispatch();
+  document.title = `${data2?.name ?? ""} | Fiverr`;
   useEffect(() => {
     dispatch(actFetchSubTypeJob(id));
   }, [id]);
-
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -103,8 +105,7 @@ export default function ListTypeJobPage(props) {
         <Box
           sx={{
             backgroundImage: {
-              // xs: `url(${data2?.subTypeJobs?.[1]?.image})`,
-              xs: 'url("https://fiverr-res.cloudinary.com/w_iw_div_3.0,q_auto,f_auto/general_assets/categories/assets/f3/mobile_Video_and_Animation.jpg")',
+              xs: `url(${imageBg})`,
               md: "none",
               sm: "none",
             },

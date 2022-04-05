@@ -1,23 +1,31 @@
+import Logout from "@mui/icons-material/Logout";
+// MUI///
+import {
+  AppBar,
+  Avatar,
+  Box,
+  Container,
+  Divider,
+  IconButton,
+  Menu,
+  MenuItem,
+  Tab,
+  Toolbar,
+  Tooltip,
+} from "@mui/material";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useEffect, useState } from "react";
-import "./navbar.css";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, useLocation, useHistory } from "react-router-dom";
-import { actFetchDetailUser } from "../../../Admin/UsersManagement/Edit/_modules/actions";
-
-// MUI///
-import { AppBar, Box, Toolbar, Divider, IconButton } from "@mui/material";
-import { Tab, MenuItem, Tooltip, Menu, Avatar, Container } from "@mui/material";
-import Typography from "@mui/material/Typography";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import Settings from "@mui/icons-material/Settings";
-import Logout from "@mui/icons-material/Logout";
-
-import SwipeSideBar from "./SideNav/SideBarNav";
-import { actLogout } from "../Login/modules/actions";
-import PopperPopup from "../../../../components/MaterialUI/Popover";
+import { Link, NavLink, useHistory, useLocation } from "react-router-dom";
 import BadgeStyle from "../../../../components/Badge/BadgeComponent";
 import { logo } from "../../../../components/Logo/logo";
+import PopperPopup from "../../../../components/MaterialUI/Popover";
+import { actFetchDetailUser } from "../../../Admin/UsersManagement/Edit/_modules/actions";
+import { actLogout } from "../Login/modules/actions";
+import "./navbar.css";
+import SwipeSideBar from "./SideNav/SideBarNav";
 
 export default function MainNavbar() {
   const data = useSelector((state) => state.detailUserReducer.data);
@@ -30,7 +38,7 @@ export default function MainNavbar() {
   ];
   const pagesLogin = [
     { name: "Services", url: "/total-job" },
-    { name: " Message", url: "#" },
+    { name: " Messages", url: "#" },
     { name: "Lists", url: `/my-list/${data?.name}` },
   ];
 
@@ -105,7 +113,14 @@ export default function MainNavbar() {
         className="listItem"
         disableTouchRipple
         sx={{
-          display: { xs: "none", sm: "none", md: "none", lg: "flex" },
+          display: {
+            xs: page?.name === "Join" ? "flex" : "none",
+            sm:
+              page?.name === "Join" || page?.name === "Lists" ? "flex" : "none",
+            md:
+              page?.name === "Join" || page?.name === "Lists" ? "flex" : "none",
+            lg: "flex",
+          },
           textTransform: "none",
           fontSize: 16,
           fontWeight: 600,
@@ -227,7 +242,6 @@ export default function MainNavbar() {
                       }}
                     >
                       {handleOnSubmit()}
-                      {/* <button className="btn_search">Search</button> */}
                     </Box>
                   </form>
                 </div>
@@ -249,8 +263,8 @@ export default function MainNavbar() {
             <Box
               id="listItemNav"
               sx={{
-                flexGrow: 1,
-                display: { xs: "none", sm: "flex", md: "flex" },
+                flexGrow: { sx: 0, sm: 1, md: 1 },
+                display: { sx: "flex", sm: "flex", md: "flex" },
                 justifyContent: "flex-end",
               }}
             >
@@ -260,7 +274,11 @@ export default function MainNavbar() {
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <BadgeStyle styles={32} data={data} loading={loading} />
+                    <BadgeStyle
+                      styles={32}
+                      data={userLogin?.user}
+                      loading={loading}
+                    />
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -306,10 +324,10 @@ export default function MainNavbar() {
                         textDecoration: "none",
                       },
                     }}
-                    to={`/profile/${data?.name}`}
+                    to={`/profile/${userLogin?.user?.name}`}
                     component={Link}
                   >
-                    <Avatar src={data?.avatar} /> Profile
+                    <Avatar src={userLogin?.user?.avatar} /> Profile
                   </MenuItem>
                   <Divider />
                   <MenuItem

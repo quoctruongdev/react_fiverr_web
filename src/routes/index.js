@@ -27,11 +27,6 @@ const routesHome = [
   },
   {
     exact: false,
-    path: "/about",
-    component: lazy(() => import("../containers/Home/AboutPage/AboutPage")),
-  },
-  {
-    exact: false,
     path: "/detail-job/:id/:userCreated",
     component: lazy(() => import("../containers/Home/DetailPage/DetailPage")),
   },

@@ -33,7 +33,7 @@ export default function SearchNotFound() {
             to="/"
             className="px-8 py-3 font-semibold rounded dark:bg-green-400 dark:text-coolGray-900"
           >
-            <ButtonStyle>Back to homepage</ButtonStyle>
+            <ButtonStyle justifyContent="center">Back to homepage</ButtonStyle>
           </NavLink>
         </div>
       </div>

@@ -1,25 +1,72 @@
-import React, { useState } from "react";
+import { Formik } from "formik";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import Loader from "../../../../components/Loader/Loader";
-import JoinForm from "./JoinForm/JoinForm";
-import { actJoinApi } from "./modules/actions";
+import LoginForm from "../../Login/LoginForm/LoginForm";
+import { actJoinApi } from "./../modules/actions";
+import { actShowModalPopup } from "../../../../../components/ModalPopup/module/actions";
 import "./style.css";
+export default function JoinForm({ history }) {
+  const initialValues = {
+    name: "",
+    email: "",
+    password: "",
+  };
 
-export default function Join(props) {
-  const loading2 = useSelector((state) => state.categoriesMainReducer.loading);
+  const validate = (values) => {
+    let errors = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+
+    if (!values.name) {
+      errors.name = "Name is required";
+    } else if (values.name.length < 2) {
+      errors.name = "Name too short";
+    } else if (values.name.length > 25) {
+      errors.name = "Name too long";
+    }
+    if (!values.email) {
+      errors.email = "Email is required";
+    } else if (!regex.test(values.email)) {
+      errors.email = "Invalid Email";
+    }
+
+    if (!values.password) {
+      errors.password = "Password is required";
+    } else if (values.password.length < 4) {
+      errors.password = "Password too short";
+    }
+
+    return errors;
+  };
+
+  const dispatch = useDispatch();
   const loading = useSelector((state) => state.joinReducerHome.loading);
-  const error = useSelector((state) => state.joinReducerHome.error);
-  if (loading || loading2) return <Loader />;
+  const dataModal = useSelector((state) => state.modalReducer.data);
+  const submitForm = (values) => {
+    dispatch(actJoinApi(values, history));
+  };
   return (
-    <>
-      <div className="Join__component">
-        <JoinForm history={props.history} />
-        {/* <section className="Join__Content">
-          <form onSubmit={handleJoin}>
+    <Formik
+      initialValues={initialValues}
+      validate={validate}
+      onSubmit={submitForm}
+    >
+      {(formik) => {
+        const {
+          values,
+          handleChange,
+          handleSubmit,
+          errors,
+          touched,
+          handleBlur,
+          isValid,
+          dirty,
+        } = formik;
+        return (
+          <form className="Join__Content" onSubmit={handleSubmit}>
             <div className="sign-in-form">
               <div className="form-header">
-                <h4>Join Fiverr</h4>
+                <h4>Sign In to Fiverr</h4>
               </div>
               <div className="social-signing">
                 <button
@@ -109,65 +156,108 @@ export default function Join(props) {
                   <span>or</span>
                 </div>
               </div>
+
               <div className="field">
                 <div className="field-input-wrapper">
                   <input
-                    onChange={handleOnChange}
-                    className=" form-control field-input"
                     type="text"
-                    placeholder="Choose a Username"
+                    placeholder="Choose your name"
                     name="name"
+                    value={values.name}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={
+                      errors.name && touched.name
+                        ? "input-error form-control field-input"
+                        : "form-control field-input"
+                    }
                   />
+                  {errors.name && touched.name && (
+                    <span className="error">{errors.name}</span>
+                  )}
                 </div>
               </div>
               <div className="field">
-                <div className=" field-input-wrapper">
+                <div className="field-input-wrapper">
                   <input
-                    onChange={handleOnChange}
-                    className=" form-control field-input"
                     type="email"
                     placeholder="Email "
                     name="email"
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={
+                      errors.email && touched.email
+                        ? "input-error form-control field-input"
+                        : "form-control field-input"
+                    }
                   />
+                  {errors.email && touched.email && (
+                    <span className="error">{errors.email}</span>
+                  )}
                 </div>
               </div>
               <div className="field">
                 <div className="field-input-wrapper">
                   <input
-                    onChange={handleOnChange}
-                    className=" form-control field-input"
                     type="password"
                     placeholder="Password"
                     name="password"
                     maxLength={100}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={
+                      errors.password && touched.password
+                        ? "input-error form-control field-input "
+                        : "form-control field-input"
+                    }
                   />
+                  {errors.password && touched.password && (
+                    <span className="error">{errors.password}</span>
+                  )}
                 </div>
               </div>
-              {renderNotice()}
-
               <button
-                className="submit-button Join__btn btn co-white bg-co-green-700"
-                // onClick={() => {
-                //   handleJoin();
-                // }}
+                className={`submit-button Login__btn btn co-white bg-co-green-700 ${
+                  !(dirty && isValid) ? "disabled-btn" : ""
+                }`}
                 type="submit"
+                disabled={!(dirty && isValid)}
               >
-                <p>Continues</p>
+                {loading ? (
+                  <span
+                    className="spinner-border  "
+                    role="status"
+                    aria-hidden="true"
+                  />
+                ) : (
+                  <p>Continues</p>
+                )}
               </button>
             </div>
-          </form>
-          <footer className="signin-content-footer">
             <div className="signing-footer text-body-2">
               <p> Already a member?</p>
-              <NavLink to="/login">
+              <NavLink
+                onClick={() => {
+                  dataModal?.open &&
+                    dispatch(
+                      actShowModalPopup({
+                        Component: <LoginForm />,
+                        open: true,
+                        sx: { p: 0 },
+                      })
+                    );
+                }}
+                to={dataModal?.open ? "#/" : "/login"}
+              >
                 <button type="button" className="link-button text-body-2 green">
                   Sign In
                 </button>
               </NavLink>
             </div>
-          </footer>
-        </section> */}
-      </div>
-    </>
+          </form>
+        );
+      }}
+    </Formik>
   );
 }

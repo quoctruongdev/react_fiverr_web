@@ -39,10 +39,10 @@ export const actLoginApi = (user, history) => {
         //Luu trang thai login
         localStorage.setItem("UserClient", JSON.stringify(result.data));
         // dispatch(actSetMessage(result?.data?.message, "success"));
-        dispatch(actSetMessage("You are already logged in", "success"));
         dispatch(actLoginSuccess(result.data));
         dispatch(actShowModalPopup({ open: false }));
         history.replace("/");
+        dispatch(actSetMessage("You are already logged in", "success"));
       })
       .catch((error) => {
         dispatch(actLoginFailed(error));

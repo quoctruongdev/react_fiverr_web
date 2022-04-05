@@ -207,7 +207,7 @@ export default function AddService() {
                   <CircularProgress color="success" size={16} />
                 }
               >
-                Add User
+                Add Service
               </LoadingButton>
             }
           />

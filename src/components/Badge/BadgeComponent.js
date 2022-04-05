@@ -41,7 +41,7 @@ export default function BadgeStyle({ loading, data, styles }) {
       anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       variant="dot"
     >
-      {loading || !data?.avatar ? (
+      {loading ? (
         <Skeleton variant="circular" width={32} height={32} />
       ) : (
         <Avatar
@@ -53,7 +53,7 @@ export default function BadgeStyle({ loading, data, styles }) {
             textTransform: "uppercase",
           }}
           alt={data?.name?.toUpperCase()}
-          src={data?.avatar}
+          src={data?.avatar ? data?.avatar : "/broken-image.jpg"}
         />
       )}
     </StyledBadge>

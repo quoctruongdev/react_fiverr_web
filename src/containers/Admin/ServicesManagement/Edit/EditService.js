@@ -304,7 +304,7 @@ export default function EditService({ serviceItem }) {
                   <CircularProgress color="success" size={16} />
                 }
               >
-                Add User
+                Save Change
               </LoadingButton>
             }
           />

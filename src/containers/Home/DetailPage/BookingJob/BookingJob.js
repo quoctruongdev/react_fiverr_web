@@ -239,17 +239,15 @@ export default function BookingJob(props) {
                     </article>
                   </div>
                   <footer className="tab-footer">
-                    <NavLink
-                      // to={`/checkout/customize/${id}`}
-                      to="#/"
-                    >
+                    <NavLink to="#/">
                       <button
                         onClick={() => {
-                          // dispatch(actFetchBookingJob(id));
                           userLogin &&
                             dispatch(
                               actShowModalPopup({
-                                Component: <CheckoutPage data={data} />,
+                                Component: (
+                                  <CheckoutPage cost={1} data={data} />
+                                ),
                                 open: true,
                               })
                             );
@@ -396,7 +394,9 @@ export default function BookingJob(props) {
                           userLogin &&
                             dispatch(
                               actShowModalPopup({
-                                Component: <CheckoutPage data={data} />,
+                                Component: (
+                                  <CheckoutPage cost={4.5} data={data} />
+                                ),
                                 open: true,
                               })
                             );
@@ -549,7 +549,9 @@ export default function BookingJob(props) {
                           userLogin &&
                             dispatch(
                               actShowModalPopup({
-                                Component: <CheckoutPage data={data} />,
+                                Component: (
+                                  <CheckoutPage cost={7.5} data={data} />
+                                ),
                                 open: true,
                               })
                             );

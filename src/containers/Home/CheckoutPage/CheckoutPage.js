@@ -1,38 +1,34 @@
 import {
-  Typography,
-  Stepper,
-  Paper,
-  Step,
   Button,
+  Paper,
+  Stack,
+  Step,
   StepLabel,
+  Stepper,
+  Typography,
 } from "@mui/material";
-import AddressForm from "./AddressForm";
-import { useDispatch } from "react-redux";
-import PaymentForm from "./PaymentForm";
-import OrderDetail from "./OrderDetail";
 import React, { useState } from "react";
-import Success from "./Success";
+import { useDispatch } from "react-redux";
+import ButtonStyle from "../../../components/MaterialUI/ButtonStyle/index";
 import { actFetchBookingJob } from "../DetailPage/BookingJob/modules/actions";
+import OrderDetail from "./OrderDetail";
+import PaymentForm from "./PaymentForm";
 
-const steps = ["Order Detail", "Confirm & Pay", , "Review your order"];
+const steps = ["Order Detail", "Confirm & Pay"];
 
-function getStepContent(step, data) {
+function getStepContent(step, data, cost) {
   switch (step) {
     case 0:
-      return <OrderDetail data={data} />;
+      return <OrderDetail cost={cost} data={data} />;
     case 1:
       return <PaymentForm />;
-    // case 2:
-    //   return <AddressForm />;
-    case 2:
-      return <Success />;
 
     default:
       throw new Error("Unknown step");
   }
 }
 
-function CheckoutPage({ data }) {
+function CheckoutPage({ data, cost }) {
   const dispatch = useDispatch();
   const [activeStep, setActiveStep] = useState(0);
 
@@ -82,29 +78,28 @@ function CheckoutPage({ data }) {
                     Thank you for your order.
                   </Typography>
                   <Typography variant="subtitle1">
-                    Your order number is #2001539. We have emailed your order
+                    Your order code is #{data?._id}. We have emailed your order
                     confirmation, and will send you an update when your order
                     has shipped.
                   </Typography>
                 </>
               ) : (
                 <>
-                  {getStepContent(activeStep, data)}
-                  <div>
+                  {getStepContent(activeStep, data, cost)}
+                  <Stack direction="row">
                     {activeStep !== 0 && (
                       <Button onClick={handleBack}>Back</Button>
                     )}
-                    <Button
-                      variant="contained"
-                      color="primary"
+                    <ButtonStyle
                       onClick={() => {
                         handleNext();
-                        dispatch(actFetchBookingJob(data?._id));
+                        activeStep === steps.length - 1 &&
+                          dispatch(actFetchBookingJob(data?._id));
                       }}
                     >
                       {activeStep === steps.length - 1 ? "Place order" : "Next"}
-                    </Button>
-                  </div>
+                    </ButtonStyle>
+                  </Stack>
                 </>
               )}
             </>

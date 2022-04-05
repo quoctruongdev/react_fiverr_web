@@ -24,7 +24,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import { actFetchAddUser } from "../../UsersManagement/Add/modules/actions";
 
-export default function AddUser({ onClose, onOpen, type }) {
+export default function AddUser(props) {
   const loadingBtn = useSelector((state) => state.addUserReducer.loading);
   const error = useSelector((state) => state.addUserReducer.error);
   const errorMessage = error?.response?.data.message;
@@ -85,20 +85,6 @@ export default function AddUser({ onClose, onOpen, type }) {
     const date = moment(valueDate).format("YYYY-MM-DD");
     formik.setFieldValue("birthday", date);
   };
-  // const handleAddUser = (e) => {
-  //   e.preventDefault();
-  //   dispatch(actFetchAddUser(dataAddUser));
-  // };
-  // const handleOnchange = (e) => {
-  //   const { name, value } = e.target;
-  //   setdataAddUser({
-  //     ...dataAddUser,
-  //     [name]: value,
-  //   });
-  // };
-  // const resetForm = () => {
-  //   document.getElementById("formAddUser").reset();
-  // };
 
   return (
     <>
@@ -303,7 +289,6 @@ export default function AddUser({ onClose, onOpen, type }) {
                 color="secondary"
                 loadingPosition="start"
                 startIcon={<AddBoxSharpIcon />}
-                // disabled={!formik.isValid || !formik.dirty}
                 variant="contained"
                 loading={loadingBtn}
                 loadingIndicator={

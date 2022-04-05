@@ -59,7 +59,7 @@ export default function UserManagement() {
                   Component: <AddUser />,
                   open: true,
                   title: "Add User",
-                  action: "Create User",
+                  action: null,
                 })
               );
             }}

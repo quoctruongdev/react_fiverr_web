@@ -1,4 +1,4 @@
-.Login__Content {
+.Join__Content {
   width: 400px;
   color: #404145;
   border-radius: 4px;
@@ -128,8 +128,4 @@
 }
 .btn.co-white.bg-co-green-700.disabled-btn:hover {
   background-color: #1dbf73 !important;
-}
-.acount__test {
-  color: #19a463;
-  margin-bottom: 0 !important;
 }

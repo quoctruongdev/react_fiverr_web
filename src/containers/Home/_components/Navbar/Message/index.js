@@ -17,6 +17,7 @@ import { NavLink } from "react-router-dom";
 import { IconButton, ListItemIcon, Stack } from "@mui/material";
 import NotificationsOffIcon from "@mui/icons-material/NotificationsOff";
 import "./style.css";
+import { makeStyles } from "@mui/styles";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -30,7 +31,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: 3, color: "62646a" }}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -51,9 +52,14 @@ function a11yProps(index) {
   };
 }
 
-export default function Message() {
-  // const [valueFooter, setValueFooter] = React.useState(0);
+const useStyles = makeStyles((theme) => ({
+  selected: {
+    "&.Mui-selected": { color: "#1dbf73" },
+  },
+}));
 
+export default function Message() {
+  const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
@@ -68,7 +74,6 @@ export default function Message() {
   return (
     <Box
       sx={{
-        bgcolor: "background.paper",
         width: 400,
         height: 475,
         border: "1px solid #e4e5e7",
@@ -97,12 +102,10 @@ export default function Message() {
           aria-label="full width tabs example"
         >
           <Tab
+            className={classes.selected}
             sx={{
               textTransform: "capitalize",
               minHeight: 0,
-              ":focus": {
-                color: "#1dbf73",
-              },
               fontWeight: 600,
               borderBottom: "1px solid #e4e5e7",
             }}
@@ -112,12 +115,10 @@ export default function Message() {
             {...a11yProps(0)}
           />
           <Tab
+            className={classes.selected}
             sx={{
               textTransform: "capitalize",
               minHeight: 0,
-              ":focus": {
-                color: "#1dbf73",
-              },
               fontWeight: 600,
               borderBottom: "1px solid #e4e5e7",
               borderLeft: "1px solid #e4e5e7",
@@ -133,9 +134,8 @@ export default function Message() {
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={value}
         onChangeIndex={handleChangeIndex}
-        color="red"
       >
-        <TabPanel value={value} index={0} dir={theme.direction}>
+        <TabPanel value={value} index={0}>
           <div className="scroll-wrapper">
             <ul className="items-list">
               <li className="drawer-item read">
@@ -155,7 +155,7 @@ export default function Message() {
             </ul>
           </div>
         </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}>
+        <TabPanel value={value} index={1}>
           <Stack
             justifyContent="center"
             alignItems="center"
@@ -164,8 +164,8 @@ export default function Message() {
             height="350px"
           >
             <NotificationsOffIcon
+              color="disabled"
               sx={{
-                color: "#62646a",
                 fontSize: 60,
               }}
             />
@@ -178,6 +178,7 @@ export default function Message() {
         </TabPanel>
       </SwipeableViews>
       <BottomNavigation
+        className="Message__Footer"
         sx={{
           height: 32,
           borderTop: "1px solid #e4e5e7",
@@ -194,15 +195,21 @@ export default function Message() {
         // }}
       >
         <ListItemIcon>
-          <IconButton>
+          <IconButton disableRipple>
             <VolumeUpIcon fontSize="small" />
           </IconButton>
-          <IconButton>
+          <IconButton disableRipple>
             <SettingsIcon fontSize="small" />
           </IconButton>
         </ListItemIcon>
-
-        <BottomNavigationAction label="See All in Inbox" />
+        <BottomNavigationAction
+          disableRipple
+          sx={{
+            color: "#74767e!important",
+            fontSize: 12,
+          }}
+          label={value === 1 ? "See All in Inbox" : ""}
+        />
       </BottomNavigation>
     </Box>
   );

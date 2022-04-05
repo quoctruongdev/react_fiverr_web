@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 import { MailFilled, PhoneFilled } from "@ant-design/icons";
 import moment from "moment";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../../components/Loader/Loader";
 import { actFetchDetailUser } from "../../Admin/UsersManagement/Edit/_modules/actions";
@@ -9,7 +9,7 @@ import CardServiceVertical from "./JobUserBooking/CardServiceVertical";
 import { actFetchJobUserBooking } from "./JobUserBooking/modules/actions";
 import "./style.css";
 import { actFetchUploadAvatar } from "./UploadAvatar/modules/actions";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 
 export default function ProfilePage() {
   let users = JSON.parse(localStorage.getItem("UserClient"));
@@ -36,6 +36,7 @@ export default function ProfilePage() {
   useEffect(() => {
     dispatch(actFetchDetailUser(users?.user?._id || users?._id));
     dispatch(actFetchJobUserBooking());
+    document.title = `${users?.user?.name} | Fiverr`;
   }, [dataDone]);
 
   const [imgstate, setimgState] = useState("");
@@ -336,8 +337,18 @@ export default function ProfilePage() {
           </Grid>
           <Grid item xs={12} sm={6} md={8} lg={8}>
             <div className="buyer-profile  ">
-              <div className="business-identification">
-                <article
+              <Box
+                sx={{
+                  display: {
+                    xs: "none!important",
+                    md: "none!important",
+                    lg: "flex!important",
+                  },
+                  mb: "20px",
+                }}
+                className="business-identification"
+              >
+                <div
                   aria-label="Fiverr business banner"
                   className="flex flex-justify-between"
                 >
@@ -349,7 +360,6 @@ export default function ProfilePage() {
                       <img
                         src="https://npm-assets.fiverrcdn.com/assets/@fiverr-private/business_blocks/office-building.7ac5061.gif"
                         alt="Office building"
-                        // style={{ width: 60, height: 60 }}
                       />
                       <div className="m-l-24 flex flex-col mt-2 flex-items-start pl-3">
                         <p>
@@ -390,8 +400,8 @@ export default function ProfilePage() {
                       </div>
                     </div>
                   </div>
-                </article>
-              </div>
+                </div>
+              </Box>
               <div className="create-a-gig">
                 <p>
                   It seems that you don't have any active Gigs. Get selling!
@@ -399,10 +409,18 @@ export default function ProfilePage() {
                 <a
                   href="/seller_onboarding/overview"
                   className="btn-lrg-standard cta-btn js-create-a-gig-btn"
+                  style={{
+                    color: "#fff",
+                  }}
                 >
                   Create a New Gig
                 </a>
               </div>
+              {dataJobBooking?.length > 0 && (
+                <Typography mt={2} pt={2} fontWeight={600} variant="h5">
+                  Service booking
+                </Typography>
+              )}
               {handleJobUserBooking()}
             </div>
           </Grid>

@@ -2,8 +2,12 @@ import React from "react";
 import { ListItem, List, Typography, ListItemText } from "@mui/material";
 import { Card, CardContent, CardMedia, Stack, TextField } from "@mui/material";
 import { Box, Divider } from "@mui/material";
+import { useState } from "react";
 
-function OrderDetail({ data }) {
+function OrderDetail({ data, cost }) {
+  const [qty, setQty] = useState(1);
+  console.log(qty);
+  const defautImg = "/asset/image_defaut.png";
   return (
     <Box minWidth={500} paddingBottom="15px">
       <Typography py={1} variant="h5" gutterBottom>
@@ -13,7 +17,7 @@ function OrderDetail({ data }) {
         <CardMedia
           component="img"
           sx={{ width: 150 }}
-          image={data?.image}
+          image={data?.image ? data?.image : defautImg}
           alt="Live from space album cover"
         />
         <Box
@@ -34,7 +38,16 @@ function OrderDetail({ data }) {
               color="info"
               size="small"
               id="standard-basic"
+              onChange={(e) => {
+                setQty(e.target.value);
+              }}
               label="Qty"
+              defaultValue={qty}
+              inputProps={{
+                type: "number",
+                min: 1,
+                max: 20,
+              }}
               variant="standard"
               sx={{ width: 50 }}
             />
@@ -45,7 +58,7 @@ function OrderDetail({ data }) {
               }}
               variant="body2"
             >
-              US${data?.price}
+              US${data?.price * cost * qty}
             </Typography>
           </Stack>
         </Box>
@@ -60,11 +73,11 @@ function OrderDetail({ data }) {
       <List>
         <ListItem disablePadding>
           <ListItemText primary="Subtotal" />
-          <Typography variant="body2">US$9</Typography>
+          <Typography variant="body2">US$4</Typography>
         </ListItem>
         <ListItem disablePadding>
           <ListItemText primary="Service Fee" />
-          <Typography variant="body2">US$9</Typography>
+          <Typography variant="body2">US$2</Typography>
         </ListItem>
       </List>
       <Divider variant="fullWidth" />
@@ -74,10 +87,10 @@ function OrderDetail({ data }) {
             primaryTypographyProps={{
               sx: { fontWeight: 600 },
             }}
-            primary=" Total "
+            primary=" Total"
           />
           <Typography fontWeight={600} variant="body1">
-            US$94.9
+            US${data.price * cost * qty + 2 + 4}
           </Typography>
         </ListItem>
         <ListItem disablePadding>

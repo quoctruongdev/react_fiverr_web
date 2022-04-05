@@ -463,6 +463,9 @@ export default function TableUser({ users, loading, keySearch }) {
           alignItems="center"
           justifyContent="space-between"
           direction="row-reverse"
+          sx={{
+            height: dense || size.width <= 500 ? "36px" : "inherit",
+          }}
         >
           <TablePagination
             rowsPerPageOptions={[
@@ -484,6 +487,7 @@ export default function TableUser({ users, loading, keySearch }) {
             sx={{
               ml: 1,
               mb: 0,
+              whiteSpace: "nowrap",
             }}
             control={
               <Switch

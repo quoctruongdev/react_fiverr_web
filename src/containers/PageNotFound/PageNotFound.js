@@ -20,11 +20,10 @@ export default function PageNotFound() {
             />
           </h2>
           <p className="text-2xl font-semibold md:text-3xl">
-            No Services Found For Your Search
+            Sorry, we couldn't find this page.
           </p>
           <p className="mt-4 mb-8 dark:text-coolGray-400">
-            Try a new search or get a free quote for your project from our
-            community of freelancers.
+            But dont worry, you can find plenty of other things on our homepage.
           </p>
           <NavLink
             style={{
@@ -33,7 +32,7 @@ export default function PageNotFound() {
             to="/"
             className="px-8 py-3 font-semibold rounded dark:bg-green-400 dark:text-coolGray-900"
           >
-            <ButtonStyle>Back to homepage</ButtonStyle>
+            <ButtonStyle justifyContent="center">Back to homepage</ButtonStyle>
           </NavLink>
         </div>
       </div>

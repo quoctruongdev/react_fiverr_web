@@ -1,6 +1,6 @@
 import * as ActionType from "./constants";
 import { apiClient } from "../../../../../utils/apiutils";
-import { successNotice } from "../../../_components/Alert";
+import { actSetMessage } from "../../../../../components/Notification/module/actions";
 
 // ************Booking Job************
 export const actFetchBookingJob = (id) => {
@@ -10,7 +10,7 @@ export const actFetchBookingJob = (id) => {
       .patch(`jobs/booking/${id}`)
       .then((result) => {
         dispatch(actBookingJobSuccess(result.data));
-        successNotice("Booking service success.", "0vh");
+        dispatch(actSetMessage("Booking service success.", "success"));
       })
       .catch((err) => {
         dispatch(actBookingJobFailed(err));

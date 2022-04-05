@@ -4,7 +4,7 @@ import PopupState, { bindPopover, bindTrigger } from "material-ui-popup-state";
 import * as React from "react";
 import Message from "../../../containers/Home/_components/Navbar/Message";
 
-export default function PopoverPopup(props) {
+export default function PopoverPopup() {
   return (
     <PopupState variant="popper" popupId="demo-popup-popper">
       {(popupState) => (
@@ -17,14 +17,12 @@ export default function PopoverPopup(props) {
               textTransform: "none",
               fontSize: 16,
               fontWeight: 600,
-              color: "#62646a",
+              color: popupState?.isOpen ? "#1dbf73" : "#62646a",
               opacity: 1,
               ":hover": {
                 color: "#1dbf73",
                 textDecoration: "none",
               },
-              ":active": { color: "#1dbf73" },
-              ":focus-visible": { color: "#1dbf73" },
               minWidth: 0,
             }}
             label="Message"

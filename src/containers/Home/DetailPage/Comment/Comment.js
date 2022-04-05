@@ -17,7 +17,6 @@ export default function CommentReview({ dataComment }) {
       setShowResults(false);
     }
   };
-  console.log(dataComment);
 
   const renderDataComment = () => {
     return dataComment?.map((item, index) => {

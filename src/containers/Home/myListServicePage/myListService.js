@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Empty } from "antd";
 import Loader from "../../../components/Loader/Loader";
 import CardSevices from "../_components/CardSevices";
@@ -14,6 +14,10 @@ export default function MyListService() {
     (state) => state.myListServiceReducer.loading
   );
 
+  useEffect(() => {
+    document.title = "My List | Fivver";
+  }, []);
+
   const renderMyListService = () => {
     return data?.map((item) => {
       return <CardSevices key={item?._id} item={item} />;
@@ -22,7 +26,12 @@ export default function MyListService() {
   if (loading || loadingMyList) return <Loader />;
   return (
     <Box minHeight={500} px={10}>
-      <Stack justifyContent="space-between" alignItems="center" direction="row">
+      <Stack
+        flexWrap="wrap"
+        justifyContent="space-between"
+        alignItems="center"
+        direction="row"
+      >
         <Typography
           sx={{
             paddingTop: "24px",

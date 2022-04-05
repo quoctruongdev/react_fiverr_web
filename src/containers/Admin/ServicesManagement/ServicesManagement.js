@@ -60,7 +60,7 @@ export default function ServicesManagement() {
                   Component: <AddService />,
                   open: true,
                   title: "Add Service",
-                  action: "Create Service",
+                  // action: "Create Service",
                 })
               );
             }}

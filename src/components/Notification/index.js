@@ -30,7 +30,7 @@ export default function MessageNotification() {
     <Stack spacing={2} sx={{ width: "100%" }}>
       <Snackbar
         open={data?.text}
-        autoHideDuration={4000}
+        autoHideDuration={data?.action ? 30000 : 4000}
         anchorOrigin={{
           vertical: "top",
           horizontal: "center",

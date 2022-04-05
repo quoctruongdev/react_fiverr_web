@@ -40,6 +40,7 @@ export default function SearchJobPage(props) {
   const name = props.match.params.keyword.trim();
 
   useEffect(() => {
+    document.title = `Fiverr / Search Results for ${name}`;
     dispatch(actFetchSearchService(name));
     dispatch(actFetchUsersList());
   }, [name]);

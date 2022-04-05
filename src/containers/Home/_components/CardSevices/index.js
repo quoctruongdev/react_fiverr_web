@@ -29,8 +29,7 @@ export default function CardSevices(props) {
   const [selected, setSelected] = useState();
   const listsService = JSON.parse(localStorage.getItem("myList"));
   const duplicates = listsService?.filter((items) => items?._id === item?._id);
-  console.log(duplicates);
-  console.log(selected);
+
   const changeColorIcon = () => {
     if (duplicates?.[0]?._id === item?._id) {
       setSelected(false);

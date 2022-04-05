@@ -45,7 +45,6 @@ export default function Overview({ data, dataUserCreated }) {
 
   return (
     <div id="overview">
-      {/* <BreadcrumbsComponent data={data} /> */}
       <BreadcrumbsComponent>{breadcrumbs}</BreadcrumbsComponent>
       <Typography variant="h5"> {data?.name}</Typography>
       <Box display="flex" name="overview" className="seller-overview ">

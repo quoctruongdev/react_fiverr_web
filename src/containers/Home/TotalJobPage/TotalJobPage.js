@@ -42,6 +42,7 @@ export default function TotalJobPage(props) {
   const dataListSave = JSON.parse(localStorage.getItem("myList"));
 
   useEffect(() => {
+    document.title = "Service List | Fiverr";
     dispatch(actFetchServicesList());
     dispatch(actFetchUsersList());
   }, []);
@@ -88,7 +89,7 @@ export default function TotalJobPage(props) {
       >
         <div className="layout-row header-wrapper">
           <div className="search-header">
-            <h1 className="title">Total Service </h1>
+            <h1 className="title">Service List </h1>
           </div>
         </div>
         <Grid sx={{ py: 4 }} container spacing={4}>

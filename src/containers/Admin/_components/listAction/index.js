@@ -16,7 +16,6 @@ import { actPopoverGlobal } from "../../../../components/Popover/module/actions"
 export default function ListAction(props) {
   const dispatch = useDispatch();
   const { userItem, setSelectedIds, serviceItem } = props;
-  console.log(serviceItem);
 
   const action = (
     <>
@@ -56,7 +55,7 @@ export default function ListAction(props) {
                 Component: <EditUser userItem={userItem} />,
                 open: true,
                 title: "Edit User",
-                action: "Save Change",
+                // action: "Save Change",
               })
             );
           serviceItem &&
@@ -65,7 +64,7 @@ export default function ListAction(props) {
                 Component: <EditService serviceItem={serviceItem} />,
                 open: true,
                 title: "Edit Service",
-                action: "Save Change",
+                // action: "Save Change",
               })
             );
         }}
