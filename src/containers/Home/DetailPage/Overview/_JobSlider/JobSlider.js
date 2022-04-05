@@ -42,6 +42,7 @@ export default function JobSlider(props) {
   return (
     <div className="Slider__Course ">
       <ImageGallery
+        showFullscreenButton={false}
         items={images}
         renderLeftNav={renderLeftNav}
         renderRightNav={renderRightNav}

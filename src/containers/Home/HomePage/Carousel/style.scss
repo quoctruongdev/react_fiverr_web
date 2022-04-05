@@ -60,6 +60,7 @@
 }
 
 // Responsive
+
 @media screen and (max-width: 500px) {
   .trusted-by-wrapper {
     padding: 0 20px !important;
@@ -71,8 +72,12 @@
   .selling__proposition {
     padding: 36px 30px !important;
   }
+
+  .display-from-sm {
+    display: none !important;
+  }
 }
-@media screen and (max-width: 568px) {
+@media screen and (max-width: 600px) {
   .branch__list li {
     padding: 0 15px;
   }

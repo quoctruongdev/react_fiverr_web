@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
-import BranchCarousel from "./_Branch";
+import BranchCarousel from "./Branch/_Branch";
 import SearchCarousel from "./Search /_searchCarousel";
 // import "./style.scss";
 

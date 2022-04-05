@@ -82,6 +82,7 @@ function Footer() {
         <Box
           sx={{
             px: { md: 4, sm: 3, xs: 2 },
+            pb: { xs: 1, dm: 2, md: 3, lg: 4 },
           }}
         >
           <CategoriesResults

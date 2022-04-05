@@ -12,7 +12,6 @@ export default function SwipeSideBar({ sideBar, toggleDrawer }) {
       }}
     >
       <SidebarCollapse />
-      <Divider />
     </Box>
   );
   return (

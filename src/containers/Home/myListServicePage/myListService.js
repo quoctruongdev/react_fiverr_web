@@ -25,7 +25,12 @@ export default function MyListService() {
   };
   if (loading || loadingMyList) return <Loader />;
   return (
-    <Box minHeight={500} px={10}>
+    <Box
+      minHeight={500}
+      sx={{
+        px: { xs: 3, sm: 6, md: 8, lg: 10 },
+      }}
+    >
       <Stack
         flexWrap="wrap"
         justifyContent="space-between"
