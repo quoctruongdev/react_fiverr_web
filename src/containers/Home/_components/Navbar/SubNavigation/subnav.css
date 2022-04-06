@@ -1,7 +1,7 @@
 .show_subnav {
   display: flex;
   background-color: #fff;
-  justify-content: space-between;
+  justify-content: space-between !important;
   align-items: center;
   position: fixed;
   width: 100%;
@@ -16,8 +16,6 @@
 }
 .hidden_subnav {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   position: fixed;
   top: 71px;
   width: 100%;
@@ -32,10 +30,6 @@
 }
 
 /* Scrollable */
-.css-heg063-MuiTabs-flexContainer {
-  justify-content: space-between;
-  align-items: center;
-}
 .categories .hidden_subnav {
   display: none;
 }
@@ -43,6 +37,6 @@
 #mouse-over-popper3 div {
   margin-right: 30px !important;
 }
-.MuiTabs-flexContainer .css-k008qs {
-  justify-content: space-between;
+.MuiTabs-flexContainer {
+  justify-content: space-between !important;
 }

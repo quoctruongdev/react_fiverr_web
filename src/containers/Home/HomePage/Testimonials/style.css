@@ -81,7 +81,7 @@
 @media only screen and (max-width: 500px) {
   .testimonial .ant-carousel .slick-prev,
   .testimonial .ant-carousel .slick-next {
-    top: 20% !important;
+    top: 16% !important;
   }
 }
 @media only screen and (max-width: 692px) {

@@ -5,6 +5,7 @@ import "./style.css";
 import { actFetchListJobPopular } from "./modules/actions";
 import { NavLink } from "react-router-dom";
 import { Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 const contentStyle = {
   color: "red",
@@ -87,12 +88,18 @@ export default function PopularJob() {
   }
 
   return (
-    <div className=" Popular__service slider__show">
+    <Box
+      sx={{
+        px: { xs: 1.5, md: 4 },
+        mb: { xs: 5, md: 10 },
+      }}
+      className="Popular__service"
+    >
       <Typography
         sx={{
-          fontWeight: 700,
+          fontWeight: 600,
           fontSize: { md: 36, xs: 28 },
-          px: { xs: 2 },
+          px: { xs: 3 },
           color: " #404145",
           mb: 2,
         }}
@@ -150,6 +157,6 @@ export default function PopularJob() {
           </Carousel>
         </Col>
       </Row>
-    </div>
+    </Box>
   );
 }

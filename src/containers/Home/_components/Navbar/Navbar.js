@@ -32,7 +32,7 @@ export default function MainNavbar() {
   const loading = useSelector((state) => state.loginReducerHome.loading);
 
   const pages = [
-    { name: " List Services", url: "/total-service" },
+    { name: " Services", url: "/total-service" },
     { name: " Sign In", url: "/login" },
     { name: "Join", url: "/join" },
   ];

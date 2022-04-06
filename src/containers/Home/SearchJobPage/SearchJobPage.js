@@ -15,6 +15,8 @@ export default function SearchJobPage(props) {
   let pageSize = 50;
   const data = useSelector((state) => state.searchServiceReducer.data);
   const loading = useSelector((state) => state.searchServiceReducer.loading);
+  const loadingLogin = useSelector((state) => state.loginReducerHome.loading);
+
   const dispatch = useDispatch();
   const dataAllUser = useSelector((state) => state.usersListReducer.data);
 
@@ -70,7 +72,8 @@ export default function SearchJobPage(props) {
       );
     }
   };
-  if (loading) return <Loader />;
+  if (loading || loadingLogin) return <Loader />;
+
   return (
     <>
       <Box

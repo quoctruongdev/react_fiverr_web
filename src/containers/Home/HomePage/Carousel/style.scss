@@ -74,9 +74,10 @@
   .trusted-by-wrapper {
     padding: 0 20px !important;
     height: 70px;
+    margin: 0 auto 36px;
   }
   .selling__proposition {
-    padding: 36px 30px !important;
+    padding: 36px 30px;
   }
 }
 @media screen and (min-width: 500px) {
@@ -88,7 +89,7 @@
     height: 70px;
   }
   .selling__proposition {
-    padding: 36px 30px !important;
+    padding: 36px 30px;
   }
 }
 

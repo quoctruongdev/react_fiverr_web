@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, ListItemText, Typography } from "@mui/material";
 import { Pagination } from "antd";
 import * as React from "react";
 import { useEffect, useState } from "react";
@@ -92,6 +92,12 @@ export default function TotalJobPage(props) {
             <h1 className="title">Service List </h1>
           </div>
         </div>
+        <div className="number-of-results">
+          <span className="m-r-4">
+            {!data?.length ? "No" : data?.length} services available
+          </span>
+        </div>
+
         <Grid sx={{ py: 4 }} container spacing={4}>
           {data ? renderListJob() : rendeListSkeletonCard(12, SkeletonCard)}
         </Grid>

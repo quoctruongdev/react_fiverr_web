@@ -55,3 +55,10 @@
   width: 78px;
   transition: 0.5s;
 }
+
+@media only screen and (max-width: 500px) {
+  .lohp-row {
+    margin-bottom: 20px;
+    margin-top: 32px;
+  }
+}

@@ -91,7 +91,6 @@ export default function CategoriesSubPage(props) {
   if (loading) return <Loader />;
   return (
     <>
-      {/* <Box className="List__Job m-5"> */}
       <Box
         sx={{
           px: { xs: 3, sm: 4, md: 6 },
@@ -102,9 +101,17 @@ export default function CategoriesSubPage(props) {
           <BreadcrumbsComponent sx={{ fontSize: "12px" }}>
             {breadcrumbs}
           </BreadcrumbsComponent>
-          <div className="title-wrapper">
+          <Typography
+            sx={{
+              fontSize: { xs: 28, md: 40 },
+            }}
+            variant="h3"
+          >
+            {subname}
+          </Typography>
+          {/* <div className="title-wrapper">
             <h1>{subname}</h1>
-          </div>
+          </div> */}
           <div className="explanation__video  ">
             <p className="subtitle">
               Stand out from the crowd with a logo that fits your brand

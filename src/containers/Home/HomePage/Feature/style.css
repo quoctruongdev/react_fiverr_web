@@ -46,7 +46,7 @@
   z-index: 0;
 }
 .selling__proposition {
-  padding: 96px 50px;
+  padding: 96px 50px 80px 50px;
   background-color: #f0fdf6;
 }
 @media screen and (max-width: 500px) {
@@ -57,7 +57,7 @@
 }
 @media screen and (max-width: 768px) {
   .selling__proposition {
-    padding: 45px 40px;
+    padding: 45px 28px;
   }
   .selling__picture {
     padding-left: 15px;

@@ -129,6 +129,7 @@ export default function ListTypeJobPage(props) {
               flex: "0!important",
             }}
             primaryTypographyProps={{
+              textAlign: "center",
               color: { xs: "#fff", sm: "#62646a", md: "#62646a" },
             }}
             primary="A single place, millions of creative talents"

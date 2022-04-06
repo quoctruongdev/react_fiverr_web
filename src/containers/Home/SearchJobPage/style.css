@@ -4,10 +4,7 @@
   line-height: 150%;
   font-weight: 700;
 }
-/* .layout-row.header-wrapper {
-  align-items: center;
-  padding-top: 32px;
-} */
+
 .pagination {
   display: flex;
   justify-content: center;

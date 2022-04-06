@@ -7,7 +7,14 @@ import { Popper, Tabs, Tab, Box } from "@mui/material";
 import "./subnav.css";
 import { Skeleton } from "@mui/material";
 
+import { makeStyles } from "@mui/styles";
+const useStyles = makeStyles(() => ({
+  flexContainer: {
+    justifyContent: "space-evenly",
+  },
+}));
 export default function SubNavbar() {
+  const classes = useStyles();
   const data = useSelector((state) => state.categoriesMainReducer.data);
   const loading = useSelector((state) => state.categoriesMainReducer.loading);
   const [state, setState] = useState({
@@ -46,11 +53,13 @@ export default function SubNavbar() {
           sx={{
             bgcolor: "#fff",
             borderBottom: "1px solid #e4e5e7",
+            display: "flex",
           }}
           height={40}
         >
           {data ? (
             <Tabs
+              className={classes.flexContainer}
               onChange={(event) => {
                 handlePopoverOpen(event, state.value, state.dataSubType);
               }}
@@ -72,18 +81,18 @@ export default function SubNavbar() {
               allowScrollButtonsMobile
               aria-label="scrollable force tabs example"
               sx={{
-                // padding: 0,
-                // maxWidth: 1400,
                 width: "100%",
                 display: "flex",
-                justifyContent: "space-between",
+                justifyContent: "space-between!important",
                 margin: "auto",
                 alignItems: "center",
                 minHeight: "0px",
                 height: "40px",
                 padding: "0 10px",
               }}
-              Props
+              style={{
+                justifyContent: "space-between!important",
+              }}
             >
               {data
                 ?.filter((item) => item?.__v > 10)
@@ -123,7 +132,6 @@ export default function SubNavbar() {
                         aria-haspopup="true"
                         component={Link}
                         to={`/list-type-service/${item?._id}`}
-                     
                       />
                     </>
                   );

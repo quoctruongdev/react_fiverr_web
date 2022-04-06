@@ -38,7 +38,7 @@ export default function Overview({ data, dataUserCreated }) {
     >
       {data?.type?.name ? data?.type?.name : "SERVICE"}
     </NavLink>,
-    <Typography key="3" color="text.primary">
+    <Typography key="3" color="#1dbf73">
       {data?.subType?.name}
     </Typography>,
   ];

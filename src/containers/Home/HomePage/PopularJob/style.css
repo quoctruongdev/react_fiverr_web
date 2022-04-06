@@ -13,11 +13,6 @@
   transform: rotate(180deg);
 }
 
-.slider__show {
-  padding: 0 30px;
-  margin-bottom: 96px;
-}
-
 /* Sub text */
 .subcategory h4 {
   position: relative;
@@ -63,11 +58,4 @@
 .Popular__service .ant-carousel .slick-slide img:hover,
 .subcategory img {
   opacity: 0.85;
-}
-
-@media only screen and (max-width: 500px) {
-  .slider__show {
-    padding: 0px 15px !important;
-    margin-bottom: 36px !important;
-  }
 }

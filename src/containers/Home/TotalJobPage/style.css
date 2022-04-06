@@ -9,7 +9,6 @@
   flex-flow: row nowrap;
   align-items: center;
   padding-top: 32px;
-  padding-bottom: 12px;
 }
 .pagination {
   display: flex;
@@ -19,4 +18,11 @@
 }
 .ant-card-cover img {
   cursor: pointer;
+}
+
+.number-of-results {
+  color: #7a7d85;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 600;
 }
