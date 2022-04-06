@@ -137,7 +137,7 @@
 }
 @media only screen and (max-width: 500px) {
   .Login__Content {
-    width: 320px;
+    width: 300px;
   }
 
   .form-header {
