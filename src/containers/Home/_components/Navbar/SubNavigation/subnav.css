@@ -43,3 +43,6 @@
 #mouse-over-popper3 div {
   margin-right: 30px !important;
 }
+.MuiTabs-flexContainer .css-k008qs {
+  justify-content: space-between;
+}

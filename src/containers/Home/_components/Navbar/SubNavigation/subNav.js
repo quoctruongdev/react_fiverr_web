@@ -76,13 +76,14 @@ export default function SubNavbar() {
                 // maxWidth: 1400,
                 width: "100%",
                 display: "flex",
-                justifyContent: "center",
+                justifyContent: "space-between",
                 margin: "auto",
                 alignItems: "center",
                 minHeight: "0px",
                 height: "40px",
                 padding: "0 10px",
               }}
+              Props
             >
               {data
                 ?.filter((item) => item?.__v > 10)
@@ -122,11 +123,7 @@ export default function SubNavbar() {
                         aria-haspopup="true"
                         component={Link}
                         to={`/list-type-service/${item?._id}`}
-                        // to={
-                        //   (index + 4) % 2 === 0
-                        //     ? `/list-type-service/${item?._id}`
-                        //     : `/categoriess/${item?.name}/${item?._id}`
-                        // }
+                     
                       />
                     </>
                   );
