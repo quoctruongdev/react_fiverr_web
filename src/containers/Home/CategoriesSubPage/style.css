@@ -50,11 +50,13 @@
   color: #4a73e8;
   font-weight: 400;
 }
+
 .explanation__video button:focus {
   outline: none !important;
 }
 .explanation__video {
   display: inline-flex;
+  flex-wrap: wrap;
 }
 .explanation__video .subtitle {
   display: inline-block;
@@ -67,4 +69,16 @@
   font-size: 14px;
   line-height: 22px;
   font-weight: 600;
+}
+
+@media only screen and (max-width: 500px) {
+  .explanation__video {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .explanation-video {
+    margin-bottom: 5px;
+  }
 }

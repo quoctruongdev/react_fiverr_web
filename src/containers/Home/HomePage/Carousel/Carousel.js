@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import React from "react";
 import Slider from "react-slick";
 import BranchCarousel from "./Branch/_Branch";
@@ -5,7 +6,7 @@ import SearchCarousel from "./Search /_searchCarousel";
 // import "./style.scss";
 
 const contentStyle = {
-  height: "680px",
+  height: { xs: "400px", sm: "500px", md: "680px" },
   color: "#fff",
   lineHeight: "160px",
   textAlign: "center",
@@ -54,16 +55,28 @@ export default function Carousel() {
     return dataBanner?.map((item, index) => {
       return (
         <div className="myCarousel" key={index}>
-          <div
+          <Box
             className="myBanner"
-            style={{ ...contentStyle, backgroundImage: `url( ${item.image})` }}
+            sx={{
+              ...contentStyle,
+              backgroundImage: {
+                md: `url( ${item.image})`,
+                sm: `url( ${item.image})`,
+                sx: "none",
+              },
+              backgroundColor: {
+                xs: "#023F1A",
+                sm: "#023F1A",
+                md: "none",
+              },
+            }}
           >
             <div style={{ opacity: 0.75 }} className="seller-name ">
               <p>
                 {item.name}, <b>{item.job}</b>
               </p>
             </div>
-          </div>
+          </Box>
         </div>
       );
     });
@@ -79,12 +92,12 @@ export default function Carousel() {
   };
 
   return (
-    <>
+    <Box position="relative">
       <Slider arrows={false} {...settings}>
         {renderBannerCarousel()}
       </Slider>
       <SearchCarousel />
       <BranchCarousel />
-    </>
+    </Box>
   );
 }

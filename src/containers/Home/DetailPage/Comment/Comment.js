@@ -3,6 +3,7 @@ import { Rate } from "antd";
 import Avatar from "@mui/material/Avatar";
 import { deepOrange } from "@mui/material/colors";
 import { Progress } from "antd";
+import { Grid } from "@mui/material";
 
 export default function CommentReview({ dataComment }) {
   const [showResults, setShowResults] = React.useState(false);
@@ -206,127 +207,131 @@ export default function CommentReview({ dataComment }) {
           </div>
         </span>
       </header>
-      <div className="breakdown-wrapper ">
-        <div className="reviews__left">
-          <table className="stars-counters">
-            <tbody>
-              <tr>
-                <td>
-                  <span>
-                    <button className=" stars-filter ">5 Stars</button>
-                  </span>
-                </td>
-                <td
-                  style={{ width: "100%" }}
-                  className="progress-bar-container"
-                >
-                  <Progress
-                    strokeColor="#ffb33e"
-                    percent={40}
-                    showInfo={false}
-                  />
-                </td>
-                <td className="star-num">(1,291)</td>
-              </tr>
-              <tr>
-                <td>
-                  <span>
-                    <button className=" stars-filter ">4 Stars</button>
-                  </span>
-                </td>
-                <td className="progress-bar-container">
-                  <Progress
-                    strokeColor="#ffb33e"
-                    percent={50}
-                    showInfo={false}
-                  />
-                </td>
-                <td className="star-num">(898)</td>
-              </tr>
-              <tr>
-                <td>
-                  <span>
-                    <button className=" stars-filter ">3 Stars</button>
-                  </span>
-                </td>
-                <td className="progress-bar-container">
-                  <Progress
-                    strokeColor="#ffb33e"
-                    percent={50}
-                    showInfo={false}
-                  />
-                </td>
-                <td className="star-num">(334)</td>
-              </tr>
-              <tr>
-                <td>
-                  <span>
-                    <button className=" stars-filter ">2 Stars</button>
-                  </span>
-                </td>
-                <td className="progress-bar-container">
-                  <Progress
-                    strokeColor="#ffb33e"
-                    percent={50}
-                    showInfo={false}
-                  />
-                </td>
-                <td className="star-num">(189)</td>
-              </tr>
-              <tr>
-                <td>
-                  <span>
-                    <button className=" stars-filter ">1 Stars</button>
-                  </span>
-                </td>
-                <td className="progress-bar-container">
-                  <Progress
-                    strokeColor="#ffb33e"
-                    percent={50}
-                    showInfo={false}
-                  />
-                </td>
-                <td className="star-num">(93)</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="reviews__right">
-          <div className="ranking">
-            <h6 className="text-display-7">Rating Breakdown</h6>
-            <ul>
-              <li>
-                <span className="review__color review__color">
-                  Seller communication level
-                </span>
-                <p>
-                  <span className="rate_count review__color"> 4.9</span>
-                  <Rate style={{ fontSize: 16 }} count={1} value={1} />
-                </p>
-              </li>
-              <li>
-                <span className="review__color"> Recommend to a friend</span>
-                <p>
-                  <span className="rate_count review__color"> 4.9</span>
-
-                  <Rate style={{ fontSize: 16 }} count={1} value={1} />
-                </p>
-              </li>
-              <li>
-                <span className="review__color"> Service as described</span>
-                <p>
-                  <span className="rate_count review__color"> 4.9</span>
-                  <Rate
-                    style={{ fontSize: 16, lineHeight: "1" }}
-                    count={1}
-                    value={1}
-                  />
-                </p>
-              </li>
-            </ul>
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={6}>
+          <div className="reviews__left">
+            <table className="stars-counters">
+              <tbody>
+                <tr>
+                  <td>
+                    <span>
+                      <button className=" stars-filter ">5 Stars</button>
+                    </span>
+                  </td>
+                  <td
+                    style={{ width: "100%" }}
+                    className="progress-bar-container"
+                  >
+                    <Progress
+                      strokeColor="#ffb33e"
+                      percent={40}
+                      showInfo={false}
+                    />
+                  </td>
+                  <td className="star-num">(1,291)</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span>
+                      <button className=" stars-filter ">4 Stars</button>
+                    </span>
+                  </td>
+                  <td className="progress-bar-container">
+                    <Progress
+                      strokeColor="#ffb33e"
+                      percent={50}
+                      showInfo={false}
+                    />
+                  </td>
+                  <td className="star-num">(898)</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span>
+                      <button className=" stars-filter ">3 Stars</button>
+                    </span>
+                  </td>
+                  <td className="progress-bar-container">
+                    <Progress
+                      strokeColor="#ffb33e"
+                      percent={50}
+                      showInfo={false}
+                    />
+                  </td>
+                  <td className="star-num">(334)</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span>
+                      <button className=" stars-filter ">2 Stars</button>
+                    </span>
+                  </td>
+                  <td className="progress-bar-container">
+                    <Progress
+                      strokeColor="#ffb33e"
+                      percent={50}
+                      showInfo={false}
+                    />
+                  </td>
+                  <td className="star-num">(189)</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span>
+                      <button className=" stars-filter ">1 Stars</button>
+                    </span>
+                  </td>
+                  <td className="progress-bar-container">
+                    <Progress
+                      strokeColor="#ffb33e"
+                      percent={50}
+                      showInfo={false}
+                    />
+                  </td>
+                  <td className="star-num">(93)</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        </div>
-      </div>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <div className="reviews__right">
+            <div className="ranking">
+              <h6 className="text-display-7">Rating Breakdown</h6>
+              <ul>
+                <li>
+                  <span className="review__color review__color">
+                    Seller communication level
+                  </span>
+                  <p>
+                    <span className="rate_count review__color"> 4.9</span>
+                    <Rate style={{ fontSize: 16 }} count={1} value={1} />
+                  </p>
+                </li>
+                <li>
+                  <span className="review__color"> Recommend to a friend</span>
+                  <p>
+                    <span className="rate_count review__color"> 4.9</span>
+
+                    <Rate style={{ fontSize: 16 }} count={1} value={1} />
+                  </p>
+                </li>
+                <li>
+                  <span className="review__color"> Service as described</span>
+                  <p>
+                    <span className="rate_count review__color"> 4.9</span>
+                    <Rate
+                      style={{ fontSize: 16, lineHeight: "1" }}
+                      count={1}
+                      value={1}
+                    />
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </Grid>
+      </Grid>
       <div className="reviews-wrap">
         <ul className="review-list">
           <span>{renderDataComment()}</span>

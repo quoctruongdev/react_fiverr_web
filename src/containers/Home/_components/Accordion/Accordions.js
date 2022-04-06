@@ -4,11 +4,18 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { makeStyles } from "@mui/styles";
 import "./style.css";
+const useStyle = makeStyles(() => ({
+  content: {
+    display: "block",
+  },
+}));
 
 export default function AccordionsComponent() {
-  const [expanded, setExpanded] = React.useState(false);
+  const classes = useStyle();
 
+  const [expanded, setExpanded] = React.useState(false);
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
@@ -22,7 +29,7 @@ export default function AccordionsComponent() {
     },
     {
       id: 2,
-      title: "What does '3 logo design or 5 Logo Design' means?",
+      title: "What does '3 logo design or 5 Logo Design? ",
       text: ` According to the package selected, it will include 3/5 unique
       designs for the same Brand/Company/Business/Name so that the buyer
       can have a choice. If you have two or three different brands/names,
@@ -30,7 +37,7 @@ export default function AccordionsComponent() {
     },
     {
       id: 3,
-      title: "What does Unlimited revisions mean?",
+      title: "What does Unlimited revisions?",
       text: `Unlimited Revisions' mean fonts, colors, layout changing, not the
       entire concept. Please know that unlimited revisions is not same to
       providing unlimited new concepts.`,
@@ -59,7 +66,10 @@ export default function AccordionsComponent() {
       {content.map((item) => (
         <Accordion
           key={item?.id}
-          sx={{ padding: "20px 0px" }}
+          sx={{
+            padding: "20px 0px",
+          }}
+          className={classes.content}
           expanded={expanded === `panel${item?.id}`}
           onChange={handleChange(`panel${item?.id}`)}
         >
@@ -67,6 +77,9 @@ export default function AccordionsComponent() {
             expandIcon={<ExpandMoreIcon />}
             aria-controls={`panel${item?.id}bh-content`}
             id={`panel${item?.id}bh-header`}
+            sx={{
+              overflow: { xs: "hidden", md: "visible" },
+            }}
           >
             <Typography
               sx={{

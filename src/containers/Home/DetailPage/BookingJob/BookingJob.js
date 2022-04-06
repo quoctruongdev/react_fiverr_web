@@ -73,7 +73,14 @@ export default function BookingJob(props) {
   return (
     <>
       <div className="sticky-outer-wrapper sidebar">
-        <Box sx={{ minWidth: 300, height: 500, border: "solid 1px #dadbdd" }}>
+        <Box
+          sx={{
+            minWidth: 300,
+            height: 500,
+            border: "solid 1px #dadbdd",
+            pb: 5,
+          }}
+        >
           <AppBar color="inherit" elevation={0} position="static">
             <Tabs
               sx={{

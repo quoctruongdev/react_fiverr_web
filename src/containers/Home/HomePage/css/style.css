@@ -82,12 +82,6 @@
   }
 }
 
-@media screen and (max-width: 600px) {
-  .branch__list li {
-    padding: 0 15px;
-  }
-}
-
 @media screen and (max-width: 768px) {
   .myBanner {
     background: #023a15 !important;

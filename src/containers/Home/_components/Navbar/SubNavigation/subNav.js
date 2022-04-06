@@ -74,6 +74,7 @@ export default function SubNavbar() {
               sx={{
                 // padding: 0,
                 // maxWidth: 1400,
+                width: "100%",
                 display: "flex",
                 justifyContent: "center",
                 margin: "auto",

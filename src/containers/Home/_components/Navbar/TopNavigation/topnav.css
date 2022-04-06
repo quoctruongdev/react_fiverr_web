@@ -56,7 +56,6 @@
 
 .top__navbar {
   font-size: 14px;
-  display: flex;
   width: 100%;
   align-items: center;
   justify-content: space-between;
@@ -126,7 +125,7 @@
   cursor: default !important;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
   .icons-list {
     display: none;
   }

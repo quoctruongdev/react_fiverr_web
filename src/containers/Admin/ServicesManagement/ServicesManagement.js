@@ -33,7 +33,13 @@ export default function ServicesManagement() {
   }, []);
 
   return (
-    <Box sx={{ mx: 5, mt: 3, mb: 5 }}>
+    <Box
+      sx={{
+        mx: { xs: 2, md: 5 },
+        mb: { xs: 2, md: 5 },
+        mt: { xs: 1.5, md: 3 },
+      }}
+    >
       <Box>
         <Typography variant="h4">Services List</Typography>
       </Box>
@@ -43,6 +49,7 @@ export default function ServicesManagement() {
           marginTop: "20px",
           overflow: "auto",
           p: 3,
+          height: { xs: "150px", md: "unset" },
         }}
       >
         <Stack
@@ -50,17 +57,20 @@ export default function ServicesManagement() {
           justifyContent="space-between"
           alignItems="center"
           direction="row"
+          flexWrap="wrap"
         >
           <Button
             color="secondary"
             variant="contained"
+            sx={{
+              mb: { xs: 1, md: 0 },
+            }}
             onClick={() => {
               dispatch(
                 actShowModalPopup({
                   Component: <AddService />,
                   open: true,
                   title: "Add Service",
-                  // action: "Create Service",
                 })
               );
             }}
@@ -73,7 +83,7 @@ export default function ServicesManagement() {
               p: "2px 4px",
               display: "flex",
               alignItems: "center",
-              width: "50%",
+              width: { xs: "100%", md: "50%" },
               height: 50,
             }}
             placeholder="Search service..."

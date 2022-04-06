@@ -488,6 +488,7 @@ export default function TableUser({ users, loading, keySearch }) {
               ml: 1,
               mb: 0,
               whiteSpace: "nowrap",
+              display: { xs: "none", md: "block" },
             }}
             control={
               <Switch

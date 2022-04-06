@@ -32,7 +32,13 @@ export default function UserManagement() {
   }, []);
 
   return (
-    <Box sx={{ mx: 5, mb: 5, mt: 3 }}>
+    <Box
+      sx={{
+        mx: { xs: 2, md: 5 },
+        mb: { xs: 2, md: 5 },
+        mt: { xs: 1.5, md: 3 },
+      }}
+    >
       <Box>
         <Typography variant="h4">User List</Typography>
       </Box>
@@ -42,12 +48,14 @@ export default function UserManagement() {
           marginTop: "20px",
           overflow: "auto",
           p: 3,
+          height: { xs: "150px", md: "unset" },
         }}
       >
         <Stack
           height="40px"
           justifyContent="space-between"
           alignItems="center"
+          flexWrap="wrap"
           direction="row"
         >
           <Button
@@ -63,6 +71,9 @@ export default function UserManagement() {
                 })
               );
             }}
+            sx={{
+              mb: { xs: 1, md: 0 },
+            }}
           >
             Add User
           </Button>
@@ -72,7 +83,7 @@ export default function UserManagement() {
               p: "2px 4px",
               display: "flex",
               alignItems: "center",
-              width: "50%",
+              width: { xs: "100%", md: "50%" },
               height: 50,
             }}
             placeholder="Search user..."

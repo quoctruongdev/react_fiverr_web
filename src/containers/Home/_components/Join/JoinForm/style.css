@@ -1,5 +1,4 @@
 .Join__Content {
-  width: 400px;
   color: #404145;
   border-radius: 4px;
   box-shadow: 0 0 8px #95979d;
@@ -128,4 +127,22 @@
 }
 .btn.co-white.bg-co-green-700.disabled-btn:hover {
   background-color: #1dbf73 !important;
+}
+
+@media only screen and (max-width: 500px) {
+  .Join__Content {
+    width: 320px;
+  }
+
+  .form-header {
+    padding: 12px 0;
+  }
+  .sign-in-form {
+    padding: 0 20px 15px;
+  }
+}
+@media only screen and (min-width: 501px) {
+  .Join__Content {
+    width: 400px;
+  }
 }

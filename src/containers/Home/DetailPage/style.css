@@ -11,6 +11,7 @@
   align-items: center;
   font-size: 14px;
   justify-content: flex-start;
+  margin-bottom: 5px;
 }
 .user-status {
   font-weight: 700;
@@ -181,6 +182,7 @@
 
 /* ******.....******* */
 .reviews-header {
+  flex-wrap: wrap;
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -229,7 +231,6 @@
 
 .reviews__left,
 .reviews__right {
-  width: 50%;
   padding: 0 16px;
 }
 .ranking h6 {
@@ -328,4 +329,18 @@
 .response-item {
   border-top: none;
   padding: 20px 0 4px 44px;
+}
+.orders-in-queues {
+  display: block;
+}
+@media only screen and (max-width: 500px) {
+  .reviews-header {
+    justify-content: center;
+  }
+  .orders-in-queues {
+    display: none;
+  }
+  .user_level {
+    display: none;
+  }
 }

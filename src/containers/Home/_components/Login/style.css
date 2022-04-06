@@ -2,6 +2,11 @@
   padding: 32px 0 64px 0;
   display: flex;
   justify-content: center;
-  background: #f7f7f7;
   align-items: center;
+  margin: auto;
+  max-width: 400px;
 }
+/* @media only screen and(max-width:500px) {
+
+  
+} */

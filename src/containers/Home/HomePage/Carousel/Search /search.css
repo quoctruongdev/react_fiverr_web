@@ -1,8 +1,8 @@
 .search__carousel {
   position: absolute;
-  top: 220px;
   padding: 0 50px;
   max-width: 700px;
+  bottom: 35%;
 }
 
 .search {
@@ -99,6 +99,9 @@
 
 /* ********Responsive********* */
 @media only screen and (max-width: 500px) {
+  .popular {
+    display: none;
+  }
   .search__carousel {
     padding: 0 25px !important;
     max-width: 100% !important;
@@ -119,26 +122,12 @@
     max-width: 100% !important;
     border-radius: 0.25rem !important;
   }
-  .popular {
-    white-space: nowrap;
-    flex-direction: column;
-  }
-  .popular ul {
-    justify-content: space-evenly;
-    margin-top: 8px;
-  }
 
-  .popular ul li {
-    margin-right: 8px;
-  }
-  .popular ul li a {
-    font-size: 12px;
-  }
-  .popular ul li:last-child {
-    display: none;
-  }
   .branch__list li {
     padding: 0 5px;
+  }
+  .seller-name {
+    display: none;
   }
 }
 
@@ -171,12 +160,21 @@
     justify-content: center;
     margin-top: 8px;
   }
+  .seller-name {
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 768px) {
   .search__carousel {
+    max-width: 100%;
+  }
+  .seller-name {
+    display: flex;
+  }
+  .search__carousel {
     padding: 0 40px;
-    max-width: 50%;
+    max-width: 60%;
   }
   .text__header {
     font-size: 48px;
@@ -194,7 +192,21 @@
     color: #ffff;
   }
 
+  .branch__list li {
+    padding: 0 25px;
+  }
   .popular ul a {
     padding: 5px 12px 5px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .search__carousel {
+    max-width: 60%;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .search__carousel {
+    max-width: 50%;
   }
 }

@@ -4,7 +4,7 @@ import BreadcrumbsComponent from "../../_components/Breadcrumbs/BreadcrumbsCompo
 import Avatar from "@mui/material/Avatar";
 import { deepOrange } from "@mui/material/colors";
 import { Rate } from "antd";
-import { Box, Typography } from "@mui/material";
+import { Box, ListItemText, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
 export default function Overview({ data, dataUserCreated }) {
@@ -46,7 +46,15 @@ export default function Overview({ data, dataUserCreated }) {
   return (
     <div id="overview">
       <BreadcrumbsComponent>{breadcrumbs}</BreadcrumbsComponent>
-      <Typography variant="h5"> {data?.name}</Typography>
+      <Typography
+        sx={{
+          fontWeight: 600,
+          py: 1,
+        }}
+        variant="h5"
+      >
+        {data?.name}
+      </Typography>
       <Box display="flex" name="overview" className="seller-overview ">
         <Avatar
           id="box-1"
@@ -91,14 +99,12 @@ export default function Overview({ data, dataUserCreated }) {
           style={{
             fontSize: "0.9rem",
             lineHeight: 1,
+            marginRight: "5px",
           }}
           disabled
           value={1}
           count={1}
         />
-        <span class="orders-in-queue" style={{ margin: "12px" }}>
-          (10) Orders in Queue
-        </span>
         <span className=" gig-overview-tooltip">
           <img
             alt=""

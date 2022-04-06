@@ -34,7 +34,6 @@ export default function ModalPopup(props) {
               }}
               id="scroll-dialog-title"
             >
-              {/* <Typography> */}
               <Stack alignItems="center" direction="row">
                 <ListItem>{data?.title}</ListItem>
                 <ToggleButton
@@ -53,7 +52,6 @@ export default function ModalPopup(props) {
                   />
                 </ToggleButton>
               </Stack>
-              {/* </Typography> */}
             </DialogTitle>
           )}
           {data?.open && (

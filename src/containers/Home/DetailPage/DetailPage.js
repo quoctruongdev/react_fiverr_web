@@ -55,7 +55,7 @@ export default function DetailPage(props) {
             <FAQ />
             <CommentReview dataComment={dataComment} />
           </Grid>
-          <Grid item xs={12} md={4.5}>
+          <Grid item xs={12} md={4.5} pb={6}>
             <BookingJob userLogin={userLogin} data={data} />
           </Grid>
         </Grid>
