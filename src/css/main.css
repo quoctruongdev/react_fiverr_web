@@ -5,6 +5,7 @@
   align-items: center;
   line-height: 3.5;
 }
+
 .trusted-by-wrapper {
   background-color: #fafafa;
   margin: 0 auto 80px;
@@ -14,6 +15,7 @@
   align-items: center;
   display: inline-block;
 }
+
 .branch__list li {
   float: left;
   padding: 0 25px;
@@ -26,6 +28,7 @@
   position: relative;
   height: 34px;
 }
+
 .logged-out-homepage .hero .header .search-bar-package form .search-bar-icon {
   top: 16px;
   left: 16px;
@@ -37,9 +40,11 @@
   top: 8px;
   left: 8px;
 }
+
 .branch__list li:first-child {
   padding-left: 0 !important;
 }
+
 .branch__list li:last-child {
   padding-right: 0 !important;
 }
@@ -47,19 +52,19 @@
 .myBanner {
   position: relative;
 }
+
 .seller-name {
   position: absolute;
   z-index: 99;
   right: 3rem;
   bottom: -5rem;
 }
+
 .seller-name p {
   color: #fff;
   display: inline-block;
   padding-bottom: 32px;
 }
-
-// Responsive
 
 @media screen and (max-width: 500px) {
   .trusted-by-wrapper {
@@ -76,16 +81,17 @@
     display: none !important;
   }
 }
-@media screen and (min-width: 600px) {
+
+@media screen and (max-width: 600px) {
   .branch__list li {
     padding: 0 15px;
   }
 }
+
 @media screen and (max-width: 768px) {
   .myBanner {
     background: #023a15 !important;
   }
-
   .seller-name {
     display: none;
   }
@@ -99,8 +105,10 @@
     padding: 36px 40px;
   }
 }
+
 @media screen and (max-width: 900px) {
   .trusted-by-text {
     line-height: 2.5 !important;
   }
 }
+/*# sourceMappingURL=main.css.map */

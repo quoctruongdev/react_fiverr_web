@@ -45,7 +45,7 @@ export default function CategoriesSubPage(props) {
       underline="hover"
       key="2"
       style={{ color: "#1dbf73" }}
-      to={`/list-type-job/${id}`}
+      to={`/list-type-service/${id}`}
     >
       {name}
     </NavLink>,

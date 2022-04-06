@@ -1,8 +1,3 @@
-.slider_title {
-  border-radius: 4px;
-  padding-bottom: 24px;
-}
-
 .slick-prev:before,
 .slick-next:before {
   content: "";
@@ -71,30 +66,8 @@
 }
 
 @media only screen and (max-width: 500px) {
-  .slider_title {
-    white-space: nowrap;
-  }
   .slider__show {
     padding: 0px 15px !important;
     margin-bottom: 36px !important;
-  }
-}
-/* 
-@media only screen and (max-width: 692px) {
-  .slider_title {
-    white-space: nowrap;
-  }
-  .slider__show {
-    padding: 0px 20px;
-    margin-bottom: 48px;
-  }
-} */
-@media only screen and (max-width: 792px) {
-  .slider_title {
-    white-space: nowrap;
-  }
-  .slider__show {
-    padding: 0px 20px;
-    margin-bottom: 48px;
   }
 }

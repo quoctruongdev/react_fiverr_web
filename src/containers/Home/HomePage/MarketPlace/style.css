@@ -55,20 +55,3 @@
   width: 78px;
   transition: 0.5s;
 }
-
-/* @media only screen and (max-width: 500px) {
-  .categories-list li {
-    width: 50%;
-  }
-}
-@media (max-width: 792px) {
-  .categories-list li {
-    width: 33%;
-  }
-}
-
-@media (max-width: 1024px) {
-  .categories-list li {
-    width: 25%;
-  }
-} */

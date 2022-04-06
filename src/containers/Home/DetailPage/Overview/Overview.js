@@ -34,7 +34,7 @@ export default function Overview({ data, dataUserCreated }) {
       key="2"
       color="red"
       style={{ color: "#1dbf73", fontSize: 12 }}
-      to={`/list-type-job/${data?.type?._id}`}
+      to={`/list-type-service/${data?.type?._id}`}
     >
       {data?.type?.name ? data?.type?.name : "SERVICE"}
     </NavLink>,

@@ -74,6 +74,8 @@ export default function SubNavbar() {
               sx={{
                 // padding: 0,
                 // maxWidth: 1400,
+                display: "flex",
+                justifyContent: "center",
                 margin: "auto",
                 alignItems: "center",
                 minHeight: "0px",
@@ -118,10 +120,10 @@ export default function SubNavbar() {
                         }}
                         aria-haspopup="true"
                         component={Link}
-                        to={`/list-type-job/${item?._id}`}
+                        to={`/list-type-service/${item?._id}`}
                         // to={
                         //   (index + 4) % 2 === 0
-                        //     ? `/list-type-job/${item?._id}`
+                        //     ? `/list-type-service/${item?._id}`
                         //     : `/categoriess/${item?.name}/${item?._id}`
                         // }
                       />

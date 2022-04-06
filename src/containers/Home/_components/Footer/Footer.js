@@ -354,7 +354,7 @@ function CustomizedListItem({ data, width, dataNew }) {
                   <ListItem disableRipple key={index}>
                     <NavLink
                       style={{ color: "#7a7d85" }}
-                      to={text?._id ? `/list-type-job/${text?._id}` : "#/"}
+                      to={text?._id ? `/list-type-service/${text?._id}` : "#/"}
                     >
                       {text?.name}
                     </NavLink>

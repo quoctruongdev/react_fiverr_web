@@ -4,6 +4,7 @@ import { Row, Col, Carousel } from "antd";
 import "./style.css";
 import { actFetchListJobPopular } from "./modules/actions";
 import { NavLink } from "react-router-dom";
+import { Typography } from "@mui/material";
 
 const contentStyle = {
   color: "red",
@@ -87,9 +88,17 @@ export default function PopularJob() {
 
   return (
     <div className=" Popular__service slider__show">
-      <div className="slider_title mx-3">
-        <h2>Popular professional services</h2>
-      </div>
+      <Typography
+        sx={{
+          fontWeight: 700,
+          fontSize: { md: 36, xs: 28 },
+          px: { xs: 2 },
+          color: " #404145",
+          mb: 2,
+        }}
+      >
+        Popular professional services
+      </Typography>
       <Row justify="center">
         <Col span={25}>
           <Carousel

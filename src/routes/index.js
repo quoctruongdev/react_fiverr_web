@@ -10,7 +10,7 @@ const routesHome = [
   },
   {
     exact: false,
-    path: "/search-job/:keyword",
+    path: "/search-service/:keyword",
     component: lazy(() =>
       import("../containers/Home/SearchJobPage/SearchJobPage")
     ),
@@ -27,26 +27,19 @@ const routesHome = [
   },
   {
     exact: false,
-    path: "/detail-job/:id/:userCreated",
+    path: "/detail-service/:id/:userCreated",
     component: lazy(() => import("../containers/Home/DetailPage/DetailPage")),
   },
   {
     exact: false,
-    path: "/list-type-job/:id",
+    path: "/list-type-service/:id",
     component: lazy(() =>
       import("../containers/Home/ListTypeJobPage/ListTypeJobPage.js")
     ),
   },
   {
     exact: false,
-    path: "/categoriess/:name/:id",
-    component: lazy(() =>
-      import("../containers/Home/CategoriesServicePage/index.js")
-    ),
-  },
-  {
-    exact: false,
-    path: "/total-job",
+    path: "/total-service",
     component: lazy(() =>
       import("../containers/Home/TotalJobPage/TotalJobPage.js")
     ),

@@ -52,6 +52,7 @@ export default function CardServiceVertical({ data }) {
                   md: "12px",
                   lg: "16px",
                 },
+                py: "8px",
               }}
             >
               <Typography
@@ -109,7 +110,7 @@ export default function CardServiceVertical({ data }) {
             >
               <Button
                 LinkComponent={NavLink}
-                to={`/detail-job/${data?._id}/${data?.userCreated}`}
+                to={`/detail-service/${data?._id}/${data?.userCreated}`}
                 sx={{
                   mx: 1,
                   ":hover": { color: "#9c27b0" },
@@ -120,16 +121,16 @@ export default function CardServiceVertical({ data }) {
               >
                 Read More
               </Button>
-              {/* <Button
+              <Button
                 onClick={() => {
                   dispatch(actFetchDoneServiceUserBooking(data?._id));
                 }}
-                sx={{ mx: 1 }}
+                sx={{ mx: 1, fontSize: { xs: 10, sm: 10, md: 12, lg: 16 } }}
                 variant="text"
                 color="error"
               >
                 Remove
-              </Button> */}
+              </Button>
             </Box>
           </Box>
         </Card>

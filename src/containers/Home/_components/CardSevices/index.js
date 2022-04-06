@@ -68,7 +68,7 @@ export default function CardSevices(props) {
       >
         <Box
           component={Link}
-          to={`/detail-job/${item?._id}/${item?.userCreated}`}
+          to={`/detail-service/${item?._id}/${item?.userCreated}`}
         >
           <CardMedia
             component="img"
@@ -148,7 +148,7 @@ export default function CardSevices(props) {
             </>
           ) : (
             <Typography
-              to={`/detail-job/${item?._id}/${item?.userCreated}`}
+              to={`/detail-service/${item?._id}/${item?.userCreated}`}
               component={Link}
               align="center"
               maxHeight={43}
@@ -235,7 +235,7 @@ export default function CardSevices(props) {
               </ListItem>
               <ListItem
                 component={Link}
-                to={`/detail-job/${item?._id}/${item?.userCreated}`}
+                to={`/detail-service/${item?._id}/${item?.userCreated}`}
                 sx={{
                   width: "100%",
                   paddingY: 0,

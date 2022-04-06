@@ -11,7 +11,7 @@ export default function SearchCarousel() {
   const handleOnSubmit = () => {
     if (dataSearch.keysearch !== "") {
       return (
-        <NavLink to={`/search-job/${dataSearch?.keysearch}`}>
+        <NavLink to={`/search-service/${dataSearch?.keysearch}`}>
           <button className="btn ">Search</button>
         </NavLink>
       );
@@ -60,24 +60,30 @@ export default function SearchCarousel() {
               <ul>
                 <li>
                   <NavLink
-                    to="/search-job/Website Design"
+                    to="/search-service/Website Design"
                     className="text-body-2"
                   >
                     Website Design
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/search-job/NFT Art" className="text-body-2">
+                  <NavLink to="/search-service/NFT Art" className="text-body-2">
                     NFT Art
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/search-job/WordPress" className="text-body-2">
+                  <NavLink
+                    to="/search-service/WordPress"
+                    className="text-body-2"
+                  >
                     WordPress
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/search-job/Logo Design" className="text-body-2">
+                  <NavLink
+                    to="/search-service/Logo Design"
+                    className="text-body-2"
+                  >
                     Logo Design
                   </NavLink>
                 </li>

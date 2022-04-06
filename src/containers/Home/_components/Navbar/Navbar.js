@@ -32,12 +32,12 @@ export default function MainNavbar() {
   const loading = useSelector((state) => state.loginReducerHome.loading);
 
   const pages = [
-    { name: " List Services", url: "/total-job" },
+    { name: " List Services", url: "/total-service" },
     { name: " Sign In", url: "/login" },
     { name: "Join", url: "/join" },
   ];
   const pagesLogin = [
-    { name: "Services", url: "/total-job" },
+    { name: "Services", url: "/total-service" },
     { name: " Messages", url: "#" },
     { name: "Lists", url: `/my-list/${data?.name}` },
   ];
@@ -82,7 +82,7 @@ export default function MainNavbar() {
   const handleOnSubmit = () => {
     if (dataSearch.keysearch !== "") {
       return (
-        <NavLink to={`/search-job/${dataSearch?.keysearch}`}>
+        <NavLink to={`/search-service/${dataSearch?.keysearch}`}>
           <button className="btn_search">Search</button>
         </NavLink>
       );
@@ -273,7 +273,10 @@ export default function MainNavbar() {
             {userLogin && (
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <IconButton
+                    onClick={handleOpenUserMenu}
+                    sx={{ p: 0, pr: { xs: "10px", md: "inherit" } }}
+                  >
                     <BadgeStyle
                       styles={32}
                       data={userLogin?.user}

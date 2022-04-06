@@ -59,32 +59,6 @@
   margin-bottom: 0 !important;
 }
 
-/* Reponsive */
-/* @media only screen and (min-width: 900px) {
-  .logged-out-homepage .testimonials .text-content {
-    padding: 0 36px 0 16px;
-    width: 50%;
-  }
-}
-@media only screen and (min-width: 1160px) {
-  .logged-out-homepage .testimonials .text-content {
-    padding: 0 48px 0 64px;
-    max-width: 707px;
-  }
-}
-@media only screen and (min-width: 692px) {
-  .logged-out-homepage .testimonials .text-content {
-    padding: 24px 24px 0;
-    width: 100%;
-  }
-} */
-
-/* .testimonial__content {
-  display: flex !important;
-  flex-direction: row;
-  flex-wrap: wrap;
-} */
-
 .testimonial .ant-carousel .slick-prev {
   left: 0px !important;
 }
@@ -92,6 +66,8 @@
 .testimonial .ant-carousel .slick-next {
   right: 0px !important;
 }
+/* Reponsive */
+
 @media screen and (max-width: 500px) {
   .text-content blockquote {
     font-size: 24px;
@@ -130,22 +106,5 @@
   .testimonial .ant-carousel .slick-prev,
   .testimonial .ant-carousel .slick-next {
     top: 50%;
-  }
-}
-@media only screen and (max-width: 1000px) and(min-width:793) {
-  .text-content blockquote {
-    font-size: 24px;
-    padding-bottom: 24px;
-    line-height: 33px !important;
-  }
-
-  .text-content h5 {
-    padding-bottom: 8px;
-  }
-}
-@media only screen and (max-width: 1200px) {
-  .text-content blockquote {
-    line-height: 28px !important;
-    font-size: 26px;
   }
 }
