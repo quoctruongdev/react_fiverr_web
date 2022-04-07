@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Carousel } from "antd";
-import "./style.css";
 import { actFetchListJobPopular } from "./modules/actions";
 import { NavLink } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/material";
+import {ListItemText} from "@mui/material"
+import "./style.css";
 
 const contentStyle = {
   color: "red",
@@ -65,17 +66,25 @@ const settings = {
 
 export default function PopularJob() {
   const data = useSelector((state) => state.homePageReducer.dataPopular);
-  // const loading = useSelector((state) => state.listJobPopularReducer.loading);
 
   function renderListsServicePopular() {
     return data?.map((item, index) => {
       return (
         <div className="item__slider" key={index}>
-          <NavLink to={item?.link} className="subcategory ">
-            <h4>
-              <small>{item.title.sub}</small>
-              {item.title.main}
-            </h4>
+          <NavLink className="subcategory" to={item?.link} >
+          <ListItemText
+          sx={{
+            pt:1
+          }}
+           primaryTypographyProps={{
+            color:"#fff",
+            fontSize:24,
+            fontWeight:600,
+          }} 
+          secondaryTypographyProps	={{
+            color:"#fff",
+          }}
+          secondary={item.title.sub} primary= {item.title.main}/>
           </NavLink>
           <NavLink to={item?.link}>
             <picture>

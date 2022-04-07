@@ -55,7 +55,6 @@
   left: 0;
 }
 
-.Popular__service .ant-carousel .slick-slide img:hover,
-.subcategory img {
-  opacity: 0.85;
+.item__slider:hover {
+opacity:0.75
 }

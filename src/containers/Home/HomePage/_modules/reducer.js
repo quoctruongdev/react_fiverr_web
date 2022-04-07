@@ -71,7 +71,7 @@ const initialState = {
       url: "/asset/img/slider/book-covers-2x.png.jpeg",
       title: {
         sub: "Showcase your story",
-        main: "Book & eBook Writing",
+        main: "Book & Writing",
       },
       link: "/categories/Writing&Translation/61987497aef344001cecfb93/Book&eBookWriting/619874b3aef344001cecfba5",
     },
@@ -80,7 +80,7 @@ const initialState = {
       url: "/asset/img/slider/data-entry-2x.png.jpeg",
       title: {
         sub: "Learn your business",
-        main: "E-Commerce Management",
+        main: "E-Commerce",
       },
       link: "/categories/Business/619876b0aef344001cecfd65/E-CommerceManagement/619876b9aef344001cecfd6b",
     },
