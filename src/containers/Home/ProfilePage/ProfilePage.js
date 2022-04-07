@@ -123,7 +123,7 @@ export default function ProfilePage() {
                         </div>
                         <input
                           type="file"
-                          accept="image/png,image/jpeg,image/jpg"
+                          accept="image/png"
                           id="profile_image_4003498219193"
                           className="hidden"
                           onChange={handleOnchangeFile}

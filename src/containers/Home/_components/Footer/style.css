@@ -190,4 +190,8 @@
   .site-footer {
     padding-top: 36px;
   }
+
+  .footer-package .bottom {
+    justify-content: center;
+  }
 }

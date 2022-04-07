@@ -39,7 +39,7 @@ export default function MainNavbar() {
   const pagesLogin = [
     { name: "Services", url: "/total-service" },
     { name: " Messages", url: "#" },
-    { name: "Lists", url: `/my-list/${data?.name}` },
+    { name: "My Lists", url: `/my-list/${data?.name}` },
   ];
 
   const dispatch = useDispatch();

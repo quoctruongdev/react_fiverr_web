@@ -187,7 +187,7 @@ export default function LoginForm({ history }) {
                     <span className="error">{errors.password}</span>
                   )}
                   <p className="acount__test">
-                    Acount test: AcountClientTest@gmail.com
+                    Acount: testweb@gmail.com
                   </p>
                   <p className="acount__test"> Password: 12345678</p>
                 </div>

@@ -109,7 +109,7 @@ export default function CategoriesSubPage(props) {
           >
             {subname}
           </Typography>
-s          <div className="explanation__video  ">
+    <div className="explanation__video  ">
             <p className="subtitle">
               Stand out from the crowd with a logo that fits your brand
               personality.

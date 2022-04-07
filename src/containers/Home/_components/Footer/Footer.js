@@ -311,7 +311,7 @@ function CustomizedListItem({ data, width, dataNew }) {
     ));
   };
   return (
-    <Grid item sx={12} sm={4} md={2.4}>
+    <Grid item sx={12} sm={12} md={4} lg={2.4}>
       <ListItem
         disableRipple
         sx={{

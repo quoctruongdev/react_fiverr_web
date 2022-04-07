@@ -102,12 +102,22 @@ export default function NestedList() {
               ":hover": { color: "#1dbf73" },
             }}
             component={NavLink}
+            to="/total-service"
+          >
+            <ListItemText primary="Services" />
+          </ListItemButton>
+          <ListItemButton
+            sx={{
+              ":hover": { color: "#1dbf73" },
+            }}
+            component={NavLink}
             to={`my-list/${userClient?.name}`}
           >
-            <ListItemText primary="Lists" />
+            <ListItemText primary=" My Lists" />
           </ListItemButton>
         </>
       ) : (
+        <>
         <ListItemButton
           sx={{
             ":hover": { color: "#1dbf73" },
@@ -117,6 +127,17 @@ export default function NestedList() {
         >
           <ListItemText primary="Sign In" />
         </ListItemButton>
+        <ListItemButton
+            sx={{
+              ":hover": { color: "#1dbf73" },
+            }}
+            component={NavLink}
+            to="/total-service"
+          >
+            <ListItemText primary="Services" />
+          </ListItemButton>
+        </>
+
       )}
       <ListItemButton
         sx={{
