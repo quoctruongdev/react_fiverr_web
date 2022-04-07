@@ -280,7 +280,7 @@ export default Footer;
 function CategoriesResults({ data, width, dataNew }) {
   return (
     <List component="nav" aria-labelledby="nested-list-subheader">
-      <Grid container={width <= 500 ? false : true}>
+      <Grid container={width <= 899 ? false : true}>
         {data?.map((item) => {
           return (
             <CustomizedListItem
@@ -315,7 +315,7 @@ function CustomizedListItem({ data, width, dataNew }) {
       <ListItem
         disableRipple
         sx={{
-          cursor: width <= 500 ? "pointer" : "default",
+          cursor: width <= 899 ? "pointer" : "default",
         }}
         key={data.id}
         onClick={handleClick}
@@ -329,17 +329,17 @@ function CustomizedListItem({ data, width, dataNew }) {
         />
         {open ? (
           <ExpandLess
-            sx={{ display: width <= 500 ? "block" : "none" }}
+            sx={{ display: width <= 899 ? "block" : "none" }}
             color="disabled"
           />
         ) : (
           <ExpandMore
-            sx={{ display: width <= 500 ? "block" : "none" }}
+            sx={{ display: width <= 899 ? "block" : "none" }}
             color="disabled"
           />
         )}
       </ListItem>
-      <Collapse in={width <= 500 ? open : true} timeout="auto" unmountOnExit>
+      <Collapse in={width <= 899 ? open : true} timeout="auto" unmountOnExit>
         {dataNew ? (
           <List
             sx={{
