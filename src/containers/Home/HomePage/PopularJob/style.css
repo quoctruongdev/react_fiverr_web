@@ -13,14 +13,7 @@
   transform: rotate(180deg);
 }
 
-/* Sub text */
-.subcategory h4 {
-  position: relative;
-  z-index: 1;
-  color: #fff;
-  padding: 16px;
-  /* font-weight: 700px !important; */
-}
+
 .subcategory {
   position: absolute;
   display: block;
@@ -37,12 +30,6 @@
   width: 88%;
 }
 
-.subcategory h4 small {
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 400;
-  display: block;
-}
 
 .subcategory img {
   object-fit: cover;
