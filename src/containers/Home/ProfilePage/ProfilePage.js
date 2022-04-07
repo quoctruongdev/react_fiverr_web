@@ -407,7 +407,7 @@ export default function ProfilePage() {
                   It seems that you don't have any active Gigs. Get selling!
                 </p>
                 <a
-                  href="/seller_onboarding/overview"
+                  href="#/"
                   className="btn-lrg-standard cta-btn js-create-a-gig-btn"
                   style={{
                     color: "#fff",

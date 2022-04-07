@@ -83,7 +83,14 @@ export default function ListTypeJobPage(props) {
         <NavLink
           to={`/categories/${data2?.name}/${id}/${item?.name}/${item?._id}`}
         >
-          <Card elevation={0}>
+          <Card sx={{
+            ":hover": {
+              transform: "scale(1.019) translateY(-2px)",
+              boxShadow:
+                "0 40px 100px -20px rgb(0 0 10 / 20%), 0 30px 70px -30px rgb(0 0 0 / 40%)",
+              transition: "all 0.1s ease-in-out",
+            },
+          }}  elevation={0}>
             <CardMedia
               loading="lazy"
               component="img"
