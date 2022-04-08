@@ -9,9 +9,7 @@ import deleteUserReducer from "../../containers/Admin/UsersManagement/Delete/mod
 import addUserReducer from "../../containers/Admin/UsersManagement/Add/modules/reducer";
 import updateUserReducer from "../../containers/Admin/UsersManagement/Update/modules/reducer";
 import detailUserReducer from "../../containers/Admin/UsersManagement/Edit/_modules/reducer";
-// import uploadAvatarReducer from "../../containers/Home/ProfilePage/UploadAvatar/modules/reducer";
 import searchUserReducer from "../../containers/Admin/UsersManagement/Search/modules/reducer";
-// import detailUserReducer from "../../containers/Home/DetailPage/Overview/_JobSlider/_modules/reducer";
 import listCommentReducer from "../../containers/Home/DetailPage/Comment/modules/reducer";
 
 import updateServiceReducer from "../../containers/Admin/ServicesManagement/Update/modules/reducer";
@@ -19,12 +17,10 @@ import searchServiceReducer from "../../containers/Admin/ServicesManagement/Sear
 import servicesListReducer from "../../containers/Admin/ServicesManagement/_module/reducer";
 import deleteServiceReducer from "../../containers/Admin/ServicesManagement/Delete/modules/reducer";
 import addServiceReducer from "../../containers/Admin/ServicesManagement/Add/modules/reducer";
-// import detailServiceReducer from "../../containers/Home/DetailPage/_modules/reducer";
 import detailServiceReducer from "../../containers/Admin/ServicesManagement/Edit/_modules/reducer";
 import jobUserBookingReducer from "../../containers/Home/ProfilePage/JobUserBooking/modules/reducer";
 import bookingJobReducer from "../../containers/Home/DetailPage/BookingJob/modules/reducer";
 import uploadImageServiceReducer from "../../containers/Admin/ServicesManagement/UploadImage/modules/reducer";
-// import authReducerHome from "../../containers/Home/_components/Login/modules/reducer";
 
 import listJobMainReducer from "../../containers/Home/ListTypeJobPage/modules/reducer";
 import listJobPopularReducer from "../../containers/Home/HomePage/PopularJob/modules/reducer";
