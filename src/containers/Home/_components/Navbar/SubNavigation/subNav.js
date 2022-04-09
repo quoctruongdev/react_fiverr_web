@@ -16,7 +16,6 @@ const useStyles = makeStyles(() => ({
 export default function SubNavbar() {
   const classes = useStyles();
   const data = useSelector((state) => state.categoriesMainReducer.data);
-  const loading = useSelector((state) => state.categoriesMainReducer.loading);
   const [state, setState] = useState({
     value: null,
     open: false,
@@ -143,6 +142,9 @@ export default function SubNavbar() {
               width="100%"
               height="40px"
               variant="rectangular"
+              sx={{
+                bgcolor: "#F1EFEF",
+              }}
             />
           )}
         </Box>

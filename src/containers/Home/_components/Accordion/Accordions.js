@@ -8,7 +8,9 @@ import { makeStyles } from "@mui/styles";
 import "./style.css";
 const useStyle = makeStyles(() => ({
   content: {
-    display: "block",
+    "&.MuiAccordionSummary-content": {
+      flexShrink: 1,
+    },
   },
 }));
 
@@ -69,11 +71,11 @@ export default function AccordionsComponent() {
           sx={{
             padding: "20px 0px",
           }}
-          className={classes.content}
           expanded={expanded === `panel${item?.id}`}
           onChange={handleChange(`panel${item?.id}`)}
         >
           <AccordionSummary
+            className={classes.content}
             expandIcon={<ExpandMoreIcon />}
             aria-controls={`panel${item?.id}bh-content`}
             id={`panel${item?.id}bh-header`}
@@ -87,6 +89,8 @@ export default function AccordionsComponent() {
                 fontSize: 16,
                 fontWeight: 600,
                 color: "text.secondary",
+                my: 0,
+                flexShrink: 1,
               }}
             >
               {item?.title}
