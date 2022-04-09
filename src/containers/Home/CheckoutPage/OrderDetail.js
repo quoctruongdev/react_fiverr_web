@@ -9,59 +9,64 @@ function OrderDetail({ data, cost }) {
   console.log(qty);
   const defautImg = "/asset/image_defaut.png";
   return (
-    <Box minWidth={500} paddingBottom="15px">
+    <Box
+      sx={{
+        minWidth: { xs: "100%", md: 500 },
+      }}
+      paddingBottom="15px"
+    >
       <Typography py={1} variant="h5" gutterBottom>
         Order Detail
       </Typography>
-      <Card elevation={0} sx={{ display: "flex", border: "1px solid #ddd" }}>
+      <Card elevation={0}>
         <CardMedia
           component="img"
-          sx={{ width: 150 }}
           image={data?.image ? data?.image : defautImg}
           alt="Live from space album cover"
         />
-        <Box
+        <CardContent
           sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            width: "90%",
+            px: 0,
           }}
         >
-          <CardContent>
-            <Typography fontWeight={600} variant="body1">
-              {data?.name}
-            </Typography>
-          </CardContent>
-          <Stack direction="row" alignItems="baseline">
-            <TextField
-              color="info"
-              size="small"
-              id="standard-basic"
-              onChange={(e) => {
-                setQty(e.target.value);
-              }}
-              label="Qty"
-              defaultValue={qty}
-              inputProps={{
-                type: "number",
-                min: 1,
-                max: 20,
-              }}
-              variant="standard"
-              sx={{ width: 50 }}
-            />
-            <Typography
-              sx={{
-                fontWeight: 600,
-                color: "#62646a",
-              }}
-              variant="body2"
-            >
-              US${data?.price * cost * qty}
-            </Typography>
-          </Stack>
-        </Box>
+          <Typography texAlign="justify" fontWeight={600} variant="body1">
+            {data?.name}
+          </Typography>
+        </CardContent>
+        <Stack
+          sx={{
+            pb: 2,
+          }}
+          direction="row"
+          alignItems="baseline"
+        >
+          <TextField
+            color="info"
+            size="small"
+            id="standard-basic"
+            onChange={(e) => {
+              setQty(e.target.value);
+            }}
+            label="Qty"
+            defaultValue={qty}
+            inputProps={{
+              type: "number",
+              min: 1,
+              max: 20,
+            }}
+            variant="standard"
+            sx={{ width: 50 }}
+          />
+          <Typography
+            sx={{
+              fontWeight: 600,
+              color: "#62646a",
+            }}
+            variant="body2"
+          >
+            US${data?.price * cost * qty}
+          </Typography>
+        </Stack>
       </Card>
 
       <Box paddingTop="15px">

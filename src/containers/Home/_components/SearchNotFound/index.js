@@ -10,7 +10,7 @@ export default function SearchNotFound() {
   if (loading) return <Loader />;
 
   return (
-    <section className="flex items-center h-full p-16  dark:text-black">
+    <section className="flex items-center h-ful dark:text-black">
       <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
         <div className="max-w-lg text-center">
           <h2 className="mb-8 font-extrabold text-9xl dark:text-coolGray-600">
@@ -33,7 +33,9 @@ export default function SearchNotFound() {
             to="/"
             className="px-8 py-3 font-semibold rounded dark:bg-green-400 dark:text-coolGray-900"
           >
-            <ButtonStyle justifyContent="center">Back to homepage</ButtonStyle>
+            <ButtonStyle direction="row" justifyContent="center">
+              Back to homepage
+            </ButtonStyle>
           </NavLink>
         </div>
       </div>

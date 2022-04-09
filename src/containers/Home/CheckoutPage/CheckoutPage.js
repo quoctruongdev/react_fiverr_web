@@ -91,6 +91,7 @@ function CheckoutPage({ data, cost }) {
                       <Button onClick={handleBack}>Back</Button>
                     )}
                     <ButtonStyle
+                      direction="row"
                       onClick={() => {
                         handleNext();
                         activeStep === steps.length - 1 &&

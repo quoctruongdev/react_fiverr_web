@@ -10,6 +10,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import SwipeableViews from "react-swipeable-views";
+import ButtonStyle from "../../../../components/MaterialUI/ButtonStyle";
 import { actShowModalPopup } from "../../../../components/ModalPopup/module/actions";
 import CheckoutPage from "../../CheckoutPage/CheckoutPage";
 import LoginForm from "../../_components/Login/LoginForm/LoginForm";
@@ -246,40 +247,30 @@ export default function BookingService(props) {
                     </article>
                   </div>
                   <footer className="tab-footer">
-                    <NavLink to="#/">
-                      <button
-                        onClick={() => {
-                          userLogin &&
-                            dispatch(
-                              actShowModalPopup({
-                                Component: (
-                                  <CheckoutPage cost={1} data={data} />
-                                ),
-                                open: true,
-                              })
-                            );
-                          !userLogin &&
-                            dispatch(
-                              actShowModalPopup({
-                                Component: <LoginForm />,
-                                open: true,
-                                sx: { p: 0 },
-                              })
-                            );
-                        }}
-                        className=" btn co-white bg-co-green-700 "
-                      >
-                        Continue
-                        <span
-                          style={{
-                            fontSize: 16,
-                            wordSpacing: 1,
-                          }}
-                        >
-                          (US${data?.price})
-                        </span>
-                      </button>
-                    </NavLink>
+                    <ButtonStyle
+                      onClick={() => {
+                        userLogin &&
+                          dispatch(
+                            actShowModalPopup({
+                              Component: <CheckoutPage cost={1} data={data} />,
+                              open: true,
+                            })
+                          );
+                        !userLogin &&
+                          dispatch(
+                            actShowModalPopup({
+                              Component: <LoginForm />,
+                              open: true,
+                              sx: { p: 0 },
+                            })
+                          );
+                      }}
+                      sx={{
+                        width: "100%",
+                      }}
+                    >
+                      Continue (US${data?.price})
+                    </ButtonStyle>
                   </footer>
                 </div>
               </form>
@@ -292,7 +283,7 @@ export default function BookingService(props) {
                       <h3>
                         <b className="title">SMALL PACKAGE</b>
                         <div className="price-wrapper">
-                          <span className="price">US${data?.price * 4.5}</span>
+                          <span className="price">US${data?.price * 3.5}</span>
                         </div>
                       </h3>
                       <p>
@@ -394,15 +385,14 @@ export default function BookingService(props) {
                     </article>
                   </div>
                   <footer className="tab-footer">
-                    <NavLink to="#/">
-                      <button
+                    <footer className="tab-footer">
+                      <ButtonStyle
                         onClick={() => {
-                          // dispatch(actFetchBookingJob(id));
                           userLogin &&
                             dispatch(
                               actShowModalPopup({
                                 Component: (
-                                  <CheckoutPage cost={4.5} data={data} />
+                                  <CheckoutPage cost={3.5} data={data} />
                                 ),
                                 open: true,
                               })
@@ -416,12 +406,10 @@ export default function BookingService(props) {
                               })
                             );
                         }}
-                        className=" btn co-white bg-co-green-700 "
                       >
-                        Continue
-                        <span> (US${data?.price * 3.5})</span>
-                      </button>
-                    </NavLink>
+                        Continue (US${data?.price * 3.5})
+                      </ButtonStyle>
+                    </footer>
                   </footer>
                 </div>
               </form>
@@ -434,7 +422,7 @@ export default function BookingService(props) {
                       <h3>
                         <b className="title">BUSINESS PACKAGE</b>
                         <div className="price-wrapper">
-                          <span className="price">US${data?.price * 7.5}</span>
+                          <span className="price">US${data?.price * 5.5}</span>
                         </div>
                       </h3>
                       <p>
@@ -549,15 +537,14 @@ export default function BookingService(props) {
                     </article>
                   </div>
                   <footer className="tab-footer">
-                    <NavLink to="#/">
-                      <button
+                    <footer className="tab-footer">
+                      <ButtonStyle
                         onClick={() => {
-                          // dispatch(actFetchBookingJob(id));
                           userLogin &&
                             dispatch(
                               actShowModalPopup({
                                 Component: (
-                                  <CheckoutPage cost={7.5} data={data} />
+                                  <CheckoutPage cost={5.5} data={data} />
                                 ),
                                 open: true,
                               })
@@ -571,12 +558,10 @@ export default function BookingService(props) {
                               })
                             );
                         }}
-                        className=" btn co-white bg-co-green-700 "
                       >
-                        Continue
-                        <span> (US${data?.price * 7.5})</span>
-                      </button>
-                    </NavLink>
+                        Continue (US${data?.price * 5.5})
+                      </ButtonStyle>
+                    </footer>
                   </footer>
                 </div>
               </form>

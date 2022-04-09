@@ -55,6 +55,7 @@ export default function NestedList() {
               }}
               component={NavLink}
               to="/join"
+              direction="row"
             >
               Join Fivver
             </ButtonStyle>
@@ -118,16 +119,16 @@ export default function NestedList() {
         </>
       ) : (
         <>
-        <ListItemButton
-          sx={{
-            ":hover": { color: "#1dbf73" },
-          }}
-          component={NavLink}
-          to="/login"
-        >
-          <ListItemText primary="Sign In" />
-        </ListItemButton>
-        <ListItemButton
+          <ListItemButton
+            sx={{
+              ":hover": { color: "#1dbf73" },
+            }}
+            component={NavLink}
+            to="/login"
+          >
+            <ListItemText primary="Sign In" />
+          </ListItemButton>
+          <ListItemButton
             sx={{
               ":hover": { color: "#1dbf73" },
             }}
@@ -137,7 +138,6 @@ export default function NestedList() {
             <ListItemText primary="Services" />
           </ListItemButton>
         </>
-
       )}
       <ListItemButton
         sx={{
