@@ -72,7 +72,7 @@ export default function SearchJobPage(props) {
       );
     }
   };
-  if (loading || loadingLogin) return <Loader />;
+  if (loading ?? loadingLogin) return <Loader />;
 
   return (
     <>

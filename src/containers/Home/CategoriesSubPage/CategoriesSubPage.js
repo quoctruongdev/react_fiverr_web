@@ -29,6 +29,7 @@ export default function CategoriesSubPage(props) {
   const loading = useSelector(
     (state) => state.categoriesSubTypeReducer.loading
   );
+  const loadingLogin = useSelector((state) => state.loginReducerHome.loading);
   const dispatch = useDispatch();
   useEffect(() => {
     document.title = `${subname} Service|Fiverr`;
@@ -88,7 +89,7 @@ export default function CategoriesSubPage(props) {
     });
   };
 
-  if (loading) return <Loader />;
+  if (loading ?? loadingLogin) return <Loader />;
   return (
     <>
       <Box
@@ -109,7 +110,7 @@ export default function CategoriesSubPage(props) {
           >
             {subname}
           </Typography>
-    <div className="explanation__video  ">
+          <div className="explanation__video  ">
             <p className="subtitle">
               Stand out from the crowd with a logo that fits your brand
               personality.

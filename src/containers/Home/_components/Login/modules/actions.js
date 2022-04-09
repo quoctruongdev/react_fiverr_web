@@ -52,20 +52,6 @@ export const actLoginApi = (user, history) => {
   };
 };
 
-// export const actLogout = (history, dispatch) => {
-//   //xoa localStorage
-//   localStorage.removeItem("UserClient");
-//   localStorage.removeItem("expClient");
-
-//   //redirect ve trang /auth
-//   // history.replace("/login");
-//   dispatch(actSetMessage("You are logged out", "success"));
-
-//   //clear reducer
-//   return {
-//     type: ActionType.LOGIN_CLEAR_DATA,
-//   };
-// };
 export const actLogout = (history) => {
   return async function (dispatch) {
     dispatch(actLogOutRequest());
@@ -73,7 +59,6 @@ export const actLogout = (history) => {
       localStorage.removeItem("UserClient");
       localStorage.removeItem("expClient");
       dispatch(actLogOutSuccess());
-      history.replace("/login");
       dispatch(actSetMessage("You are logged out", "success"));
     }, 300);
   };
