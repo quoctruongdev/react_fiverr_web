@@ -20,20 +20,20 @@ export const actFetchBookingJob = (id) => {
 
 const actBookingJobRequest = () => {
   return {
-    type: ActionType.BOOKING_JOB_REQUEST,
+    type: ActionType.BOOKING_SERVICE_REQUEST,
   };
 };
 
 const actBookingJobSuccess = (data) => {
   return {
-    type: ActionType.BOOKING_JOB_SUCCESS,
+    type: ActionType.BOOKING_SERVICE_SUCCESS,
     payload: data,
   };
 };
 
 const actBookingJobFailed = (error) => {
   return {
-    type: ActionType.BOOKING_JOB_FAILED,
+    type: ActionType.BOOKING_SERVICE_FAILED,
     payload: error,
   };
 };

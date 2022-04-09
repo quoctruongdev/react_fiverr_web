@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import ModalVideo from "../../_components/ModalVideo/ModalVideo";
 import "./style.css";
 import useModal from "../../../../Hook/ModalHook";
+import { Typography } from "@mui/material";
 export default function Feature() {
   const { open, handleClose, handleOpen } = useModal();
   const data = useSelector((state) => state.homePageReducer.dataFeature);
@@ -11,9 +12,17 @@ export default function Feature() {
       <div className="selling__proposition">
         <div className="row">
           <div className="col-12-xs col-md-5 col-12-sm selling__text">
-            <h2 className="selling__title">
+            <Typography
+              sx={{
+                fontWeight: 600,
+                fontSize: { md: 36, xs: 28 },
+                color: " #404145",
+                mb: 2,
+                textAlign: "justify",
+              }}
+            >
               A whole world of freelance talent at your fingertips
-            </h2>
+            </Typography>
             <ul>
               <li>
                 <h6>

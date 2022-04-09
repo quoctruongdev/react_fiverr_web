@@ -51,7 +51,7 @@ export default function HomePage() {
     };
   }, []);
 
-  if (loadingCategories ?? loading) return <Loader />;
+  if (loadingCategories || loading) return <Loader />;
   return (
     <section id="HomePage">
       <Carousel />

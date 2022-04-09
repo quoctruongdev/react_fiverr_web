@@ -7,7 +7,7 @@ import Loader from "../../../components/Loader/Loader";
 import Overview from "./Overview/Overview";
 import TopNav from "../_components/Navbar/TopNavigation/_topNav";
 import CommentReview from "./Comment/Comment";
-import BookingJob from "./BookingJob/BookingJob";
+import BookingService from "./BookingService/BookingService";
 import Description from "./Description/Description";
 import AboutSeller from "./AboutSeller/AboutSeller";
 import FAQ from "./FAQ/FAQ";
@@ -56,7 +56,7 @@ export default function DetailPage(props) {
             <CommentReview dataComment={dataComment} />
           </Grid>
           <Grid item xs={12} md={4.5} pb={6}>
-            <BookingJob userLogin={userLogin} data={data} />
+            <BookingService userLogin={userLogin} data={data} />
           </Grid>
         </Grid>
       </Box>

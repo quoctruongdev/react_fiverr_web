@@ -8,11 +8,6 @@
   text-align: justify;
 }
 
-.selling__text h2 {
-  font-weight: 700;
-  color: #404145;
-  margin-bottom: 15px;
-}
 .selling__text ul li h6 {
   display: flex;
   align-items: flex-start;

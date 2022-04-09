@@ -53,10 +53,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BookingJob(props) {
+export default function BookingService(props) {
   const classes = useStyles();
   const { userLogin, data, id } = props;
-  const loading = useSelector((state) => state.bookingJobReducer.loading);
+  const loading = useSelector((state) => state.bookingServiceReducer.loading);
   const dispatch = useDispatch();
 
   const theme = useTheme();

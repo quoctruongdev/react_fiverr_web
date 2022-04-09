@@ -10,7 +10,7 @@ import {
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import ButtonStyle from "../../../components/MaterialUI/ButtonStyle/index";
-import { actFetchBookingJob } from "../DetailPage/BookingJob/modules/actions";
+import { actFetchBookingJob } from "../DetailPage/BookingService/modules/actions";
 import OrderDetail from "./OrderDetail";
 import PaymentForm from "./PaymentForm";
 

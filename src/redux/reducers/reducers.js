@@ -10,8 +10,8 @@ import addUserReducer from "../../containers/Admin/UsersManagement/Add/modules/r
 import updateUserReducer from "../../containers/Admin/UsersManagement/Update/modules/reducer";
 import detailUserReducer from "../../containers/Admin/UsersManagement/Edit/_modules/reducer";
 import searchUserReducer from "../../containers/Admin/UsersManagement/Search/modules/reducer";
-import listCommentReducer from "../../containers/Home/DetailPage/Comment/modules/reducer";
 
+import listCommentReducer from "../../containers/Home/DetailPage/Comment/modules/reducer";
 import updateServiceReducer from "../../containers/Admin/ServicesManagement/Update/modules/reducer";
 import searchServiceReducer from "../../containers/Admin/ServicesManagement/Search/modules/reducer";
 import servicesListReducer from "../../containers/Admin/ServicesManagement/_module/reducer";
@@ -19,7 +19,7 @@ import deleteServiceReducer from "../../containers/Admin/ServicesManagement/Dele
 import addServiceReducer from "../../containers/Admin/ServicesManagement/Add/modules/reducer";
 import detailServiceReducer from "../../containers/Admin/ServicesManagement/Edit/_modules/reducer";
 import jobUserBookingReducer from "../../containers/Home/ProfilePage/JobUserBooking/modules/reducer";
-import bookingJobReducer from "../../containers/Home/DetailPage/BookingJob/modules/reducer";
+import bookingServiceReducer from "../../containers/Home/DetailPage/BookingService/modules/reducer";
 import uploadImageServiceReducer from "../../containers/Admin/ServicesManagement/UploadImage/modules/reducer";
 
 import listJobMainReducer from "../../containers/Home/ListTypeJobPage/modules/reducer";
@@ -28,9 +28,6 @@ import listSubTypeReducer from "../../containers/Home/ListTypeJobPage/modules/_m
 
 import categoriesMainReducer from "../../containers/Home/HomePage/MarketPlace/modules/reducer";
 import categoriesSubTypeReducer from "../../containers/Home/CategoriesSubPage/modules/reducer";
-
-//film
-import addCarouselReducer from "../../containers/Home/HomePage/Carousel/modules/reducer";
 import doneServiceBookingReducer from "../../containers/Home/ProfilePage/RemoveServiceUserBooking/modules/reducer";
 
 //messageReducer
@@ -59,7 +56,7 @@ const rootReducer = combineReducers({
   searchUserReducer,
   // uploadAvatarReducer,
   jobUserBookingReducer,
-  bookingJobReducer,
+  bookingServiceReducer,
   listCommentReducer,
   //////SerVices//////
   servicesListReducer,
@@ -79,9 +76,6 @@ const rootReducer = combineReducers({
   listJobPopularReducer,
   listSubTypeReducer,
   //////COMMENT//////
-
-  // Home Page Film
-  addCarouselReducer,
 
   //Message global
   messagesReducer,
