@@ -19,6 +19,7 @@ export default function Feature() {
                 color: " #404145",
                 mb: 2,
                 textAlign: "justify",
+                lineHeight: 1.1,
               }}
             >
               A whole world of freelance talent at your fingertips
