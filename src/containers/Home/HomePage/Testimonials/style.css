@@ -68,7 +68,7 @@
 }
 /* Reponsive */
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 499px) {
   .text-content blockquote {
     font-size: 24px;
     padding-bottom: 24px;
@@ -76,20 +76,31 @@
   .text-content h5 {
     padding-bottom: 10px;
   }
-}
-
-/* @media only screen and (max-width: 500px) {
   .testimonial .ant-carousel .slick-prev,
   .testimonial .ant-carousel .slick-next {
-    top: 16% !important;
+    top: 105px;
   }
-} */
-@media only screen and (max-width: 692px) {
+}
+
+@media only screen and (min-width: 500px) {
+  .testimonial .ant-carousel .slick-prev,
+  .testimonial .ant-carousel .slick-next {
+    top:140px;
+   }
+}
+
+/* @media only screen and (max-width: 400) {
+  .testimonial .ant-carousel .slick-prev,
+  .testimonial .ant-carousel .slick-next {
+    top: 100px;
+  }
+}
+@media only screen and (min-width: 401)  {
   .testimonial .ant-carousel .slick-prev,
   .testimonial .ant-carousel .slick-next {
     top: 145px;
   }
-}
+} */
 @media only screen and (min-width: 692px) {
   .testimonial .ant-carousel .slick-prev,
   .testimonial .ant-carousel .slick-next {

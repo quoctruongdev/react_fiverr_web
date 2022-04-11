@@ -198,6 +198,7 @@ export default function MainNavbar() {
               component="div"
               sx={{
                 display: { xs: "flex", sm: "flex", md: "flex" },
+                marginLeft: { xs: 3, md: 0 },
               }}
               className="logo__navbar"
             >
