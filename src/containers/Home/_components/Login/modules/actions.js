@@ -58,6 +58,7 @@ export const actLogout = (history) => {
     setTimeout(() => {
       localStorage.removeItem("UserClient");
       localStorage.removeItem("expClient");
+      history.replace("/login")
       dispatch(actLogOutSuccess());
       dispatch(actSetMessage("You are logged out", "success"));
     }, 300);
