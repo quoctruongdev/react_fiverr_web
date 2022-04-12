@@ -66,7 +66,7 @@ export default function JoinForm({ history }) {
           <form className="Join__Content" onSubmit={handleSubmit}>
             <div className="sign-in-form">
               <div className="form-header">
-                <h4>Sign In to Fiverr</h4>
+                <h4>Join Fiverr</h4>
               </div>
               <div className="social-signing">
                 <button
